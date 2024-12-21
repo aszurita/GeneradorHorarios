@@ -1,6 +1,7 @@
 import Calendar from "./components/HorarioSemanal";
 import ControladorListaDesplegable from "./components/ControladorListaDesplegable";
 import Boton from "./components/Boton";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
 export default function App() {
   return (
     <div className="flex flex-col">
@@ -29,7 +30,7 @@ export default function App() {
         </div>
         <div className="w-8/12">
           <Calendar />
-          <Boton />
+          <Boton color= "#0a4b78" texto = "Descargar" alto = "50px" ancho = "200px" icono = {faDownload} />
         </div>
       </div>
     </div>
