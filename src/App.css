@@ -1,42 +1,50 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body, html {
+  background-color: #D8E0E4;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.linea-amarilla {
+  width: 100%;  
+  height: 4px;
+  background-color: #FAB900;
+  position: absolute;
+  top: 70px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.bloque-azul {
+  width: 100%;
+  height: 26px;
+  background-color: #001C43;
+  position: absolute;
+  top: 73px;
 }
 
-.card {
-  padding: 2em;
+.logo-espol {
+  width: 125px; 
+  height: 45px;
+  opacity: 50%;
+  position: absolute;
+  top: 16px;
+  left: 30px;
 }
 
-.read-the-docs {
-  color: #888;
+.schedule-maker {
+  font-family: Hannari,;
+  font-size: 18px;
+  color: #787878;
+  position: absolute;
+  top: 28.5px;
+  left: 160px;
+}
+
+.logo-taws {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 6px;
+  right: 20px;
 }
