@@ -5,6 +5,8 @@ import './App.css'
 import Miprimercomponente from './components/Componente'
 
 
+
+
 export default function App() {
   return (
     <>
@@ -12,10 +14,12 @@ export default function App() {
         GENERADOR HORARIOS
       </h1>
       <Miprimercomponente></Miprimercomponente>
+     
+      
     </>
 
 
-  )
-}
+  );
+};
 
 
