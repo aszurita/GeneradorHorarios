@@ -1,9 +1,11 @@
 import React from "react";
 
-export default function Miprimercomponente() {
+function Miprimercomponente() {
   return (
     <div className="text-2xl text-center">
       MI PRIMER COMPONENTE PRE TAWS
     </div>
   )
 }
+
+export default Miprimercomponente
