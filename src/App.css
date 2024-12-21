@@ -11,16 +11,12 @@ body, html {
   width: 100%;  
   height: 4px;
   background-color: #FAB900;
-  position: absolute;
-  top: 70px;
 }
 
 .bloque-azul {
   width: 100%;
   height: 26px;
   background-color: #001C43;
-  position: absolute;
-  top: 73px;
 }
 
 .logo-espol {
