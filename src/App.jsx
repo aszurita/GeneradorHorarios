@@ -1,6 +1,6 @@
-import "./App.css"
-import Calendar from "./components/HorarioSemanal"
-import ControladorListaDesplegable from "./components/ControladorListaDesplegable"
+import Calendar from "./components/HorarioSemanal";
+import ControladorListaDesplegable from "./components/ControladorListaDesplegable";
+import Boton from "./components/Boton";
 export default function App() {
   return (
     <div className="flex flex-col">
@@ -29,6 +29,7 @@ export default function App() {
         </div>
         <div className="w-8/12">
           <Calendar />
+          <Boton />
         </div>
       </div>
     </div>

@@ -158,17 +158,6 @@ const Calendar = () => {
 
   return (
     <div style={styles.wrap}>
-      <div style={styles.left}>
-        <DayPilotNavigator
-          selectMode={"Week"}
-          showMonths={3}
-          skipMonths={3}
-          selectionDay={startDate}
-          onTimeRangeSelected={(args) => {
-            setStartDate(args.day);
-          }}
-        />
-      </div>
       <div style={styles.main}>
         <DayPilotCalendar
           {...config}
