@@ -1,0 +1,67 @@
+.coursebox {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  background-color: #ffee93;
+  width: 120px;
+  height: 55px;
+  font-size: 13px;
+  border-width: 4px;
+  border: 1.5px solid #000000;
+  border-radius: 15%;
+  aspect-ratio: 1.5;
+
+  border: 2px solid #000000;
+}
+
+.coursegrid {
+  display: grid;
+  grid-template-rows: repeat(8, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  height: auto;
+}
+
+.basic {
+  background-color: #ffffff;
+}
+
+.general {
+  background-color: #868686;
+}
+
+.profform {
+  border-radius: 0%;
+}
+
+.complementadi {
+  border-radius: 15%;
+  background-color: #ff8282;
+}
+
+.complementh {
+  border-radius: 15%;
+  background-color: #82f0ff;
+}
+
+.cominternships {
+  border-radius: 15%;
+  background-color: #fc8f00;
+}
+
+.profinternships {
+  border-radius: 15%;
+  background-color: #fc8f00;
+}
+
+.itinerary {
+  border-radius: 15%;
+  background-color: #5800fc;
+}
+
+.curricularintegrationunit {
+  border-radius: 15%;
+  background-color: #21005f;
+  color: white;
+}
