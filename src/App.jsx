@@ -2,6 +2,9 @@ import Calendar from "./components/HorarioSemanal";
 import ControladorListaDesplegable from "./components/ControladorListaDesplegable";
 import Boton from "./components/Boton";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import Malla from "./components/Malla";
+import { Fiec } from "./assets/Data/FiecMallas";
+
 export default function App() {
   return (
     <div className="flex flex-col">
@@ -25,13 +28,7 @@ export default function App() {
         <div className="w-full h-[26px] bg-[#001C43]"></div>
       </div>
       <div className="flex w-full place-content-center">
-        <div className="w-4/12">
-          <ControladorListaDesplegable />
-        </div>
-        <div className="w-8/12">
-          <Calendar />
-          <Boton color= "#0a4b78" texto = "Descargar" alto = "50px" ancho = "200px" icono = {faDownload} />
-        </div>
+        <Malla materias={Fiec[4].materias} />
       </div>
     </div>
   )
