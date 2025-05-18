@@ -3,7 +3,7 @@ import ControladorListaDesplegable from "./components/ControladorListaDesplegabl
 import Boton from "./components/Boton";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import Malla from "./components/Malla";
-import { Fiec } from "./assets/Data/FiecMallas";
+import FiecMallas from "./assets/Data/FiecMallas_actualizado.json";
 
 export default function App() {
   return (
