@@ -4,6 +4,8 @@ import Boton from "./components/Boton";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import Malla from "./components/Malla";
 import FiecMallas from "./assets/Data/FiecMallas_actualizado.json";
+import SelectorParalelos from "./components/SelectorParalelos";
+import materiasParalelos from './assets/Data/materias_paralelos.json';
 
 export default function App() {
   return (
@@ -28,7 +30,10 @@ export default function App() {
         <div className="w-full h-[26px] bg-[#001C43]"></div>
       </div>
       <div className="flex w-full place-content-center">
-        <Malla materias={Fiec[4].materias} />
+        <Malla materias={Fiec[0].materias} />
+        <div className="mt-4">
+          <SelectorParalelos codigoMateria="ELEG1028" materiasParalelos={materiasParalelos} />
+        </div>
       </div>
     </div>
   )
