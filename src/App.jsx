@@ -3,11 +3,24 @@ import ControladorListaDesplegable from "./components/ControladorListaDesplegabl
 import Boton from "./components/Boton";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import Malla from "./components/Malla";
-import FiecMallas from "./assets/Data/FiecMallas_actualizado.json";
+import FiecMallas from "./assets/Data/FiecMallas_con_codigos.json";
 import SelectorParalelos from "./components/SelectorParalelos";
 import materiasParalelos from './assets/Data/materias_paralelos.json';
+import { useState } from "react";
+import './App.css';
+import WeeklySchedule from './components/WeeklySchedule';
+
+
 
 export default function App() {
+  // Estado para guardar el código de la materia seleccionada en la malla
+  const [codigoMateria, setCodigoMateria] = useState("");
+
+  // Función que se pasa a Malla para actualizar el código de materia seleccionada
+  const handleCodigoMateria = (codigo) => {
+    setCodigoMateria(codigo);
+  };
+
   return (
     <div className="flex flex-col">
       <div className="flex flex-col w-full">
@@ -30,10 +43,23 @@ export default function App() {
         <div className="w-full h-[26px] bg-[#001C43]"></div>
       </div>
       <div className="flex w-full place-content-center">
-        <Malla materias={Fiec[0].materias} />
-        <div className="mt-4">
-          <SelectorParalelos codigoMateria="ELEG1028" materiasParalelos={materiasParalelos} />
-        </div>
+        {/* Ahora Malla recibe la función para manejar el click en una materia */}
+        <Malla
+          materias={FiecMallas.Fiec[0].materias}
+          onMateriaClick={handleCodigoMateria}
+        />
+      </div>
+      <div className="flex w-full place-content-center">
+          {/* SelectorParalelos muestra los paralelos de la materia seleccionada */}
+          {codigoMateria && (
+            <SelectorParalelos
+              codigoMateria={codigoMateria}
+              materiasParalelos={materiasParalelos}
+            />
+          )}
+      </div>
+      <div className="flex w-full place-items-center place-content-center">
+        <WeeklySchedule />
       </div>
     </div>
   )

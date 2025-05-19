@@ -1,0 +1,28 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "title": "Clase de Matemáticas",
+      "day": "Lunes",
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "color": "#FF5733"
+    },
+    {
+      "id": 2,
+      "title": "Laboratorio de Física",
+      "day": "Miércoles",
+      "startTime": "13:00",
+      "endTime": "15:00",
+      "color": "#33FF57"
+    },
+    {
+      "id": 3,
+      "title": "Seminario de Programación",
+      "day": "Viernes",
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "color": "#3357FF"
+    }
+  ]
+} 

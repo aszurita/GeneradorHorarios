@@ -1,0 +1,3688 @@
+{
+    "Fiec": [
+        {
+            "carrera": "Computación",
+            "materias": [
+                {
+                    "codigo": "MATG1045",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 0,
+                    "tipo": "basic",
+                    "Materia": "CÁLCULO DE UNA VARIABLE",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "FISG1005",
+                    "prerequisitos": [],
+                    "corequisitos": [
+                        "MATG1045"
+                    ],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 1,
+                    "tipo": "basic",
+                    "Materia": "FÍSICA: MECÁNICA",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "INDG1033",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 2,
+                    "tipo": "general",
+                    "Materia": "ANÁLISIS Y RESOLUCIÓN DE PROBLEMAS",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "CCPG1043",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 3,
+                    "tipo": "general",
+                    "Materia": "FUNDAMENTOS DE PROGRAMACIÓN",
+                    "CodigoExistente": "CCPG1801"
+                },
+                {
+                    "codigo": "Complementaria Deporte",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 1,
+                    "nivel": 1,
+                    "col": 4,
+                    "tipo": "complementadi",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "IDIG1006",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 1,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS I",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1049",
+                    "prerequisitos": [
+                        "MATG1045"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 0,
+                    "tipo": "basic",
+                    "Materia": "ÁLGEBRA LINEAL",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1046",
+                    "prerequisitos": [
+                        "MATG1045"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 1,
+                    "tipo": "basic",
+                    "Materia": "CÁLCULO VECTORIAL",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "CCPG1039",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 2,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "COMPUTACIÓN Y SOCIEDAD",
+                    "CodigoExistente": "CCPG1039"
+                },
+                {
+                    "codigo": "CCPG1052",
+                    "prerequisitos": [
+                        "CCPG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "PROGRAMACIÓN ORIENTADA A OBJETOS",
+                    "CodigoExistente": "CCPG1052"
+                },
+                {
+                    "codigo": "IDIG2012",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 6,
+                    "creditos": 2,
+                    "nivel": 2,
+                    "col": 4,
+                    "tipo": "general",
+                    "Materia": "COMUNICACIÓN",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "IDIG1007",
+                    "prerequisitos": [
+                        "IDIG1006"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 2,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS II",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "EYAG1037",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 8,
+                    "creditos": 2,
+                    "nivel": 3,
+                    "col": 0,
+                    "tipo": "general",
+                    "Materia": "FUNDAMENTOS DE ELECTRICIDAD Y SISTEMAS DIGITALES",
+                    "CodigoExistente": "EYAG1037"
+                },
+                {
+                    "codigo": "MATG1051",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 3,
+                    "col": 1,
+                    "tipo": "basic",
+                    "Materia": "MATEMÁTICAS DISCRETAS",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "CCPG1034",
+                    "prerequisitos": [
+                        "CCPG1052"
+                    ],
+                    "corequisitos": [
+                        "MATG1051"
+                    ],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 3,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "ESTRUCTURAS DE DATOS",
+                    "CodigoExistente": "CCPG1034"
+                },
+                {
+                    "codigo": "CCPG1042",
+                    "prerequisitos": [
+                        "CCPG1052"
+                    ],
+                    "corequisitos": [
+                        "TICG1018"
+                    ],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 3,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "DISEÑO DE SOFTWARE",
+                    "CodigoExistente": "CCPG1042"
+                },
+                {
+                    "codigo": "TICG1018",
+                    "prerequisitos": [
+                        "CCPG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 3,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMA DE BASES DE DATOS",
+                    "CodigoExistente": "TICG1018"
+                },
+                {
+                    "codigo": "IDIG1008",
+                    "prerequisitos": [
+                        "IDIG1007"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 3,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS III",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "CCPG1049",
+                    "prerequisitos": [
+                        "EYAG1037"
+                    ],
+                    "corequisitos": [
+                        "CCPG1051"
+                    ],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 4,
+                    "col": 0,
+                    "tipo": "profesional",
+                    "Materia": "ORGANIZACIÓN DE COMPUTADORES",
+                    "CodigoExistente": "CCPG1049"
+                },
+                {
+                    "codigo": "CCPG1051",
+                    "prerequisitos": [
+                        "CCPG1052"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 4,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "PROGRAMACIÓN DE SISTEMAS",
+                    "CodigoExistente": "CCPG1051"
+                },
+                {
+                    "codigo": "ESTG1034",
+                    "prerequisitos": [
+                        "MATG1046",
+                        "CCPG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 4,
+                    "col": 2,
+                    "tipo": "basic",
+                    "Materia": "ESTADÍSTICA",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "CCPG1046",
+                    "prerequisitos": [
+                        "INDG1033",
+                        "CCPG1052"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 4,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "INTERACCIÓN HUMANO COMPUTADOR",
+                    "CodigoExistente": "CCPG1046"
+                },
+                {
+                    "codigo": "TLMG1032",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 14,
+                    "creditos": 3,
+                    "nivel": 4,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "REDES DE DATOS",
+                    "CodigoExistente": "TLMG1032"
+                },
+                {
+                    "codigo": "IDIG1009",
+                    "prerequisitos": [
+                        "IDIG1008"
+                    ],
+                    "corequisitos": [
+                        "CCPG1051"
+                    ],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 4,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS IV",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "CCPG1056",
+                    "prerequisitos": [
+                        "CCPG1049"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 0,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS OPERATIVOS",
+                    "CodigoExistente": "CCPG1056"
+                },
+                {
+                    "codigo": "CCPG1036",
+                    "prerequisitos": [
+                        "CCPG1034"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 5,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "ANÁLISIS DE ALGORITMOS",
+                    "CodigoExistente": "CCPG1036"
+                },
+                {
+                    "codigo": "SOFG1006",
+                    "prerequisitos": [
+                        "CCPG1042"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "DESARROLLO DE APLICACIONES WEB Y MÓVILES",
+                    "CodigoExistente": "SOFG1006"
+                },
+                {
+                    "codigo": "SOFG1007",
+                    "prerequisitos": [
+                        "CCPG1042",
+                        "CCPG1046"
+                    ],
+                    "corequisitos": [
+                        "SOFG1006"
+                    ],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 5,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "INGENIERÍA DE SOFTWARE I",
+                    "CodigoExistente": "SOFG1007"
+                },
+                {
+                    "codigo": "ADMG1005",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 20,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 4,
+                    "tipo": "general",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "IDIG1010",
+                    "prerequisitos": [
+                        "IDIG1009"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 5,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS V",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "CCPG1053",
+                    "prerequisitos": [
+                        "CCPG1051"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 6,
+                    "col": 0,
+                    "tipo": "profesional",
+                    "Materia": "SEGURIDAD DE LA INFORMACIÓN",
+                    "CodigoExistente": "CCPG1053"
+                },
+                {
+                    "codigo": "CCPG1048",
+                    "prerequisitos": [
+                        "ESTG1034"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 6,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "METODOLOGÍA DE LA INVESTIGACIÓN EN COMPUTACIÓN",
+                    "CodigoExistente": "CCPG1048"
+                },
+                {
+                    "codigo": "SOFG1009",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 20,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "LENGUAJES DE PROGRAMACIÓN",
+                    "CodigoExistente": "SOFG1009"
+                },
+                {
+                    "codigo": "SOFG1008",
+                    "prerequisitos": [
+                        "SOFG1007"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "INGENIERÍA DE SOFTWARE II",
+                    "CodigoExistente": "SOFG1008"
+                },
+                {
+                    "codigo": "ADSG1026",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 20,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 4,
+                    "tipo": "basic",
+                    "Materia": "CIENCIAS DE LA SOSTENIBILIDAD",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "Prácticas de servicio comunitario",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 6,
+                    "col": 5,
+                    "tipo": "comunitarias",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "CCPG1044",
+                    "prerequisitos": [
+                        "ESTG1034",
+                        "SOFG1009"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 7,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "INTELIGENCIA ARTIFICIAL",
+                    "CodigoExistente": "CCPG1044"
+                },
+                {
+                    "codigo": "CCPG1054",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 30,
+                    "creditos": 2,
+                    "nivel": 7,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS DE INFORMACIÓN",
+                    "CodigoExistente": "CCPG1054"
+                },
+                {
+                    "codigo": "CCPG1055",
+                    "prerequisitos": [
+                        "CCPG1051",
+                        "TLMG1032"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 7,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS DISTRIBUIDOS Y COMPUTACIÓN EN LA NUBE",
+                    "CodigoExistente": "CCPG1055"
+                },
+                {
+                    "codigo": "CCPG1041",
+                    "prerequisitos": [
+                        "ADMG1005"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 7,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "DIRECCIÓN DE PROYECTOS INFORMÁTICOS",
+                    "CodigoExistente": "CCPG1041"
+                },
+                {
+                    "codigo": "Itenerario",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 7,
+                    "col": 5,
+                    "tipo": "Itenerario",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "Complementaria Humanistica",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 1,
+                    "nivel": 8,
+                    "col": 2,
+                    "tipo": "complementh",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "CCPG1035",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 39,
+                    "creditos": 3,
+                    "nivel": 8,
+                    "col": 3,
+                    "tipo": "integradora",
+                    "Materia": "MATERIA INTEGRADORA DE COMPUTACIÓN",
+                    "CodigoExistente": "CCPG1035"
+                },
+                {
+                    "codigo": "Itenerario",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 8,
+                    "col": 5,
+                    "tipo": "Itenerario",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "Prácticas Profesionales",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 5,
+                    "nivel": 9,
+                    "col": 5,
+                    "tipo": "pracprofesionales",
+                    "Materia": "",
+                    "CodigoExistente": null
+                }
+            ]
+        },
+        {
+            "carrera": "Telemática",
+            "materias": [
+                {
+                    "codigo": "MATG1045",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 0,
+                    "col": 0,
+                    "tipo": "basic",
+                    "Materia": "CÁLCULO DE UNA VARIABLE",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "FISG1005",
+                    "prerequisitos": [],
+                    "corequisitos": [
+                        "MATG1045"
+                    ],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 0,
+                    "col": 1,
+                    "tipo": "basic",
+                    "Materia": "FÍSICA: MECÁNICA",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "Complementaria Deporte",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 1,
+                    "nivel": 0,
+                    "col": 2,
+                    "tipo": "complementadi",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "CCPG1043",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 0,
+                    "col": 3,
+                    "tipo": "general",
+                    "Materia": "FUNDAMENTOS DE PROGRAMACIÓN",
+                    "CodigoExistente": "CCPG1801"
+                },
+                {
+                    "codigo": "INDG1033",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 0,
+                    "col": 4,
+                    "tipo": "general",
+                    "Materia": "ANÁLISIS Y RESOLUCIÓN DE PROBLEMAS",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "IDIG1006",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 0,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS I",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1046",
+                    "prerequisitos": [
+                        "MATG1045"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 0,
+                    "tipo": "basic",
+                    "Materia": "CÁLCULO VECTORIAL",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "FISG1006",
+                    "prerequisitos": [
+                        "FISG1005"
+                    ],
+                    "corequisitos": [
+                        "MATG1046"
+                    ],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 1,
+                    "tipo": "basic",
+                    "Materia": "FÍSICA: ELECTRICIDAD Y MAGNETISMO",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "IDIG2012",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 6,
+                    "creditos": 2,
+                    "nivel": 1,
+                    "col": 2,
+                    "tipo": "general",
+                    "Materia": "COMUNICACIÓN",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "CCPG1052",
+                    "prerequisitos": [
+                        "CCPG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "PROGRAMACIÓN ORIENTADA A OBJETOS",
+                    "CodigoExistente": "CCPG1052"
+                },
+                {
+                    "codigo": "TLMG1036",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 1,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "TELEMÁTICA Y TRANSFORMACIÓN DIGITAL",
+                    "CodigoExistente": "TLMG1036"
+                },
+                {
+                    "codigo": "IDIG1007",
+                    "prerequisitos": [
+                        "IDIG1006"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 1,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS II",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1049",
+                    "prerequisitos": [
+                        "MATG1045"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 0,
+                    "tipo": "basic",
+                    "Materia": "ÁLGEBRA LINEAL",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1051",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 1,
+                    "tipo": "basic",
+                    "Materia": "MATEMÁTICAS DISCRETAS",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "Complementaria Humanistica",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 1,
+                    "nivel": 2,
+                    "col": 2,
+                    "tipo": "complementh",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "TLMG1032",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 6,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "REDES DE DATOS",
+                    "CodigoExistente": "TLMG1032"
+                },
+                {
+                    "codigo": "TICG1018",
+                    "prerequisitos": [
+                        "CCPG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMA DE BASES DE DATOS",
+                    "CodigoExistente": "TICG1018"
+                },
+                {
+                    "codigo": "IDIG1008",
+                    "prerequisitos": [
+                        "IDIG1007"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 2,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS III",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1050",
+                    "prerequisitos": [
+                        "MATG1049"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 3,
+                    "col": 0,
+                    "tipo": "basic",
+                    "Materia": "ECUACIONES DIFERENCIALES",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "ESTG1034",
+                    "prerequisitos": [
+                        "MATG1046",
+                        "CCPG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 3,
+                    "col": 1,
+                    "tipo": "basic",
+                    "Materia": "ESTADÍSTICA",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "EYAG1044",
+                    "prerequisitos": [
+                        "FISG1006"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 3,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS DIGITALES I",
+                    "CodigoExistente": "EYAG1044"
+                },
+                {
+                    "codigo": "ELEG1034",
+                    "prerequisitos": [
+                        "FISG1006"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 3,
+                    "col": 3,
+                    "tipo": "general",
+                    "Materia": "ELECTRICIDAD BÁSICA",
+                    "CodigoExistente": "ELEG1034"
+                },
+                {
+                    "codigo": "TLMG1030",
+                    "prerequisitos": [
+                        "TLMG1032"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 3,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "INTERNETWORKING",
+                    "CodigoExistente": "TLMG1030"
+                },
+                {
+                    "codigo": "IDIG1009",
+                    "prerequisitos": [
+                        "IDIG1008"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 3,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS IV",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "ADMG1005",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 20,
+                    "creditos": 3,
+                    "nivel": 4,
+                    "col": 0,
+                    "tipo": "general",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "CCPG1051",
+                    "prerequisitos": [
+                        "CCPG1052"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 4,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "PROGRAMACIÓN DE SISTEMAS",
+                    "CodigoExistente": "CCPG1051"
+                },
+                {
+                    "codigo": "EYAG1046",
+                    "prerequisitos": [
+                        "EYAG1044"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 4,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS EMBEBIDOS",
+                    "CodigoExistente": "EYAG1046"
+                },
+                {
+                    "codigo": "EYAG1034",
+                    "prerequisitos": [
+                        "ELEG1034"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 4,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "ELECTRÓNICA",
+                    "CodigoExistente": "EYAG1034"
+                },
+                {
+                    "codigo": "TLMG1022",
+                    "prerequisitos": [
+                        "TLMG1036"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 4,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "ADMINISTRACIÓN DE SISTEMAS Y SERVICIOS EN RED",
+                    "CodigoExistente": "TLMG1022"
+                },
+                {
+                    "codigo": "IDIG1010",
+                    "prerequisitos": [
+                        "IDIG1009"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 4,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS V",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "ADSG1026",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 20,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 0,
+                    "tipo": "basic",
+                    "Materia": "CIENCIAS DE LA SOSTENIBILIDAD",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "TLMG1028",
+                    "prerequisitos": [
+                        "ESTG1034",
+                        "TLMG1030"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 5,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "EVALUACIÓN Y SIMULACIÓN DE REDES",
+                    "CodigoExistente": "TLMG1028"
+                },
+                {
+                    "codigo": "TLMG1033",
+                    "prerequisitos": [
+                        "TLMG1032"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 5,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "REDES INALÁMBRICAS Y DE SENSORES",
+                    "CodigoExistente": "TLMG1033"
+                },
+                {
+                    "codigo": "TLMG1026",
+                    "prerequisitos": [
+                        "TLMG1022"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 5,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "CIBERSEGURIDAD Y GESTIÓN DE REDES",
+                    "CodigoExistente": "TLMG1026"
+                },
+                {
+                    "codigo": "TLMG1034",
+                    "prerequisitos": [
+                        "TLMG1022",
+                        "TLMG1032"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS EN LA NUBE",
+                    "CodigoExistente": "TLMG1034"
+                },
+                {
+                    "codigo": "Prácticas de servicio comunitario",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 5,
+                    "col": 5,
+                    "tipo": "comunitarias",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "TLMG1035",
+                    "prerequisitos": [
+                        "CCPG1051",
+                        "TLMG1033"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 0,
+                    "tipo": "profesional",
+                    "Materia": "TELEMETRÍA Y SISTEMAS CIBERFÍSICOS",
+                    "CodigoExistente": "TLMG1035"
+                },
+                {
+                    "codigo": "TLMG1027",
+                    "prerequisitos": [
+                        "MATG1050",
+                        "TLMG1028"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 6,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "COMUNICACIÓN DIGITAL DE DATOS",
+                    "CodigoExistente": "TLMG1027"
+                },
+                {
+                    "codigo": "CCPG1055",
+                    "prerequisitos": [
+                        "CCPG1051",
+                        "TLMG1032"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS DISTRIBUIDOS Y COMPUTACIÓN EN LA NUBE",
+                    "CodigoExistente": "CCPG1055"
+                },
+                {
+                    "codigo": "TLMG1025",
+                    "prerequisitos": [
+                        "TLMG1030"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 6,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "CALIDAD DE SERVICIO Y REDES MULTIMEDIA",
+                    "CodigoExistente": "TLMG1025"
+                },
+                {
+                    "codigo": "TLMG1029",
+                    "prerequisitos": [
+                        "TLMG1022"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 6,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "GESTIÓN DE INFRAESTRUCTURA Y SERVICIOS TI",
+                    "CodigoExistente": "TLMG1029"
+                },
+                {
+                    "codigo": "Itenerario",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 5,
+                    "tipo": "Itenerario",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "TLMG1031",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 39,
+                    "creditos": 3,
+                    "nivel": 7,
+                    "col": 4,
+                    "tipo": "integradora",
+                    "Materia": "MATERIA INTEGRADORA DE TELEMÁTICA",
+                    "CodigoExistente": "TLMG1031"
+                },
+                {
+                    "codigo": "Itenerario",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 7,
+                    "col": 5,
+                    "tipo": "Itenerario",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "Prácticas Profesionales",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 8,
+                    "col": 5,
+                    "tipo": "pracprofesionales",
+                    "Materia": "",
+                    "CodigoExistente": null
+                }
+            ]
+        },
+        {
+            "carrera": "Telecomunicaciones",
+            "materias": [
+                {
+                    "codigo": "QUIG1032",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 0,
+                    "col": 0,
+                    "tipo": "basic",
+                    "Materia": "QUÍMICA GENERAL",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1045",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 0,
+                    "col": 1,
+                    "tipo": "basic",
+                    "Materia": "CÁLCULO DE UNA VARIABLE",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "FISG1005",
+                    "prerequisitos": [],
+                    "corequisitos": [
+                        "MATG1045"
+                    ],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 0,
+                    "col": 2,
+                    "tipo": "basic",
+                    "Materia": "FÍSICA: MECÁNICA",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "INDG1033",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 0,
+                    "col": 3,
+                    "tipo": "general",
+                    "Materia": "ANÁLISIS Y RESOLUCIÓN DE PROBLEMAS",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "complementadi",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 1,
+                    "nivel": 0,
+                    "col": 4,
+                    "tipo": "complementadi",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "IDIG1006",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 0,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS I",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1049",
+                    "prerequisitos": [
+                        "MATG1045"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 0,
+                    "tipo": "basic",
+                    "Materia": "ÁLGEBRA LINEAL",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "CCPG1043",
+                    "prerequisitos": [
+                        "MATG104"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 1,
+                    "tipo": "general",
+                    "Materia": "FUNDAMENTOS DE PROGRAMACIÓN",
+                    "CodigoExistente": "CCPG1801"
+                },
+                {
+                    "codigo": "MATG1046",
+                    "prerequisitos": [
+                        "MATG104"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 2,
+                    "tipo": "basic",
+                    "Materia": "CÁLCULO VECTORIAL",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "FISG1006",
+                    "prerequisitos": [
+                        "FISG1005"
+                    ],
+                    "corequisitos": [
+                        "MATG1046"
+                    ],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 3,
+                    "tipo": "basic",
+                    "Materia": "FÍSICA: ELECTRICIDAD Y MAGNETISMO",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "complementh",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 1,
+                    "nivel": 1,
+                    "col": 4,
+                    "tipo": "complementh",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "IDIG1007",
+                    "prerequisitos": [
+                        "IDIG1006"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 1,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS II",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1050",
+                    "prerequisitos": [
+                        "MATG1049"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 0,
+                    "tipo": "basic",
+                    "Materia": "ECUACIONES DIFERENCIALES",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "TELG1037",
+                    "prerequisitos": [],
+                    "corequisitos": [
+                        "MATG1050"
+                    ],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 1,
+                    "tipo": "general",
+                    "Materia": "SEÑALES Y SISTEMAS",
+                    "CodigoExistente": "TELG1037"
+                },
+                {
+                    "codigo": "ESTG1034",
+                    "prerequisitos": [
+                        "MATG1046",
+                        "CCPG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 2,
+                    "tipo": "basic",
+                    "Materia": "ESTADÍSTICA",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "IDIG2012",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 6,
+                    "creditos": 2,
+                    "nivel": 2,
+                    "col": 3,
+                    "tipo": "general",
+                    "Materia": "COMUNICACIÓN",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "TELG1032",
+                    "prerequisitos": [
+                        "INDG1033"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 2,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "INTRODUCCIÓN A LAS TELECOMUNICACIONES",
+                    "CodigoExistente": "TELG1032"
+                },
+                {
+                    "codigo": "IDIG1008",
+                    "prerequisitos": [
+                        "IDIG1007"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 2,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS III",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "ELEG1051",
+                    "prerequisitos": [
+                        "MATG1050",
+                        "FISG1006"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 3,
+                    "col": 0,
+                    "tipo": "profesional",
+                    "Materia": "TEORÍA ELECTROMAGNÉTICA",
+                    "CodigoExistente": "ELEG1051"
+                },
+                {
+                    "codigo": "TELG1034",
+                    "prerequisitos": [
+                        "TELG1037"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 3,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "PROCESAMIENTO DIGITAL DE SEÑALES",
+                    "CodigoExistente": "TELG1034"
+                },
+                {
+                    "codigo": "TELG1038",
+                    "prerequisitos": [
+                        "ESTG1034",
+                        "TELG1037"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 3,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS DE COMUNICACIONES I",
+                    "CodigoExistente": "TELG1038"
+                },
+                {
+                    "codigo": "ELEG1034",
+                    "prerequisitos": [
+                        "FISG1006"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 3,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "ELECTRICIDAD BÁSICA",
+                    "CodigoExistente": "ELEG1034"
+                },
+                {
+                    "codigo": "EYAG1040",
+                    "prerequisitos": [],
+                    "corequisitos": [
+                        "ELEG1034"
+                    ],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 3,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "PRINCIPIOS DE ELECTRÓNICA",
+                    "CodigoExistente": "EYAG1040"
+                },
+                {
+                    "codigo": "IDIG1009",
+                    "prerequisitos": [
+                        "IDIG1008"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 3,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS IV",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "TELG1027",
+                    "prerequisitos": [
+                        "ELEG1034",
+                        "ELEG1051"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 4,
+                    "col": 0,
+                    "tipo": "profesional",
+                    "Materia": "CIRCUITOS DE ALTA FRECUENCIA Y MICROONDAS",
+                    "CodigoExistente": "TELG1027"
+                },
+                {
+                    "codigo": "TELG1039",
+                    "prerequisitos": [
+                        "TELG1038"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 4,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS DE COMUNICACIONES II",
+                    "CodigoExistente": "TELG1039"
+                },
+                {
+                    "codigo": "EYAG1027",
+                    "prerequisitos": [
+                        "EYAG1040"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 4,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "APLICACIONES ELECTRÓNICAS",
+                    "CodigoExistente": "EYAG1027"
+                },
+                {
+                    "codigo": "TELG1030",
+                    "prerequisitos": [
+                        "TELG1032"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 4,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "DISEÑO DE REDES CONMUTADAS",
+                    "CodigoExistente": "TELG1030"
+                },
+                {
+                    "codigo": "IDIG1010",
+                    "prerequisitos": [
+                        "IDIG1009"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 4,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS V",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "ADMG1005",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 20,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 0,
+                    "tipo": "general",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "TELG1035",
+                    "prerequisitos": [
+                        "TELG1027"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "PROPAGACIÓN",
+                    "CodigoExistente": "TELG1035"
+                },
+                {
+                    "codigo": "EYAG1044",
+                    "prerequisitos": [
+                        "FISG1006"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 5,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS DIGITALES I",
+                    "CodigoExistente": "EYAG1044"
+                },
+                {
+                    "codigo": "ADSG1026",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 20,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 3,
+                    "tipo": "basic",
+                    "Materia": "CIENCIAS DE LA SOSTENIBILIDAD",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "TELG1040",
+                    "prerequisitos": [
+                        "TELG1030"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 5,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS DE REDES",
+                    "CodigoExistente": "TELG1040"
+                },
+                {
+                    "codigo": "ADMG1006",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 28,
+                    "creditos": 2,
+                    "nivel": 5,
+                    "col": 5,
+                    "tipo": "profesional",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "Prácticas de servicio comunitario",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 6,
+                    "col": 0,
+                    "tipo": "comunitarias",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "TELG1028",
+                    "prerequisitos": [
+                        "TELG1035",
+                        "TELG1039"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "COMUNICACIONES INALÁMBRICAS",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "TELG1029",
+                    "prerequisitos": [
+                        "TELG1034",
+                        "TELG1039",
+                        "EYAG1044"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 6,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "DISEÑO DE APLICACIONES EN TELECOMUNICACIONES",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "TELG1031",
+                    "prerequisitos": [
+                        "TELG1030"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "FIBRAS ÓPTICAS",
+                    "CodigoExistente": "TELG1031"
+                },
+                {
+                    "codigo": "TELG1042",
+                    "prerequisitos": [
+                        "TELG1040"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 6,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "TRANSMISIÓN DE SERVICIOS MULTIMEDIA",
+                    "CodigoExistente": "TELG1042"
+                },
+                {
+                    "codigo": "Itenerario",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 5,
+                    "tipo": "Itenerario",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "TELG1033",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 38,
+                    "creditos": 3,
+                    "nivel": 7,
+                    "col": 4,
+                    "tipo": "integradora",
+                    "Materia": "MATERIA INTEGRADORA DE TELECOMUNICACIONES",
+                    "CodigoExistente": "TELG1033"
+                },
+                {
+                    "codigo": "Itenerario",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 7,
+                    "col": 5,
+                    "tipo": "Itenerario",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "Prácticas Profesionales",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 5,
+                    "nivel": 8,
+                    "col": 5,
+                    "tipo": "pracprofesionales",
+                    "Materia": "",
+                    "CodigoExistente": null
+                }
+            ]
+        },
+        {
+            "carrera": "Electrónica y Automatización",
+            "materias": [
+                {
+                    "codigo": "Complementaria Deporte",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 1,
+                    "nivel": 0,
+                    "col": 0,
+                    "tipo": "complementadi",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "INDG1033",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 0,
+                    "col": 1,
+                    "tipo": "general",
+                    "Materia": "ANÁLISIS Y RESOLUCIÓN DE PROBLEMAS",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1045",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 0,
+                    "col": 2,
+                    "tipo": "basic",
+                    "Materia": "CÁLCULO DE UNA VARIABLE",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "FISG1005",
+                    "prerequisitos": [],
+                    "corequisitos": [
+                        "MATG1045"
+                    ],
+                    "minimo": 3,
+                    "creditos": 3,
+                    "nivel": 0,
+                    "col": 3,
+                    "tipo": "basic",
+                    "Materia": "FÍSICA: MECÁNICA",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "QUIG1032",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 0,
+                    "col": 4,
+                    "tipo": "basic",
+                    "Materia": "QUÍMICA GENERAL",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "IDIG1006",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 0,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS I",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1049",
+                    "prerequisitos": [
+                        "MATG1045"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 0,
+                    "tipo": "basic",
+                    "Materia": "ÁLGEBRA LINEAL",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "CCPG1043",
+                    "prerequisitos": [
+                        "MATG1045"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 1,
+                    "tipo": "general",
+                    "Materia": "FUNDAMENTOS DE PROGRAMACIÓN",
+                    "CodigoExistente": "CCPG1801"
+                },
+                {
+                    "codigo": "MATG1046",
+                    "prerequisitos": [
+                        "MATG1045"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 2,
+                    "tipo": "basic",
+                    "Materia": "CÁLCULO VECTORIAL",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "FISG1006",
+                    "prerequisitos": [
+                        "FISG1005"
+                    ],
+                    "corequisitos": [
+                        "MATG1046"
+                    ],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 3,
+                    "tipo": "basic",
+                    "Materia": "FÍSICA: ELECTRICIDAD Y MAGNETISMO",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "Complementaria Humanistica",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 1,
+                    "nivel": 1,
+                    "col": 4,
+                    "tipo": "complementh",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "IDIG1007",
+                    "prerequisitos": [
+                        "IDIG1006"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 1,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS II",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1050",
+                    "prerequisitos": [
+                        "MATG1045"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 0,
+                    "tipo": "basic",
+                    "Materia": "ECUACIONES DIFERENCIALES",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "ESTG1034",
+                    "prerequisitos": [
+                        "MATG1046",
+                        "CCPG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 1,
+                    "tipo": "basic",
+                    "Materia": "ESTADÍSTICA",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "IDIG2012",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 6,
+                    "creditos": 2,
+                    "nivel": 2,
+                    "col": 2,
+                    "tipo": "general",
+                    "Materia": "COMUNICACIÓN",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "EYAG1044",
+                    "prerequisitos": [
+                        "FISG1006"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 2,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS DIGITALES I",
+                    "CodigoExistente": "EYAG1044"
+                },
+                {
+                    "codigo": "ELEG1030",
+                    "prerequisitos": [
+                        "FISG1006"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "CIRCUITOS ELÉCTRICOS",
+                    "CodigoExistente": "ELEG1030"
+                },
+                {
+                    "codigo": "IDIG1008",
+                    "prerequisitos": [
+                        "IDIG1007"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 2,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS III",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "EYAG1041",
+                    "prerequisitos": [
+                        "CCPG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 3,
+                    "col": 0,
+                    "tipo": "profesional",
+                    "Materia": "PROGRAMACIÓN APLICADA A LA AUTOMATIZACIÓN",
+                    "CodigoExistente": "EYAG1041"
+                },
+                {
+                    "codigo": "EYAG1040",
+                    "prerequisitos": [
+                        "ELEG1030"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 3,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "PRINCIPIOS DE ELECTRÓNICA",
+                    "CodigoExistente": "EYAG1040"
+                },
+                {
+                    "codigo": "EYAG1045",
+                    "prerequisitos": [
+                        "EYAG1044"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 3,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS DIGITALES II",
+                    "CodigoExistente": "EYAG1045"
+                },
+                {
+                    "codigo": "ELEG1028",
+                    "prerequisitos": [
+                        "ELEG1030",
+                        "MATG1050"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 3,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "ANÁLISIS DE REDES ELÉCTRICAS",
+                    "CodigoExistente": "ELEG1028"
+                },
+                {
+                    "codigo": "EYAG1043",
+                    "prerequisitos": [],
+                    "corequisitos": [
+                        "ELEG1028"
+                    ],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 3,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS DE CONTROL",
+                    "CodigoExistente": "EYAG1043"
+                },
+                {
+                    "codigo": "IDIG1009",
+                    "prerequisitos": [
+                        "IDIG1008"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 3,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS IV",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "ADMG1005",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 20,
+                    "creditos": 3,
+                    "nivel": 4,
+                    "col": 0,
+                    "tipo": "general",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "ELEG1038",
+                    "prerequisitos": [
+                        "ELEG1030"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 4,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "INSTALACIONES ELÉCTRICAS",
+                    "CodigoExistente": "ELEG1038"
+                },
+                {
+                    "codigo": "EYAG1038",
+                    "prerequisitos": [
+                        "EYAG1040",
+                        "EYAG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 4,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "INSTRUMENTACIÓN INDUSTRIAL",
+                    "CodigoExistente": "EYAG1038"
+                },
+                {
+                    "codigo": "ELEG1043",
+                    "prerequisitos": [
+                        "ELEG1028"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 4,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "MÁQUINAS Y TRANSFORMADORES",
+                    "CodigoExistente": "ELEG1043"
+                },
+                {
+                    "codigo": "EYAG1030",
+                    "prerequisitos": [
+                        "EYAG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 4,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "CONTROL AVANZADO",
+                    "CodigoExistente": "EYAG1030"
+                },
+                {
+                    "codigo": "IDIG1010",
+                    "prerequisitos": [
+                        "IDIG1009"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 4,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS V",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "EYAG1046",
+                    "prerequisitos": [
+                        "EYAG1041",
+                        "EYAG1044"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 0,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS EMBEBIDOS",
+                    "CodigoExistente": "EYAG1046"
+                },
+                {
+                    "codigo": "EYAG1035",
+                    "prerequisitos": [
+                        "ELEG1043",
+                        "EYAG1040",
+                        "EYAG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "ELECTRÓNICA DE POTENCIA I",
+                    "CodigoExistente": "EYAG1035"
+                },
+                {
+                    "codigo": "EYAG1027",
+                    "prerequisitos": [
+                        "EYAG1040"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "APLICACIONES ELECTRÓNICAS",
+                    "CodigoExistente": "EYAG1027"
+                },
+                {
+                    "codigo": "EYAG1028",
+                    "prerequisitos": [
+                        "ELEG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "AUTOMATIZACIÓN DE PROCESOS INDUSTRIALES",
+                    "CodigoExistente": "EYAG1028"
+                },
+                {
+                    "codigo": "ADSG1026",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 20,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 4,
+                    "tipo": "basic",
+                    "Materia": "CIENCIAS DE LA SOSTENIBILIDAD",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "EYAG1042",
+                    "prerequisitos": [
+                        "EYAG1030",
+                        "EYAG1046"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 0,
+                    "tipo": "profesional",
+                    "Materia": "ROBÓTICA INDUSTRIAL",
+                    "CodigoExistente": "EYAG1042"
+                },
+                {
+                    "codigo": "EYAG1036",
+                    "prerequisitos": [
+                        "EYAG1035"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "ELECTRÓNICA DE POTENCIA II",
+                    "CodigoExistente": "EYAG1036"
+                },
+                {
+                    "codigo": "EYAG1029",
+                    "prerequisitos": [
+                        "EYAG1028"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "COMUNICACIONES INDUSTRIALES Y SISTEMAS SCADA",
+                    "CodigoExistente": "EYAG1029"
+                },
+                {
+                    "codigo": "Prácticas de servicio comunitario",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 30,
+                    "creditos": 2,
+                    "nivel": 6,
+                    "col": 4,
+                    "tipo": "comunitarias",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "Itenerario",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 27,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 5,
+                    "tipo": "Itenerario",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "EYAG1039",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 37,
+                    "creditos": 3,
+                    "nivel": 7,
+                    "col": 4,
+                    "tipo": "integradora",
+                    "Materia": "MATERIA INTEGRADORA DE ELECTRÓNICA Y AUTOMATIZACIÓN",
+                    "CodigoExistente": "EYAG1039"
+                },
+                {
+                    "codigo": "Itenerario",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 27,
+                    "creditos": 3,
+                    "nivel": 7,
+                    "col": 5,
+                    "tipo": "Itenerario",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "Prácticas Profesionales",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 27,
+                    "creditos": 5,
+                    "nivel": 8,
+                    "col": 5,
+                    "tipo": "pracprofesionales",
+                    "Materia": "",
+                    "CodigoExistente": null
+                }
+            ]
+        },
+        {
+            "carrera": "Electricidad",
+            "materias": [
+                {
+                    "codigo": "MATG1045",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 0,
+                    "tipo": "basic",
+                    "Materia": "CÁLCULO DE UNA VARIABLE",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "FISG1005",
+                    "prerequisitos": [],
+                    "corequisitos": [
+                        "MATG1045"
+                    ],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 1,
+                    "tipo": "basic",
+                    "Materia": "FÍSICA: MECÁNICA",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "QUIG1032",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 2,
+                    "tipo": "basic",
+                    "Materia": "QUÍMICA GENERAL",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "INDG1033",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 3,
+                    "tipo": "general",
+                    "Materia": "ANÁLISIS Y RESOLUCIÓN DE PROBLEMAS",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "Complementaria Deporte",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 1,
+                    "nivel": 1,
+                    "col": 4,
+                    "tipo": "complementadi",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "IDIG1006",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 1,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS I",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1049",
+                    "prerequisitos": [
+                        "MATG1045"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 0,
+                    "tipo": "basic",
+                    "Materia": "ÁLGEBRA LINEAL",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1046",
+                    "prerequisitos": [
+                        "MATG1045"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 1,
+                    "tipo": "basic",
+                    "Materia": "CÁLCULO VECTORIAL",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "FISG1006",
+                    "prerequisitos": [
+                        "FISG1005"
+                    ],
+                    "corequisitos": [
+                        "MATG1046"
+                    ],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 2,
+                    "tipo": "basic",
+                    "Materia": "FÍSICA: ELECTRICIDAD Y MAGNETISMO",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "CCPG1043",
+                    "prerequisitos": [
+                        "MATG1045"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 3,
+                    "tipo": "general",
+                    "Materia": "FUNDAMENTOS DE PROGRAMACIÓN",
+                    "CodigoExistente": "CCPG1801"
+                },
+                {
+                    "codigo": "Complementaria Humanistica",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 1,
+                    "nivel": 2,
+                    "col": 4,
+                    "tipo": "complementh",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "IDIG1007",
+                    "prerequisitos": [
+                        "IDIG1006"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 2,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS II",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1050",
+                    "prerequisitos": [
+                        "MATG1049"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 3,
+                    "col": 0,
+                    "tipo": "basic",
+                    "Materia": "ECUACIONES DIFERENCIALES",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "IDIG2012",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 6,
+                    "creditos": 2,
+                    "nivel": 3,
+                    "col": 1,
+                    "tipo": "general",
+                    "Materia": "COMUNICACIÓN",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "ESTG1034",
+                    "prerequisitos": [
+                        "MATG1046",
+                        "CCPG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 3,
+                    "col": 2,
+                    "tipo": "basic",
+                    "Materia": "ESTADÍSTICA",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "ELEG1030",
+                    "prerequisitos": [
+                        "FISG1006"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 3,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "CIRCUITOS ELÉCTRICOS",
+                    "CodigoExistente": "ELEG1030"
+                },
+                {
+                    "codigo": "EYAG1044",
+                    "prerequisitos": [
+                        "FISG1006"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 3,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS DIGITALES I",
+                    "CodigoExistente": "EYAG1044"
+                },
+                {
+                    "codigo": "IDIG1008",
+                    "prerequisitos": [
+                        "IDIG1007"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 3,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS III",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1052",
+                    "prerequisitos": [
+                        "MATG1046"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 4,
+                    "col": 0,
+                    "tipo": "basic",
+                    "Materia": "MÉTODOS NUMÉRICOS",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "EYAG1040",
+                    "prerequisitos": [
+                        "ELEG1030"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 4,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "PRINCIPIOS DE ELECTRÓNICA",
+                    "CodigoExistente": "EYAG1040"
+                },
+                {
+                    "codigo": "ELEG1028",
+                    "prerequisitos": [
+                        "ELEG1030"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 4,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "ANÁLISIS DE REDES ELÉCTRICAS",
+                    "CodigoExistente": "ELEG1028"
+                },
+                {
+                    "codigo": "EYAG1043",
+                    "prerequisitos": [],
+                    "corequisitos": [
+                        "ELEG1028"
+                    ],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 4,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS DE CONTROL",
+                    "CodigoExistente": "EYAG1043"
+                },
+                {
+                    "codigo": "ELEG1051",
+                    "prerequisitos": [
+                        "FISG1006"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 4,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "TEORÍA ELECTROMAGNÉTICA",
+                    "CodigoExistente": "ELEG1051"
+                },
+                {
+                    "codigo": "IDIG1009",
+                    "prerequisitos": [
+                        "IDIG1008"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 4,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS IV",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "ADMG1005",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 20,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 0,
+                    "tipo": "general",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "ELEG1049",
+                    "prerequisitos": [
+                        "ELEG1028",
+                        "MATG1052"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 5,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS DE POTENCIA I",
+                    "CodigoExistente": "ELEG1049"
+                },
+                {
+                    "codigo": "ELEG1038",
+                    "prerequisitos": [
+                        "ELEG1030"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "INSTALACIONES ELÉCTRICAS",
+                    "CodigoExistente": "ELEG1038"
+                },
+                {
+                    "codigo": "ELEG1040",
+                    "prerequisitos": [
+                        "ELEG1028",
+                        "ELEG1051"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "MAQUINARIA ELÉCTRICA I",
+                    "CodigoExistente": "ELEG1040"
+                },
+                {
+                    "codigo": "IDIG1010",
+                    "prerequisitos": [
+                        "IDIG1009"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 5,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS V",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "EYAG1035",
+                    "prerequisitos": [
+                        "ELEG1040",
+                        "EYAG1040",
+                        "EYAG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 0,
+                    "tipo": "profesional",
+                    "Materia": "ELECTRÓNICA DE POTENCIA I",
+                    "CodigoExistente": "EYAG1035"
+                },
+                {
+                    "codigo": "ELEG1050",
+                    "prerequisitos": [
+                        "ELEG1049"
+                    ],
+                    "corequisitos": [
+                        "ELEG1041"
+                    ],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS DE POTENCIA II",
+                    "CodigoExistente": "ELEG1050"
+                },
+                {
+                    "codigo": "ELEG1041",
+                    "prerequisitos": [
+                        "ELEG1040"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "MAQUINARIA ELÉCTRICA II",
+                    "CodigoExistente": "ELEG1041"
+                },
+                {
+                    "codigo": "ADSG1026",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 20,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 4,
+                    "tipo": "basic",
+                    "Materia": "CIENCIAS DE LA SOSTENIBILIDAD",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "Prácticas de servicio comunitario",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 6,
+                    "col": 5,
+                    "tipo": "comunitarias",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1054",
+                    "prerequisitos": [
+                        "MATG1046"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 7,
+                    "col": 0,
+                    "tipo": "basic",
+                    "Materia": "MATEMÁTICAS SUPERIORES",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "ELEG1044",
+                    "prerequisitos": [
+                        "ELEG1050"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 7,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "OPERACIÓN DE SISTEMAS DE POTENCIA",
+                    "CodigoExistente": "ELEG1044"
+                },
+                {
+                    "codigo": "ELEG1032",
+                    "prerequisitos": [
+                        "ELEG1049"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 7,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "DISTRIBUCIÓN ELÉCTRICA I",
+                    "CodigoExistente": "ELEG1032"
+                },
+                {
+                    "codigo": "ELEG1035",
+                    "prerequisitos": [
+                        "EYAG1035",
+                        "ELEG1041"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 7,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "ENERGÍAS RENOVABLES",
+                    "CodigoExistente": "ELEG1035"
+                },
+                {
+                    "codigo": "ELEG1029",
+                    "prerequisitos": [
+                        "ELEG1041",
+                        "EYAG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 7,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "CENTRALES ELÉCTRICAS",
+                    "CodigoExistente": "ELEG1029"
+                },
+                {
+                    "codigo": "ELEG1031",
+                    "prerequisitos": [
+                        "ELEG1041",
+                        "EYAG1044"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 7,
+                    "col": 5,
+                    "tipo": "profesional",
+                    "Materia": "CONTROLES ELÉCTRICOS INDUSTRIALES",
+                    "CodigoExistente": "ELEG1031"
+                },
+                {
+                    "codigo": "ELEG1047",
+                    "prerequisitos": [
+                        "ELEG1050"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 8,
+                    "col": 0,
+                    "tipo": "profesional",
+                    "Materia": "PROTECCIONES ELÉCTRICAS",
+                    "CodigoExistente": "ELEG1047"
+                },
+                {
+                    "codigo": "ELEG1046",
+                    "prerequisitos": [
+                        "ELEG1044"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 8,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "PLANIFICACIÓN DE SISTEMAS DE POTENCIA",
+                    "CodigoExistente": "ELEG1046"
+                },
+                {
+                    "codigo": "ELEG1033",
+                    "prerequisitos": [
+                        "ELEG1032"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 8,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "DISTRIBUCIÓN ELÉCTRICA II",
+                    "CodigoExistente": "ELEG1033"
+                },
+                {
+                    "codigo": "ELEG1036",
+                    "prerequisitos": [
+                        "ELEG1050"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 8,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "ESTABILIDAD Y CONTROL DE SISTEMAS DE POTENCIA",
+                    "CodigoExistente": "ELEG1036"
+                },
+                {
+                    "codigo": "ELEG1039",
+                    "prerequisitos": [
+                        "ELEG1050"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 8,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "LÍNEAS DE TRANSMISIÓN Y SUBESTACIONES",
+                    "CodigoExistente": "ELEG1039"
+                },
+                {
+                    "codigo": "Itenerario",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 8,
+                    "col": 5,
+                    "tipo": "Itenerario",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "ELEG1037",
+                    "prerequisitos": [
+                        "ELEG1033"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 9,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "GESTIÓN Y MARCO REGULATORIO DEL SECTOR ELÉCTRICO",
+                    "CodigoExistente": "ELEG1037"
+                },
+                {
+                    "codigo": "ELEG1042",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 44,
+                    "creditos": 3,
+                    "nivel": 9,
+                    "col": 4,
+                    "tipo": "integradora",
+                    "Materia": "MATERIA INTEGRADORA DE ELECTRICIDAD",
+                    "CodigoExistente": "ELEG1042"
+                },
+                {
+                    "codigo": "Itenerario",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 9,
+                    "col": 5,
+                    "tipo": "Itenerario",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "Prácticas Profesionales",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 5,
+                    "nivel": 10,
+                    "col": 5,
+                    "tipo": "pracprofesionales",
+                    "Materia": "",
+                    "CodigoExistente": null
+                }
+            ]
+        },
+        {
+            "carrera": "Ciencia de Datos e Inteligencia Artificial",
+            "materias": [
+                {
+                    "codigo": "Complementaria Deporte",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 1,
+                    "nivel": 0,
+                    "col": 0,
+                    "tipo": "complementadi",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "INDG1033",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 0,
+                    "col": 1,
+                    "tipo": "general",
+                    "Materia": "ANÁLISIS Y RESOLUCIÓN DE PROBLEMAS",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1045",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 0,
+                    "col": 2,
+                    "tipo": "basic",
+                    "Materia": "CÁLCULO DE UNA VARIABLE",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "FISG1005",
+                    "prerequisitos": [],
+                    "corequisitos": [
+                        "MATG1045"
+                    ],
+                    "minimo": 3,
+                    "creditos": 3,
+                    "nivel": 0,
+                    "col": 3,
+                    "tipo": "basic",
+                    "Materia": "FÍSICA: MECÁNICA",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "QUIG1032",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 0,
+                    "col": 4,
+                    "tipo": "basic",
+                    "Materia": "QUÍMICA GENERAL",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "IDIG1006",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 0,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS I",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1049",
+                    "prerequisitos": [
+                        "MATG1045"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 0,
+                    "tipo": "basic",
+                    "Materia": "ÁLGEBRA LINEAL",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "CCPG1043",
+                    "prerequisitos": [
+                        "MATG1045"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 1,
+                    "tipo": "general",
+                    "Materia": "FUNDAMENTOS DE PROGRAMACIÓN",
+                    "CodigoExistente": "CCPG1801"
+                },
+                {
+                    "codigo": "MATG1046",
+                    "prerequisitos": [
+                        "MATG1045"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 2,
+                    "tipo": "basic",
+                    "Materia": "CÁLCULO VECTORIAL",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "FISG1006",
+                    "prerequisitos": [
+                        "FISG1005"
+                    ],
+                    "corequisitos": [
+                        "MATG1046"
+                    ],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 1,
+                    "col": 3,
+                    "tipo": "basic",
+                    "Materia": "FÍSICA: ELECTRICIDAD Y MAGNETISMO",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "Complementaria Humanistica",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 1,
+                    "nivel": 1,
+                    "col": 4,
+                    "tipo": "complementh",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "IDIG1007",
+                    "prerequisitos": [
+                        "IDIG1006"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 1,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS II",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "MATG1050",
+                    "prerequisitos": [
+                        "MATG1045"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 0,
+                    "tipo": "basic",
+                    "Materia": "ECUACIONES DIFERENCIALES",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "ESTG1034",
+                    "prerequisitos": [
+                        "MATG1046",
+                        "CCPG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 1,
+                    "tipo": "basic",
+                    "Materia": "ESTADÍSTICA",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "IDIG2012",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 6,
+                    "creditos": 2,
+                    "nivel": 2,
+                    "col": 2,
+                    "tipo": "general",
+                    "Materia": "COMUNICACIÓN",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "EYAG1044",
+                    "prerequisitos": [
+                        "FISG1006"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 2,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS DIGITALES I",
+                    "CodigoExistente": "EYAG1044"
+                },
+                {
+                    "codigo": "ELEG1030",
+                    "prerequisitos": [
+                        "FISG1006"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 2,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "CIRCUITOS ELÉCTRICOS",
+                    "CodigoExistente": "ELEG1030"
+                },
+                {
+                    "codigo": "IDIG1008",
+                    "prerequisitos": [
+                        "IDIG1007"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 2,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS III",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "EYAG1041",
+                    "prerequisitos": [
+                        "CCPG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 3,
+                    "col": 0,
+                    "tipo": "profesional",
+                    "Materia": "PROGRAMACIÓN APLICADA A LA AUTOMATIZACIÓN",
+                    "CodigoExistente": "EYAG1041"
+                },
+                {
+                    "codigo": "EYAG1040",
+                    "prerequisitos": [
+                        "ELEG1030"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 3,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "PRINCIPIOS DE ELECTRÓNICA",
+                    "CodigoExistente": "EYAG1040"
+                },
+                {
+                    "codigo": "EYAG1045",
+                    "prerequisitos": [
+                        "EYAG1044"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 3,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS DIGITALES II",
+                    "CodigoExistente": "EYAG1045"
+                },
+                {
+                    "codigo": "ELEG1028",
+                    "prerequisitos": [
+                        "ELEG1030",
+                        "MATG1050"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 3,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "ANÁLISIS DE REDES ELÉCTRICAS",
+                    "CodigoExistente": "ELEG1028"
+                },
+                {
+                    "codigo": "EYAG1043",
+                    "prerequisitos": [],
+                    "corequisitos": [
+                        "ELEG1028"
+                    ],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 3,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS DE CONTROL",
+                    "CodigoExistente": "EYAG1043"
+                },
+                {
+                    "codigo": "IDIG1009",
+                    "prerequisitos": [
+                        "IDIG1008"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 3,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS IV",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "ADMG1005",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 20,
+                    "creditos": 3,
+                    "nivel": 4,
+                    "col": 0,
+                    "tipo": "general",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "ELEG1038",
+                    "prerequisitos": [
+                        "ELEG1030"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 4,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "INSTALACIONES ELÉCTRICAS",
+                    "CodigoExistente": "ELEG1038"
+                },
+                {
+                    "codigo": "EYAG1038",
+                    "prerequisitos": [
+                        "EYAG1040",
+                        "EYAG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 4,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "INSTRUMENTACIÓN INDUSTRIAL",
+                    "CodigoExistente": "EYAG1038"
+                },
+                {
+                    "codigo": "ELEG1043",
+                    "prerequisitos": [
+                        "ELEG1028"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 4,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "MÁQUINAS Y TRANSFORMADORES",
+                    "CodigoExistente": "ELEG1043"
+                },
+                {
+                    "codigo": "EYAG1030",
+                    "prerequisitos": [
+                        "EYAG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 4,
+                    "col": 4,
+                    "tipo": "profesional",
+                    "Materia": "CONTROL AVANZADO",
+                    "CodigoExistente": "EYAG1030"
+                },
+                {
+                    "codigo": "IDIG1010",
+                    "prerequisitos": [
+                        "IDIG1009"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 2,
+                    "nivel": 4,
+                    "col": 5,
+                    "tipo": "general",
+                    "Materia": "INGLÉS V",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "EYAG1046",
+                    "prerequisitos": [
+                        "EYAG1041",
+                        "EYAG1044"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 0,
+                    "tipo": "profesional",
+                    "Materia": "SISTEMAS EMBEBIDOS",
+                    "CodigoExistente": "EYAG1046"
+                },
+                {
+                    "codigo": "EYAG1035",
+                    "prerequisitos": [
+                        "ELEG1043",
+                        "EYAG1040",
+                        "EYAG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "ELECTRÓNICA DE POTENCIA I",
+                    "CodigoExistente": "EYAG1035"
+                },
+                {
+                    "codigo": "EYAG1027",
+                    "prerequisitos": [
+                        "EYAG1040"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 2,
+                    "tipo": "profesional",
+                    "Materia": "APLICACIONES ELECTRÓNICAS",
+                    "CodigoExistente": "EYAG1027"
+                },
+                {
+                    "codigo": "EYAG1028",
+                    "prerequisitos": [
+                        "ELEG1043"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "AUTOMATIZACIÓN DE PROCESOS INDUSTRIALES",
+                    "CodigoExistente": "EYAG1028"
+                },
+                {
+                    "codigo": "ADSG1026",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 20,
+                    "creditos": 3,
+                    "nivel": 5,
+                    "col": 4,
+                    "tipo": "basic",
+                    "Materia": "CIENCIAS DE LA SOSTENIBILIDAD",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "EYAG1042",
+                    "prerequisitos": [
+                        "EYAG1030",
+                        "EYAG1046"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 0,
+                    "tipo": "profesional",
+                    "Materia": "ROBÓTICA INDUSTRIAL",
+                    "CodigoExistente": "EYAG1042"
+                },
+                {
+                    "codigo": "EYAG1036",
+                    "prerequisitos": [
+                        "EYAG1035"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 1,
+                    "tipo": "profesional",
+                    "Materia": "ELECTRÓNICA DE POTENCIA II",
+                    "CodigoExistente": "EYAG1036"
+                },
+                {
+                    "codigo": "EYAG1029",
+                    "prerequisitos": [
+                        "EYAG1028"
+                    ],
+                    "corequisitos": [],
+                    "minimo": 0,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 3,
+                    "tipo": "profesional",
+                    "Materia": "COMUNICACIONES INDUSTRIALES Y SISTEMAS SCADA",
+                    "CodigoExistente": "EYAG1029"
+                },
+                {
+                    "codigo": "Prácticas de servicio comunitario",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 30,
+                    "creditos": 2,
+                    "nivel": 6,
+                    "col": 4,
+                    "tipo": "comunitarias",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "Itenerario",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 27,
+                    "creditos": 3,
+                    "nivel": 6,
+                    "col": 5,
+                    "tipo": "Itenerario",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "EYAG1039",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 37,
+                    "creditos": 3,
+                    "nivel": 7,
+                    "col": 4,
+                    "tipo": "integradora",
+                    "Materia": "MATERIA INTEGRADORA DE ELECTRÓNICA Y AUTOMATIZACIÓN",
+                    "CodigoExistente": "EYAG1039"
+                },
+                {
+                    "codigo": "Itenerario",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 27,
+                    "creditos": 3,
+                    "nivel": 7,
+                    "col": 5,
+                    "tipo": "Itenerario",
+                    "Materia": "",
+                    "CodigoExistente": null
+                },
+                {
+                    "codigo": "Prácticas Profesionales",
+                    "prerequisitos": [],
+                    "corequisitos": [],
+                    "minimo": 27,
+                    "creditos": 5,
+                    "nivel": 8,
+                    "col": 5,
+                    "tipo": "pracprofesionales",
+                    "Materia": "",
+                    "CodigoExistente": null
+                }
+            ]
+        }
+    ]
+}
