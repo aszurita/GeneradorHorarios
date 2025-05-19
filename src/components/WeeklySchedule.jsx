@@ -1,5 +1,6 @@
 // WeeklySchedule.jsx
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import html2canvas from 'html2canvas';
 
 const DAYS = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 const HOURS = Array.from({ length: 25 }, (_, i) => {
@@ -10,13 +11,14 @@ const HOURS = Array.from({ length: 25 }, (_, i) => {
 
 const WeeklySchedule = () => {
   const [grid, setGrid] = useState([]);
+  const scheduleRef = useRef(null);
 
-  useEffect(() => {
+  const updateGrid = () => {
     // Leer desde localStorage
     const stored = localStorage.getItem("horario");
     const parsed = stored ? JSON.parse(stored) : null;
     const events = parsed?.events || [];
-    console.log(events);
+    
     // Crear matriz de slots vacíos
     const newGrid = DAYS.map(() => Array(HOURS.length).fill(null));
 
@@ -47,12 +49,79 @@ const WeeklySchedule = () => {
     });
 
     setGrid(newGrid);
-  }, []);
+  };
+
+  const handleDownload = async () => {
+    if (!scheduleRef.current) return;
+
+    try {
+      const canvas = await html2canvas(scheduleRef.current, {
+        scale: 2, // Mejor calidad
+        backgroundColor: '#f3f4f6', // Color de fondo gris claro
+        logging: false,
+        useCORS: true
+      });
+
+      // Convertir canvas a imagen
+      const image = canvas.toDataURL('image/png');
+      
+      // Crear link de descarga
+      const link = document.createElement('a');
+      link.href = image;
+      link.download = 'horario-semanal.png';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error al generar la imagen:', error);
+      alert('Error al generar la imagen del horario');
+    }
+  };
+
+  useEffect(() => {
+    // Inicializar grid vacío
+    setGrid(DAYS.map(() => Array(HOURS.length).fill(null)));
+    
+    // Actualizar grid con datos del localStorage
+    updateGrid();
+
+    // Escuchar cambios en el localStorage
+    const handleStorageChange = (e) => {
+      if (e.key === 'horario') {
+        updateGrid();
+      }
+    };
+
+    // Escuchar cambios en la misma pestaña
+    const handleLocalStorageChange = () => {
+      updateGrid();
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('localStorageChange', handleLocalStorageChange);
+    
+    // Limpiar los event listeners cuando el componente se desmonte
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('localStorageChange', handleLocalStorageChange);
+    };
+  }, []); // El array vacío asegura que el efecto solo se ejecute al montar y desmontar
 
   return (
     <div className="p-4 bg-gray-100 rounded mx-10 w-11/12 place-content-center">
-      <h2 className="text-2xl font-bold mb-4">Horario Semanal</h2>
-      <div className="overflow-x-auto">
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-2xl font-bold">Horario Semanal</h2>
+        <button
+          onClick={handleDownload}
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center gap-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+          </svg>
+          Descargar Horario
+        </button>
+      </div>
+      <div className="overflow-x-auto" ref={scheduleRef}>
         <table className="border-separate border-spacing-0 w-full">
           <thead>
             <tr>

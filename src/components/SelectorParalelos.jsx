@@ -21,6 +21,12 @@ function SelectorParalelos({ codigoMateria, materiasParalelos,onConfirmar }) {
         }
     }, []);
 
+    // Resetear selecciones cuando cambia la materia
+    useEffect(() => {
+        setParaleloSeleccionado(null);
+        setParaleloPractico(null);
+    }, [codigoMateria]);
+
     if (!materiasParalelos[codigoMateria]) {
         return <div>No se encontró la materia.</div>;
     }
@@ -50,7 +56,14 @@ function SelectorParalelos({ codigoMateria, materiasParalelos,onConfirmar }) {
             id: Date.now() + i,
         }));
 
-        onConfirmar(nuevosEventos); // <-- Esta es la parte nueva
+        onConfirmar(nuevosEventos);
+        // Disparar evento personalizado para notificar el cambio en localStorage
+        window.dispatchEvent(new Event('localStorageChange'));
+        
+        // Reiniciar las selecciones después de confirmar
+        setParaleloSeleccionado(null);
+        setParaleloPractico(null);
+        
         alert("Paralelos guardados en el horario.");
     };
 
