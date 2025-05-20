@@ -3,6 +3,8 @@ import WeeklySchedule from './components/WeeklySchedule';
 import SelectorParalelos from "./components/SelectorParalelos";
 import materiasParalelos from './assets/Data/materias_paralelos.json';
 import FiecMallas from "./assets/Data/FiecMallas_con_codigos.json";
+import LogoEspol from "./assets/logo_espol.png";
+import LogoTaws from "./assets/logo_taws.png";
 import Malla from "./components/Malla";
 
 export default function App() {
@@ -53,17 +55,23 @@ export default function App() {
   return (
     <div className="flex flex-col">
       {/* Navbar con selección de carrera */}
-      <nav className="bg-blue-600 text-white p-4">
+      <nav className="bg-white">
         <div className="container mx-auto">
-          <h1 className="text-xl font-bold mb-2">Generador de Horarios</h1>
-          <div className="flex gap-4">
+          <div className="flex items-center" style={{ marginLeft: "25px", height: "80px" }}>
+            <img src={LogoEspol} alt="Logo Espol" style={{ width: "150px", height: "59px" }}/>
+            <h1 className="text-xl mb-2 mt-6" style={{color: "#787878", fontFamily: "sans-serif", fontSize: "18px", marginLeft: "15px" }}>Generador de Horarios</h1>
+            <img src={LogoTaws} alt="Logo Taws" style={{ width:"55px", marginLeft: "825px" }}/>
+          </div>
+        </div>
+        <div style={{ width: "100%", height: "3px", backgroundColor: "#FAB900" }}></div>
+        <div className="flex gap-4 text-white" style={{ backgroundColor: "#001C43", height: "50px"}}>
             {FiecMallas.Fiec.map((carrera, index) => (
               <button
                 key={carrera.carrera}
                 onClick={() => handleCarreraChange(index)}
                 className={`px-4 py-2 rounded ${
                   carreraSeleccionada === index
-                    ? "bg-white text-blue-600"
+                    ? "text-yellow-500"
                     : "hover:bg-blue-500"
                 }`}
               >
@@ -71,7 +79,6 @@ export default function App() {
               </button>
             ))}
           </div>
-        </div>
       </nav>
 
       <div className="flex w-full place-content-center">
