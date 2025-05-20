@@ -57,7 +57,7 @@ const WeeklySchedule = () => {
     try {
       const canvas = await html2canvas(scheduleRef.current, {
         scale: 2, // Mejor calidad
-        backgroundColor: '#f3f4f6', // Color de fondo gris claro
+        backgroundColor: '#f3f4f6',   
         logging: false,
         useCORS: true
       });
