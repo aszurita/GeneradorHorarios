@@ -420,12 +420,16 @@ function SelectorParalelos({ codigoMateria, materiasParalelos, onConfirmar, nomb
             )}
 
             {paraleloSeleccionado !== null && (
-                <button
-                    className="mt-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-                    onClick={confirmarSeleccion}
-                >
-                    Confirmar selección
-                </button>
+                <div className="flex justify-center mt-8">
+                    <button
+                        className="bg-blue-800 text-white px-8 py-3 rounded-lg text-lg font-semibold 
+                                 shadow-lg hover:bg-blue-900 hover:shadow-xl transform hover:scale-105 
+                                 transition-all duration-300 ease-in-out"
+                        onClick={confirmarSeleccion}
+                    >
+                        Confirmar selección
+                    </button>
+                </div>
             )}
         </div>
     );
