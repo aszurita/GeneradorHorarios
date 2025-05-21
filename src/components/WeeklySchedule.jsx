@@ -78,6 +78,25 @@ const WeeklySchedule = () => {
     }
   };
 
+  const eliminarEvento = (evento) => {
+    // Leer eventos actuales
+    const stored = localStorage.getItem("horario");
+    const parsed = stored ? JSON.parse(stored) : null;
+    const eventos = parsed?.events || [];
+
+    // Extraer el código de la materia del título (asumiendo que el código está al inicio del título)
+    const codigoMateria = evento.title.split('\n')[0];
+
+    // Filtrar todos los eventos que contengan el mismo código de materia
+    const eventosActualizados = eventos.filter(ev => 
+      !ev.title.startsWith(codigoMateria)
+    );
+
+    // Guardar eventos actualizados
+    localStorage.setItem("horario", JSON.stringify({ events: eventosActualizados }));
+    window.dispatchEvent(new Event('localStorageChange'));
+  };
+
   useEffect(() => {
     // Inicializar grid vacío
     setGrid(DAYS.map(() => Array(HOURS.length).fill(null)));
@@ -145,11 +164,19 @@ const WeeklySchedule = () => {
                       <td
                         key={`${dayIdx}-${hourIdx}`}
                         rowSpan={cell.duration}
-                        className="align-top px-1 py-0 border-b border-gray-200"
+                        className="align-top px-1 py-0 border-b border-gray-200 relative group"
                         style={{ backgroundColor: cell.color, minWidth: 140 }}
                       >
-                        <div className="text-white font-semibold text-xs leading-tight">{cell.title}</div>
-                        <div className="text-white text-[10px]">{cell.startTime} - {cell.endTime}</div>
+                        <div className="text-white font-semibold text-xs leading-tight whitespace-pre-line">{cell.title}</div>
+                        <button
+                          onClick={() => eliminarEvento(cell)}
+                          className="absolute top-1 right-1 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:text-red-200"
+                          title="Eliminar materia"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                          </svg>
+                        </button>
                       </td>
                     );
                   }

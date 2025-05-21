@@ -4,16 +4,16 @@ import React from "react";
 const Malla = ({ materias, onMateriaClick }) => (
   <div className="overflow-x-auto">
     <div
-      className="grid gap-2 grid-rows-10 auto-rows-[80px] md:auto-rows-[90px] lg:auto-rows-[100px]"
+      className="grid gap-1 grid-rows-10 auto-rows-[45px] md:auto-rows-[50px] lg:auto-rows-[55px]"
       style={{
-        gridTemplateColumns: "repeat(6, minmax(90px, 200px))", // Las columnas se ajustan entre 90px y 150px
+        gridTemplateColumns: "repeat(6, minmax(70px, 150px))", // Reducido de 90px-200px a 70px-150px
       }}
     >
       {materias.map((materia, index) => (
         <div
           key={materia.codigo + String(index)}
           className={`
-            border rounded-lg p-2 text-center cursor-pointer
+            border rounded-lg p-1 text-center cursor-pointer
             ${materia.tipo === "basic" ? "bg-white" : ""}
             ${materia.tipo === "general" ? "bg-[#D6DFE6]" : ""}
             ${materia.tipo === "profesional" ? "bg-[#FDF3BA]" : ""}
@@ -35,8 +35,10 @@ const Malla = ({ materias, onMateriaClick }) => (
             }
           }}
         >
-          <div className="font-bold text-sm md:text-base">{materia.codigo}</div>
-          <div className="text-xs md:text-sm">{materia.Materia}</div>
+          <div className="flex flex-col justify-center items-center h-full">
+            <div className="font-bold text-xs md:text-sm">{materia.codigo}</div>
+            <div className="text-[10px] md:text-xs">{materia.Materia}</div>
+          </div>
         </div>
       ))}
     </div>
