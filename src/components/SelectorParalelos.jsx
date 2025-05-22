@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import CourseFilterBar from "./CourseFilterBar/CourseFilterBar";
 
 // Utilidad para generar color único por materia
 const getColorFromString = (str) => {
@@ -15,6 +16,80 @@ function SelectorParalelos({
   onConfirmar,
   nombreMateria,
 }) {
+  const [filters, setFilters] = useState({
+    sectionNumber: "",
+    professor: "",
+    day: "",
+    startTime: "",
+    endTime: "",
+  });
+  const handleFilterChange = (newFilters) => {
+    console.log("Filters changed:", newFilters);
+    setFilters(newFilters);
+  };
+
+  const timeToMinutes = (timeStr) => {
+    if (!timeStr) return 0;
+    const [hours, minutes] = timeStr.split(":").map(Number);
+    return hours * 60 + minutes;
+  };
+
+  const filterParalelos = (paralelos) => {
+    return paralelos.filter((paralelo) => {
+      // Filter by section number
+      if (
+        filters.sectionNumber &&
+        !paralelo.Paralelo.toString().includes(filters.sectionNumber)
+      ) {
+        return false;
+      }
+
+      // Filter by professor
+      if (
+        filters.professor &&
+        !paralelo.Profesor.toLowerCase().includes(
+          filters.professor.toLowerCase()
+        )
+      ) {
+        return false;
+      }
+
+      // Filter by day and time
+      if (filters.day || filters.startTime || filters.endTime) {
+        const hasMatchingSchedule = paralelo.horarios.some((horario) => {
+          // Check day
+          if (filters.day && horario.Dia !== filters.day) {
+            return false;
+          }
+
+          // Convert times to minutes for comparison
+          const classStart = timeToMinutes(horario.HoraInicio);
+          const classEnd = timeToMinutes(horario.HoraFin);
+          const filterStart = timeToMinutes(filters.startTime);
+          const filterEnd = timeToMinutes(filters.endTime);
+
+          // Check start time
+          if (filters.startTime && classStart < filterStart) {
+            return false;
+          }
+
+          // Check end time
+          if (filters.endTime && classEnd > filterEnd) {
+            return false;
+          }
+
+          return true;
+        });
+
+        if (!hasMatchingSchedule) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+  };
+
   const [paraleloSeleccionado, setParaleloSeleccionado] = useState(null);
   const [paraleloPractico, setParaleloPractico] = useState(null);
   const [eventos, setEventos] = useState([]);
@@ -258,11 +333,14 @@ function SelectorParalelos({
     });
   };
 
-  const paralelosVisibles = teoricos.slice(
+  const filteredTeoricos = filterParalelos(teoricos);
+  const filteredPracticos = filterParalelos(practicos);
+
+  const paralelosVisibles = filteredTeoricos.slice(
     startIndex,
     startIndex + PARALELOS_POR_PAGINA
   );
-  const paralelosPracticosVisibles = practicos.slice(
+  const paralelosPracticosVisibles = filteredPracticos.slice(
     startIndexPractico,
     startIndexPractico + PARALELOS_POR_PAGINA
   );
@@ -357,6 +435,10 @@ function SelectorParalelos({
       )}
 
       <h2 className="text-xl font-bold mb-2">Paralelos Teóricos</h2>
+      <div>
+        <CourseFilterBar onFilterChange={handleFilterChange} />
+        {/* Your course listing component */}
+      </div>
       <div className="relative">
         {/* Flecha izquierda */}
         {teoricos.length > PARALELOS_POR_PAGINA && (
