@@ -8,6 +8,11 @@ const HOURS = Array.from({ length: 25 }, (_, i) => {
   const minute = (i + 14) % 2 === 0 ? "00" : "30";
   return `${hour.toString().padStart(2, "0")}:${minute}`;
 });
+const getExamDay = (dateString) => {
+  const [day, month, year] = dateString.split("/");
+  const date = new Date(`${month}/${day}/${year}`);
+  return DAYS[date.getDay() - 1] || DAYS[0]; // Default to Monday if invalid
+};
 
 const WeeklySchedule = () => {
   const [grid, setGrid] = useState([]);
@@ -19,11 +24,20 @@ const WeeklySchedule = () => {
     const parsed = stored ? JSON.parse(stored) : null;
     const events = parsed?.events || [];
 
-    const newGrid = DAYS.map(() => Array(HOURS.length).fill(null));
+    const examMap = new Map();
 
     events.forEach((event) => {
+      if (!examMap.has(event.codigoMateria)) {
+        examMap.set(event.codigoMateria, event);
+      }
+    });
+
+    const newGrid = DAYS.map(() => Array(HOURS.length).fill(null));
+
+    Array.from(examMap.values()).forEach((event) => {
+      const examDay = getExamDay(event.fechaexa_primer);
       const dayIdx = DAYS.findIndex(
-        (d) => d.toUpperCase() === event.day.toUpperCase()
+        (d) => d.toUpperCase() === examDay.toUpperCase()
       );
       if (dayIdx === -1) return;
 
