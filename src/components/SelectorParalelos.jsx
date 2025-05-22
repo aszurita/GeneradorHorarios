@@ -185,6 +185,10 @@ function SelectorParalelos({
         0,
         5
       )}\n📍${h.Aula}`,
+      nombreMateria: nombreMateria,
+      aula: h.Aula,
+      paraleloSeleccionado: paraleloSeleccionado,
+      codigoMateria: codigoMateria,
       day: h.Dia,
       startTime: h.HoraInicio,
       endTime: h.HoraFin,

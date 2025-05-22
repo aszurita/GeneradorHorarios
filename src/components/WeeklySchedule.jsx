@@ -1,17 +1,8 @@
-// WeeklySchedule.jsx
 import { useEffect, useState, useRef } from "react";
 import html2canvas from "html2canvas";
 import html2pdf from "html2pdf.js";
 
-const DAYS = [
-  "Lunes",
-  "Martes",
-  "Miércoles",
-  "Jueves",
-  "Viernes",
-  "Sábado",
-  "Domingo",
-];
+const DAYS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 const HOURS = Array.from({ length: 25 }, (_, i) => {
   const hour = Math.floor((i + 14) / 2); // Start from 7 AM (14 half-hours)
   const minute = (i + 14) % 2 === 0 ? "00" : "30";
@@ -23,15 +14,13 @@ const WeeklySchedule = () => {
   const scheduleRef = useRef(null);
 
   const updateGrid = () => {
-    // Leer desde localStorage
     const stored = localStorage.getItem("horario");
+    console.log(stored);
     const parsed = stored ? JSON.parse(stored) : null;
     const events = parsed?.events || [];
 
-    // Crear matriz de slots vacíos
     const newGrid = DAYS.map(() => Array(HOURS.length).fill(null));
 
-    // Llenar matriz con eventos
     events.forEach((event) => {
       const dayIdx = DAYS.findIndex(
         (d) => d.toUpperCase() === event.day.toUpperCase()
@@ -41,7 +30,6 @@ const WeeklySchedule = () => {
       const [startHour, startMinute] = event.startTime.split(":").map(Number);
       const [endHour, endMinute] = event.endTime.split(":").map(Number);
 
-      // Convertir a índices de media hora
       const startIdx = (startHour - 7) * 2 + (startMinute === 30 ? 1 : 0);
       const endIdx = (endHour - 7) * 2 + (endMinute === 30 ? 1 : 0);
 
@@ -67,16 +55,14 @@ const WeeklySchedule = () => {
 
     try {
       const canvas = await html2canvas(scheduleRef.current, {
-        scale: 2, // Mejor calidad
+        scale: 2,
         backgroundColor: "#f3f4f6",
         logging: false,
         useCORS: true,
       });
 
-      // Convertir canvas a imagen
       const image = canvas.toDataURL("image/png");
 
-      // Crear link de descarga
       const link = document.createElement("a");
       link.href = image;
       link.download = "horario-semanal.png";
@@ -104,20 +90,16 @@ const WeeklySchedule = () => {
   };
 
   const eliminarEvento = (evento) => {
-    // Leer eventos actuales
     const stored = localStorage.getItem("horario");
     const parsed = stored ? JSON.parse(stored) : null;
     const eventos = parsed?.events || [];
 
-    // Extraer el código de la materia del título (asumiendo que el código está al inicio del título)
     const codigoMateria = evento.title.split("\n")[0];
 
-    // Filtrar todos los eventos que contengan el mismo código de materia
     const eventosActualizados = eventos.filter(
       (ev) => !ev.title.startsWith(codigoMateria)
     );
 
-    // Guardar eventos actualizados
     localStorage.setItem(
       "horario",
       JSON.stringify({ events: eventosActualizados })
@@ -126,20 +108,16 @@ const WeeklySchedule = () => {
   };
 
   useEffect(() => {
-    // Inicializar grid vacío
     setGrid(DAYS.map(() => Array(HOURS.length).fill(null)));
 
-    // Actualizar grid con datos del localStorage
     updateGrid();
 
-    // Escuchar cambios en el localStorage
     const handleStorageChange = (e) => {
       if (e.key === "horario") {
         updateGrid();
       }
     };
 
-    // Escuchar cambios en la misma pestaña
     const handleLocalStorageChange = () => {
       updateGrid();
     };
@@ -147,7 +125,6 @@ const WeeklySchedule = () => {
     window.addEventListener("storage", handleStorageChange);
     window.addEventListener("localStorageChange", handleLocalStorageChange);
 
-    // Limpiar los event listeners cuando el componente se desmonte
     return () => {
       window.removeEventListener("storage", handleStorageChange);
       window.removeEventListener(
@@ -155,7 +132,7 @@ const WeeklySchedule = () => {
         handleLocalStorageChange
       );
     };
-  }, []); // El array vacío asegura que el efecto solo se ejecute al montar y desmontar
+  }, []);
 
   return (
     <div className="p-4 bg-gray-100 rounded mx-10 w-11/12 place-content-center">

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const CourseFilterBar = ({ onFilterChange }) => {
   const [filters, setFilters] = useState({
     sectionNumber: "",
-    professor: "",
+    profesor: "",
     day: "",
     startTime: "",
     endTime: "",
@@ -16,12 +16,10 @@ const CourseFilterBar = ({ onFilterChange }) => {
     "Jueves",
     "Viernes",
     "Sábado",
-    "Domingo",
   ];
   const timeOptions = [];
 
-  // Generate time options from 6:00 AM to 11:00 PM in 30-minute increments
-  for (let hour = 6; hour < 24; hour++) {
+  for (let hour = 6; hour < 22; hour++) {
     for (let minute = 0; minute < 60; minute += 30) {
       const displayHour = hour > 12 ? hour - 12 : hour;
       const amPm = hour >= 12 ? "PM" : "AM";
@@ -47,38 +45,38 @@ const CourseFilterBar = ({ onFilterChange }) => {
   return (
     <div style={styles.filterBar}>
       <div style={styles.filterGroup}>
-        <label style={styles.label}>Section Number:</label>
+        <label style={styles.label}>Numero de paralelo:</label>
         <input
           type="text"
           name="sectionNumber"
           value={filters.sectionNumber}
           onChange={handleInputChange}
           style={styles.input}
-          placeholder="e.g., 101"
+          placeholder="ej: 101"
         />
       </div>
 
       <div style={styles.filterGroup}>
-        <label style={styles.label}>Professor:</label>
+        <label style={styles.label}>Profesor:</label>
         <input
           type="text"
-          name="professor"
-          value={filters.professor}
+          name="profesor"
+          value={filters.profesor}
           onChange={handleInputChange}
           style={styles.input}
-          placeholder="Professor name"
+          placeholder="Nombre del profesor"
         />
       </div>
 
       <div style={styles.filterGroup}>
-        <label style={styles.label}>Day:</label>
+        <label style={styles.label}>Dia:</label>
         <select
           name="day"
           value={filters.day}
           onChange={handleInputChange}
           style={styles.select}
         >
-          <option value="">All Days</option>
+          <option value="">Todos los dias</option>
           {daysOfWeek.map((day) => (
             <option key={day} value={day}>
               {day}
@@ -88,14 +86,14 @@ const CourseFilterBar = ({ onFilterChange }) => {
       </div>
 
       <div style={styles.filterGroup}>
-        <label style={styles.label}>Start Time:</label>
+        <label style={styles.label}>Hora de Inicio:</label>
         <select
           name="startTime"
           value={filters.startTime}
           onChange={handleInputChange}
           style={styles.select}
         >
-          <option value="">Any Time</option>
+          <option value="">Cualquiera</option>
           {timeOptions.map((time, index) => (
             <option key={`start-${index}`} value={time.value}>
               {time.display}
@@ -105,14 +103,14 @@ const CourseFilterBar = ({ onFilterChange }) => {
       </div>
 
       <div style={styles.filterGroup}>
-        <label style={styles.label}>End Time:</label>
+        <label style={styles.label}>Hora de Fin:</label>
         <select
           name="endTime"
           value={filters.endTime}
           onChange={handleInputChange}
           style={styles.select}
         >
-          <option value="">Any Time</option>
+          <option value="">Cualquiera</option>
           {timeOptions.map((time, index) => (
             <option key={`end-${index}`} value={time.value}>
               {time.display}

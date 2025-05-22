@@ -1,15 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import html2canvas from "html2canvas";
+import html2pdf from "html2pdf.js";
 
-const DAYS = [
-  "Lunes",
-  "Martes",
-  "Miércoles",
-  "Jueves",
-  "Viernes",
-  "Sábado",
-  "Domingo",
-];
+const DAYS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 const HOURS = Array.from({ length: 25 }, (_, i) => {
   const hour = Math.floor((i + 14) / 2); // Start from 7 AM (14 half-hours)
   const minute = (i + 14) % 2 === 0 ? "00" : "30";
@@ -21,16 +14,13 @@ const WeeklySchedule = () => {
   const scheduleRef = useRef(null);
 
   const updateGrid = () => {
-    // Leer desde localStorage
     const stored = localStorage.getItem("horario");
     console.log(stored);
     const parsed = stored ? JSON.parse(stored) : null;
     const events = parsed?.events || [];
 
-    // Crear matriz de slots vacíos
     const newGrid = DAYS.map(() => Array(HOURS.length).fill(null));
 
-    // Llenar matriz con eventos
     events.forEach((event) => {
       const dayIdx = DAYS.findIndex(
         (d) => d.toUpperCase() === event.day.toUpperCase()
@@ -42,7 +32,6 @@ const WeeklySchedule = () => {
         .map(Number);
       const [endHour, endMinute] = event.horaFinExamen.split(":").map(Number);
 
-      // Convertir a índices de media hora
       const startIdx = (startHour - 7) * 2 + (startMinute === 30 ? 1 : 0);
       const endIdx = (endHour - 7) * 2 + (endMinute === 30 ? 1 : 0);
 
@@ -68,16 +57,14 @@ const WeeklySchedule = () => {
 
     try {
       const canvas = await html2canvas(scheduleRef.current, {
-        scale: 2, // Mejor calidad
-        backgroundColor: "#f3f4f6", // Color de fondo gris claro
+        scale: 2,
+        backgroundColor: "#f3f4f6",
         logging: false,
         useCORS: true,
       });
 
-      // Convertir canvas a imagen
       const image = canvas.toDataURL("image/png");
 
-      // Crear link de descarga
       const link = document.createElement("a");
       link.href = image;
       link.download = "horario-semanal.png";
@@ -90,21 +77,31 @@ const WeeklySchedule = () => {
     }
   };
 
+  const handleDownloadPDF = () => {
+    if (!scheduleRef.current) return;
+
+    const opt = {
+      margin: 0.5,
+      filename: "horario-semanal.pdf",
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: "in", format: "a4", orientation: "landscape" },
+    };
+
+    html2pdf().set(opt).from(scheduleRef.current).save();
+  };
+
   const eliminarEvento = (evento) => {
-    // Leer eventos actuales
     const stored = localStorage.getItem("horario");
     const parsed = stored ? JSON.parse(stored) : null;
     const eventos = parsed?.events || [];
 
-    // Extraer el código de la materia del título (asumiendo que el código está al inicio del título)
     const codigoMateria = evento.title.split("\n")[0];
 
-    // Filtrar todos los eventos que contengan el mismo código de materia
     const eventosActualizados = eventos.filter(
       (ev) => !ev.title.startsWith(codigoMateria)
     );
 
-    // Guardar eventos actualizados
     localStorage.setItem(
       "horario",
       JSON.stringify({ events: eventosActualizados })
@@ -113,20 +110,16 @@ const WeeklySchedule = () => {
   };
 
   useEffect(() => {
-    // Inicializar grid vacío
     setGrid(DAYS.map(() => Array(HOURS.length).fill(null)));
 
-    // Actualizar grid con datos del localStorage
     updateGrid();
 
-    // Escuchar cambios en el localStorage
     const handleStorageChange = (e) => {
       if (e.key === "horario") {
         updateGrid();
       }
     };
 
-    // Escuchar cambios en la misma pestaña
     const handleLocalStorageChange = () => {
       updateGrid();
     };
@@ -134,7 +127,6 @@ const WeeklySchedule = () => {
     window.addEventListener("storage", handleStorageChange);
     window.addEventListener("localStorageChange", handleLocalStorageChange);
 
-    // Limpiar los event listeners cuando el componente se desmonte
     return () => {
       window.removeEventListener("storage", handleStorageChange);
       window.removeEventListener(
@@ -142,30 +134,50 @@ const WeeklySchedule = () => {
         handleLocalStorageChange
       );
     };
-  }, []); // El array vacío asegura que el efecto solo se ejecute al montar y desmontar
+  }, []);
 
   return (
     <div className="p-4 bg-gray-100 rounded mx-10 w-11/12 place-content-center">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold">Horario de Examenes</h2>
-        <button
-          onClick={handleDownload}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center gap-2"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
+        <div className="flex gap-2">
+          <button
+            onClick={handleDownload}
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center gap-2"
           >
-            <path
-              fillRule="evenodd"
-              d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            />
-          </svg>
-          Descargar Horario
-        </button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+            Descargar Horario
+          </button>
+          <button
+            onClick={handleDownloadPDF}
+            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 flex items-center gap-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
+                clipRule="evenodd"
+              />
+            </svg>
+            Descargar PDF
+          </button>
+        </div>
       </div>
       <div className="overflow-x-auto" ref={scheduleRef}>
         <table className="border-separate border-spacing-0 w-full">
@@ -204,7 +216,14 @@ const WeeklySchedule = () => {
                         style={{ backgroundColor: cell.color, minWidth: 140 }}
                       >
                         <div className="text-white font-semibold text-xs leading-tight whitespace-pre-line">
-                          {cell.title}
+                          {` ${cell.codigoMateria}\n${
+                            cell.nombreMateria
+                          }\n${cell.horaInicioExamen.slice(
+                            0,
+                            5
+                          )} - ${cell.horaFinExamen.slice(0, 5)}\n📍${
+                            cell.aula
+                          }`}
                         </div>
                         <button
                           onClick={() => eliminarEvento(cell)}
