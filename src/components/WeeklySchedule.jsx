@@ -1,6 +1,7 @@
 // WeeklySchedule.jsx
 import { useEffect, useState, useRef } from 'react';
 import html2canvas from 'html2canvas';
+import html2pdf from 'html2pdf.js';
 
 const DAYS = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 const HOURS = Array.from({ length: 25 }, (_, i) => {
@@ -78,6 +79,20 @@ const WeeklySchedule = () => {
     }
   };
 
+  const handleDownloadPDF = () => {
+    if (!scheduleRef.current) return;
+
+    const opt = {
+      margin: 0.5,
+      filename: 'horario-semanal.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
+    };
+
+    html2pdf().set(opt).from(scheduleRef.current).save();
+  };
+
   useEffect(() => {
     // Inicializar grid vacío
     setGrid(DAYS.map(() => Array(HOURS.length).fill(null)));
@@ -111,15 +126,26 @@ const WeeklySchedule = () => {
     <div className="p-4 bg-gray-100 rounded mx-10 w-11/12 place-content-center">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold">Horario Semanal</h2>
-        <button
-          onClick={handleDownload}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center gap-2"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-          </svg>
-          Descargar Horario
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={handleDownload}
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center gap-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+            Descargar Horario
+          </button>
+          <button
+            onClick={handleDownloadPDF}
+            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 flex items-center gap-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
+            </svg>
+            Descargar PDF
+          </button>
+        </div>
       </div>
       <div className="overflow-x-auto" ref={scheduleRef}>
         <table className="border-separate border-spacing-0 w-full">

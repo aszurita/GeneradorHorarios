@@ -1,11 +1,43 @@
 import React, { useState, useEffect } from "react";
 
-// Utilidad para generar color único por materia
-const getColorFromString = (str) => {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) hash = str.charCodeAt(i) + ((hash << 5) - hash);
-    const c = (hash & 0x00ffffff).toString(16).toUpperCase();
-    return "#" + "00000".substring(0, 6 - c.length) + c;
+// Lista de colores predefinidos para las materias
+const MATERIA_COLORS = [
+    '#FF6B6B', // Rojo coral
+    '#4ECDC4', // Turquesa
+    '#45B7D1', // Azul cielo
+    '#96CEB4', // Verde menta
+    '#FFEEAD', // Amarillo suave
+    '#D4A5A5', // Rosa pálido
+    '#9B59B6', // Púrpura
+    '#3498DB', // Azul
+    '#E67E22', // Naranja
+    '#2ECC71', // Verde esmeralda
+    '#F1C40F', // Amarillo
+    '#1ABC9C', // Verde agua
+    '#E74C3C', // Rojo
+    '#34495E', // Azul oscuro
+    '#16A085', // Verde oscuro
+];
+
+// Mapa para mantener un registro de los colores asignados
+const colorAssignments = new Map();
+
+// Función para obtener un color único para cada materia
+const getColorFromString = (codigoMateria) => {
+    // Si la materia ya tiene un color asignado, retornarlo
+    if (colorAssignments.has(codigoMateria)) {
+        return colorAssignments.get(codigoMateria);
+    }
+    
+    // Si no hay colores disponibles, reiniciar el mapa
+    if (colorAssignments.size >= MATERIA_COLORS.length) {
+        colorAssignments.clear();
+    }
+    
+    // Asignar el siguiente color disponible
+    const color = MATERIA_COLORS[colorAssignments.size];
+    colorAssignments.set(codigoMateria, color);
+    return color;
 };
 
 function SelectorParalelos({ codigoMateria, materiasParalelos,onConfirmar }) {
