@@ -35,7 +35,6 @@ export default function App() {
 
     console.log(nuevos);
 
-    // Filtrar eventos que ya existen
     const eventosUnicos = nuevos.filter(
       (nuevo) =>
         !eventosActuales.some(
@@ -46,7 +45,6 @@ export default function App() {
         )
     );
 
-    // Combinar eventos actuales con los nuevos
     const actualizados = [...eventosActuales, ...eventosUnicos];
     setEventos(actualizados);
     localStorage.setItem("horario", JSON.stringify({ events: actualizados }));
@@ -55,25 +53,32 @@ export default function App() {
 
   const handleCodigoMateria = (codigo) => {
     setCodigoMateria("");
-    setTimeout(() => {
-      setCodigoMateria(codigo);
-    }, 0);
+    const materiaExists = eventos.some(
+      (evento) => evento.codigoMateria === codigo
+    );
+
+    if (!materiaExists) {
+      setTimeout(() => {
+        setCodigoMateria(codigo);
+      }, 0);
+    } else {
+      alert("Esta materia ya ha sido agregada a tu horario.");
+    }
   };
 
   const handleCarreraChange = (index) => {
-    // Limpiar localStorage
     localStorage.removeItem("horario");
-    // Limpiar eventos
     setEventos([]);
-    // Limpiar materia seleccionada
     setCodigoMateria("");
-    // Actualizar carrera seleccionada
     setCarreraSeleccionada(index);
+  };
+
+  const handleBackToMalla = () => {
+    setCodigoMateria("");
   };
 
   return (
     <div className="flex flex-col">
-      {/* Navbar con selección de carrera */}
       <nav className="bg-white">
         <div className="container mx-auto">
           <div
@@ -127,18 +132,18 @@ export default function App() {
       </nav>
 
       <div className="flex w-full place-content-center">
-        <Malla
-          materias={FiecMallas.Fiec[carreraSeleccionada].materias}
-          onMateriaClick={handleCodigoMateria}
-        />
-      </div>
-
-      <div className="flex w-full place-content-center">
-        {codigoMateria && (
+        {!codigoMateria ? (
+          <Malla
+            materias={FiecMallas.Fiec[carreraSeleccionada].materias}
+            onMateriaClick={handleCodigoMateria}
+            eventos={eventos}
+          />
+        ) : (
           <SelectorParalelos
             codigoMateria={codigoMateria}
             materiasParalelos={materiasParalelos}
             onConfirmar={agregarEventos}
+            onBack={handleBackToMalla}
             nombreMateria={
               FiecMallas.Fiec[carreraSeleccionada].materias.find(
                 (m) => m.codigo === codigoMateria

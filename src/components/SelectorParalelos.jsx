@@ -45,11 +45,12 @@ function SelectorParalelos({
   codigoMateria,
   materiasParalelos,
   onConfirmar,
+  onBack,
   nombreMateria,
 }) {
   const [filters, setFilters] = useState({
     sectionNumber: "",
-    professor: "",
+    profesor: "",
     day: "",
     startTime: "",
     endTime: "",
@@ -75,11 +76,10 @@ function SelectorParalelos({
         return false;
       }
 
-      // Filter by professor
       if (
-        filters.professor &&
+        filters.profesor &&
         !paralelo.Profesor.toLowerCase().includes(
-          filters.professor.toLowerCase()
+          filters.profesor.toLowerCase()
         )
       ) {
         return false;
@@ -381,106 +381,107 @@ function SelectorParalelos({
   );
 
   return (
-    <div className="p-4">
-      {/* Alerta de error/éxito */}
-      {errorMensaje && (
-        <div
-          className={`fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg max-w-md transform transition-all duration-500 ${
-            errorMensaje.tipo === "error"
-              ? "bg-red-100 border-l-4 border-red-500"
-              : "bg-green-100 border-l-4 border-green-500"
-          }`}
-        >
-          <div className="flex items-start">
-            <div className="flex-shrink-0">
-              {errorMensaje.tipo === "error" ? (
-                <svg
-                  className="h-6 w-6 text-red-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+    <>
+      <button onClick={onBack}>← Back to Curriculum</button>
+      <div className="p-4">
+        {errorMensaje && (
+          <div
+            className={`fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg max-w-md transform transition-all duration-500 ${
+              errorMensaje.tipo === "error"
+                ? "bg-red-100 border-l-4 border-red-500"
+                : "bg-green-100 border-l-4 border-green-500"
+            }`}
+          >
+            <div className="flex items-start">
+              <div className="flex-shrink-0">
+                {errorMensaje.tipo === "error" ? (
+                  <svg
+                    className="h-6 w-6 text-red-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="h-6 w-6 text-green-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                )}
+              </div>
+              <div className="ml-3">
+                <h3
+                  className={`text-sm font-medium ${
+                    errorMensaje.tipo === "error"
+                      ? "text-red-800"
+                      : "text-green-800"
+                  }`}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="h-6 w-6 text-green-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                  {errorMensaje.titulo}
+                </h3>
+                <div
+                  className={`mt-2 text-sm ${
+                    errorMensaje.tipo === "error"
+                      ? "text-red-700"
+                      : "text-green-700"
+                  }`}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              )}
-            </div>
-            <div className="ml-3">
-              <h3
-                className={`text-sm font-medium ${
-                  errorMensaje.tipo === "error"
-                    ? "text-red-800"
-                    : "text-green-800"
-                }`}
-              >
-                {errorMensaje.titulo}
-              </h3>
-              <div
-                className={`mt-2 text-sm ${
-                  errorMensaje.tipo === "error"
-                    ? "text-red-700"
-                    : "text-green-700"
-                }`}
-              >
-                {errorMensaje.mensaje}
+                  {errorMensaje.mensaje}
+                </div>
+              </div>
+              <div className="ml-auto pl-3">
+                <button
+                  onClick={() => setErrorMensaje(null)}
+                  className={`inline-flex rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                    errorMensaje.tipo === "error"
+                      ? "text-red-500 hover:bg-red-200 focus:ring-red-600"
+                      : "text-green-500 hover:bg-green-200 focus:ring-green-600"
+                  }`}
+                >
+                  <svg
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
               </div>
             </div>
-            <div className="ml-auto pl-3">
-              <button
-                onClick={() => setErrorMensaje(null)}
-                className={`inline-flex rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-                  errorMensaje.tipo === "error"
-                    ? "text-red-500 hover:bg-red-200 focus:ring-red-600"
-                    : "text-green-500 hover:bg-green-200 focus:ring-green-600"
-                }`}
-              >
-                <svg
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <h2 className="text-xl font-bold mb-2">Paralelos Teóricos</h2>
-      <div>
-        <CourseFilterBar onFilterChange={handleFilterChange} />
-        {/* Your course listing component */}
-      </div>
-      <div className="relative">
-        {/* Flecha izquierda */}
-        {teoricos.length > PARALELOS_POR_PAGINA && (
-          <button
-            onClick={handlePrev}
-            disabled={startIndex === 0}
-            className={`
+        <h2 className="text-xl font-bold mb-2">Paralelos Teóricos</h2>
+        <div>
+          <CourseFilterBar onFilterChange={handleFilterChange} />
+          {/* Your course listing component */}
+        </div>
+        <div className="relative">
+          {/* Flecha izquierda */}
+          {teoricos.length > PARALELOS_POR_PAGINA && (
+            <button
+              onClick={handlePrev}
+              disabled={startIndex === 0}
+              className={`
                             absolute left-0 top-1/2 -translate-y-1/2 z-10
                             w-10 h-10 rounded-full bg-white/80 shadow-lg
                             flex items-center justify-center
@@ -491,92 +492,94 @@ function SelectorParalelos({
                                 : "hover:bg-white hover:shadow-xl"
                             }
                         `}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-blue-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-        )}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 text-blue-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+          )}
 
-        <div className="overflow-hidden">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 transition-transform duration-500 ease-in-out">
-            {paralelosVisibles.map((paralelo, idx) =>
-              paraleloSeleccionado === null ||
-              paraleloSeleccionado === startIndex + idx ? (
-                <div
-                  key={startIndex + idx}
-                  className={`border rounded p-3 cursor-pointer hover:bg-blue-100 ${
-                    paraleloSeleccionado === startIndex + idx
-                      ? "bg-blue-200"
-                      : ""
-                  }`}
-                  onClick={() => setParaleloSeleccionado(startIndex + idx)}
-                >
-                  <div className="font-bold text-center mb-2">
-                    PAR. {paralelo.Paralelo}
-                  </div>
-                  <div className="text-center mb-3">
-                    <span className="inline-flex items-center justify-center">
-                      👤 {paralelo.Profesor}
-                    </span>
-                  </div>
+          <div className="overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 transition-transform duration-500 ease-in-out">
+              {paralelosVisibles.map((paralelo, idx) =>
+                paraleloSeleccionado === null ||
+                paraleloSeleccionado === startIndex + idx ? (
                   <div
-                    className={`grid ${
-                      paralelo.horarios.length === 1
-                        ? "grid-cols-1"
-                        : "grid-cols-2"
-                    } gap-4`}
+                    key={startIndex + idx}
+                    className={`border rounded p-3 cursor-pointer hover:bg-blue-100 ${
+                      paraleloSeleccionado === startIndex + idx
+                        ? "bg-blue-200"
+                        : ""
+                    }`}
+                    onClick={() => setParaleloSeleccionado(startIndex + idx)}
                   >
-                    {paralelo.horarios.map((h, i) => (
-                      <div key={i} className="text-center">
-                        <div className="font-medium">{h.Dia}</div>
-                        <div>
-                          ⏱️{h.HoraInicio.slice(0, 5)} - {h.HoraFin.slice(0, 5)}
-                        </div>
-                        {paralelo.horarios.length === 1 ? (
-                          <div className="text-sm text-gray-600">
-                            📍{h.Aula}
+                    <div className="font-bold text-center mb-2">
+                      PAR. {paralelo.Paralelo}
+                    </div>
+                    <div className="text-center mb-3">
+                      <span className="inline-flex items-center justify-center">
+                        👤 {paralelo.Profesor}
+                      </span>
+                    </div>
+                    <div
+                      className={`grid ${
+                        paralelo.horarios.length === 1
+                          ? "grid-cols-1"
+                          : "grid-cols-2"
+                      } gap-4`}
+                    >
+                      {paralelo.horarios.map((h, i) => (
+                        <div key={i} className="text-center">
+                          <div className="font-medium">{h.Dia}</div>
+                          <div>
+                            ⏱️{h.HoraInicio.slice(0, 5)} -{" "}
+                            {h.HoraFin.slice(0, 5)}
                           </div>
-                        ) : (
-                          paralelo.horarios[0].Aula !==
-                            paralelo.horarios[1].Aula && (
+                          {paralelo.horarios.length === 1 ? (
                             <div className="text-sm text-gray-600">
                               📍{h.Aula}
                             </div>
-                          )
-                        )}
-                      </div>
-                    ))}
+                          ) : (
+                            paralelo.horarios[0].Aula !==
+                              paralelo.horarios[1].Aula && (
+                              <div className="text-sm text-gray-600">
+                                📍{h.Aula}
+                              </div>
+                            )
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    {paralelo.horarios.length > 1 &&
+                      paralelo.horarios[0].Aula ===
+                        paralelo.horarios[1].Aula && (
+                        <div className="text-sm text-gray-600 text-center mt-2">
+                          📍{paralelo.horarios[0].Aula}
+                        </div>
+                      )}
                   </div>
-                  {paralelo.horarios.length > 1 &&
-                    paralelo.horarios[0].Aula === paralelo.horarios[1].Aula && (
-                      <div className="text-sm text-gray-600 text-center mt-2">
-                        📍{paralelo.horarios[0].Aula}
-                      </div>
-                    )}
-                </div>
-              ) : null
-            )}
+                ) : null
+              )}
+            </div>
           </div>
-        </div>
 
-        {/* Flecha derecha */}
-        {teoricos.length > PARALELOS_POR_PAGINA && (
-          <button
-            onClick={handleNext}
-            disabled={startIndex + PARALELOS_POR_PAGINA >= teoricos.length}
-            className={`
+          {/* Flecha derecha */}
+          {teoricos.length > PARALELOS_POR_PAGINA && (
+            <button
+              onClick={handleNext}
+              disabled={startIndex + PARALELOS_POR_PAGINA >= teoricos.length}
+              className={`
                             absolute right-0 top-1/2 -translate-y-1/2 z-10
                             w-10 h-10 rounded-full bg-white/80 shadow-lg
                             flex items-center justify-center
@@ -588,36 +591,36 @@ function SelectorParalelos({
                                 : "hover:bg-white hover:shadow-xl"
                             }
                         `}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-blue-600"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-        )}
-      </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 text-blue-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+          )}
+        </div>
 
-      {paraleloSeleccionado !== null && practicos.length > 0 && (
-        <>
-          <h2 className="text-xl font-bold mt-6 mb-2">Paralelos Prácticos</h2>
-          <div className="relative">
-            {/* Flecha izquierda */}
-            {practicos.length > PARALELOS_POR_PAGINA &&
-              paraleloPractico === null && (
-                <button
-                  onClick={handlePrevPractico}
-                  disabled={startIndexPractico === 0}
-                  className={`
+        {paraleloSeleccionado !== null && practicos.length > 0 && (
+          <>
+            <h2 className="text-xl font-bold mt-6 mb-2">Paralelos Prácticos</h2>
+            <div className="relative">
+              {/* Flecha izquierda */}
+              {practicos.length > PARALELOS_POR_PAGINA &&
+                paraleloPractico === null && (
+                  <button
+                    onClick={handlePrevPractico}
+                    disabled={startIndexPractico === 0}
+                    className={`
                                     absolute left-0 top-1/2 -translate-y-1/2 z-10
                                     w-10 h-10 rounded-full bg-white/80 shadow-lg
                                     flex items-center justify-center
@@ -628,100 +631,100 @@ function SelectorParalelos({
                                         : "hover:bg-white hover:shadow-xl"
                                     }
                                 `}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 text-green-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 19l-7-7 7-7"
-                    />
-                  </svg>
-                </button>
-              )}
-
-            <div className="overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 transition-transform duration-500 ease-in-out">
-                {paralelosPracticosVisibles.map((paralelo, idx) =>
-                  paraleloPractico === null ||
-                  paraleloPractico === startIndexPractico + idx ? (
-                    <div
-                      key={startIndexPractico + idx}
-                      className={`border rounded p-3 cursor-pointer hover:bg-green-100 ${
-                        paraleloPractico === startIndexPractico + idx
-                          ? "bg-green-200"
-                          : ""
-                      }`}
-                      onClick={() =>
-                        setParaleloPractico(startIndexPractico + idx)
-                      }
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 text-green-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
                     >
-                      <div className="font-bold text-center mb-2">
-                        PAR. {paralelo.Paralelo}
-                      </div>
-                      <div className="text-center mb-3">
-                        <span className="inline-flex items-center justify-center">
-                          👤 {paralelo.Profesor}
-                        </span>
-                      </div>
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 19l-7-7 7-7"
+                      />
+                    </svg>
+                  </button>
+                )}
+
+              <div className="overflow-hidden">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 transition-transform duration-500 ease-in-out">
+                  {paralelosPracticosVisibles.map((paralelo, idx) =>
+                    paraleloPractico === null ||
+                    paraleloPractico === startIndexPractico + idx ? (
                       <div
-                        className={`grid ${
-                          paralelo.horarios.length === 1
-                            ? "grid-cols-1"
-                            : "grid-cols-2"
-                        } gap-4`}
+                        key={startIndexPractico + idx}
+                        className={`border rounded p-3 cursor-pointer hover:bg-green-100 ${
+                          paraleloPractico === startIndexPractico + idx
+                            ? "bg-green-200"
+                            : ""
+                        }`}
+                        onClick={() =>
+                          setParaleloPractico(startIndexPractico + idx)
+                        }
                       >
-                        {paralelo.horarios.map((h, i) => (
-                          <div key={i} className="text-center">
-                            <div className="font-medium">{h.Dia}</div>
-                            <div>
-                              ⏱️{h.HoraInicio.slice(0, 5)} -{" "}
-                              {h.HoraFin.slice(0, 5)}
-                            </div>
-                            {paralelo.horarios.length === 1 ? (
-                              <div className="text-sm text-gray-600">
-                                📍{h.Aula}
+                        <div className="font-bold text-center mb-2">
+                          PAR. {paralelo.Paralelo}
+                        </div>
+                        <div className="text-center mb-3">
+                          <span className="inline-flex items-center justify-center">
+                            👤 {paralelo.Profesor}
+                          </span>
+                        </div>
+                        <div
+                          className={`grid ${
+                            paralelo.horarios.length === 1
+                              ? "grid-cols-1"
+                              : "grid-cols-2"
+                          } gap-4`}
+                        >
+                          {paralelo.horarios.map((h, i) => (
+                            <div key={i} className="text-center">
+                              <div className="font-medium">{h.Dia}</div>
+                              <div>
+                                ⏱️{h.HoraInicio.slice(0, 5)} -{" "}
+                                {h.HoraFin.slice(0, 5)}
                               </div>
-                            ) : (
-                              paralelo.horarios[0].Aula !==
-                                paralelo.horarios[1].Aula && (
+                              {paralelo.horarios.length === 1 ? (
                                 <div className="text-sm text-gray-600">
                                   📍{h.Aula}
                                 </div>
-                              )
-                            )}
-                          </div>
-                        ))}
+                              ) : (
+                                paralelo.horarios[0].Aula !==
+                                  paralelo.horarios[1].Aula && (
+                                  <div className="text-sm text-gray-600">
+                                    📍{h.Aula}
+                                  </div>
+                                )
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                        {paralelo.horarios.length > 1 &&
+                          paralelo.horarios[0].Aula ===
+                            paralelo.horarios[1].Aula && (
+                            <div className="text-sm text-gray-600 text-center mt-2">
+                              📍{paralelo.horarios[0].Aula}
+                            </div>
+                          )}
                       </div>
-                      {paralelo.horarios.length > 1 &&
-                        paralelo.horarios[0].Aula ===
-                          paralelo.horarios[1].Aula && (
-                          <div className="text-sm text-gray-600 text-center mt-2">
-                            📍{paralelo.horarios[0].Aula}
-                          </div>
-                        )}
-                    </div>
-                  ) : null
-                )}
+                    ) : null
+                  )}
+                </div>
               </div>
-            </div>
 
-            {/* Flecha derecha */}
-            {practicos.length > PARALELOS_POR_PAGINA &&
-              paraleloPractico === null && (
-                <button
-                  onClick={handleNextPractico}
-                  disabled={
-                    startIndexPractico + PARALELOS_POR_PAGINA >=
-                    practicos.length
-                  }
-                  className={`
+              {/* Flecha derecha */}
+              {practicos.length > PARALELOS_POR_PAGINA &&
+                paraleloPractico === null && (
+                  <button
+                    onClick={handleNextPractico}
+                    disabled={
+                      startIndexPractico + PARALELOS_POR_PAGINA >=
+                      practicos.length
+                    }
+                    className={`
                                     absolute right-0 top-1/2 -translate-y-1/2 z-10
                                     w-10 h-10 rounded-full bg-white/80 shadow-lg
                                     flex items-center justify-center
@@ -734,40 +737,41 @@ function SelectorParalelos({
                                         : "hover:bg-white hover:shadow-xl"
                                     }
                                 `}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 text-green-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </button>
-              )}
-          </div>
-        </>
-      )}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 text-green-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                )}
+            </div>
+          </>
+        )}
 
-      {paraleloSeleccionado !== null && (
-        <div className="flex justify-center mt-8">
-          <button
-            className="bg-blue-800 text-white px-8 py-3 rounded-lg text-lg font-semibold 
+        {paraleloSeleccionado !== null && (
+          <div className="flex justify-center mt-8">
+            <button
+              className="bg-blue-800 text-white px-8 py-3 rounded-lg text-lg font-semibold 
                                  shadow-lg hover:bg-blue-900 hover:shadow-xl transform hover:scale-105 
                                  transition-all duration-300 ease-in-out"
-            onClick={confirmarSeleccion}
-          >
-            Confirmar selección
-          </button>
-        </div>
-      )}
-    </div>
+              onClick={confirmarSeleccion}
+            >
+              Confirmar selección
+            </button>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
