@@ -41,42 +41,41 @@ const getColorFromString = (codigoMateria) => {
   return color;
 };
 
-function SelectorParalelos({
+function SelectorParalelos({ // Componente para seleccionar paralelos de una materia
   codigoMateria,
-  materiasParalelos,
+  materiasParalelos, //Parametros recibidos del componente padre
   onConfirmar,
   onBack,
   nombreMateria,
 }) {
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState({ //Inicializa los filtros de búsqueda
     sectionNumber: "",
     profesor: "",
     day: "",
     startTime: "",
     endTime: "",
   });
-  const handleFilterChange = (newFilters) => {
-    console.log("Filters changed:", newFilters);
-    setFilters(newFilters);
+  const handleFilterChange = (newFilters) => { // Maneja los cambios en los filtros
+    console.log("Filters changed:", newFilters); // Depuración
+    setFilters(newFilters); // Actualiza el estado de los filtros
   };
 
-  const timeToMinutes = (timeStr) => {
+  const timeToMinutes = (timeStr) => { // Convierte una cadena de tiempo "HH:MM" a minutos
     if (!timeStr) return 0;
     const [hours, minutes] = timeStr.split(":").map(Number);
     return hours * 60 + minutes;
   };
 
   const filterParalelos = (paralelos) => {
-    return paralelos.filter((paralelo) => {
-      // Filter by section number
+    return paralelos.filter((paralelo) => { // Filtrar por número de sección y profesor
       if (
-        filters.sectionNumber &&
+        filters.sectionNumber && //validar que el filtro no esté vacío
         !paralelo.Paralelo.toString().includes(filters.sectionNumber)
       ) {
         return false;
       }
 
-      if (
+      if ( // Filtrar por profesor 
         filters.profesor &&
         !paralelo.Profesor.toLowerCase().includes(
           filters.profesor.toLowerCase()
@@ -85,26 +84,26 @@ function SelectorParalelos({
         return false;
       }
 
-      // Filter by day and time
+      // Filtrar por día y horas
       if (filters.day || filters.startTime || filters.endTime) {
         const hasMatchingSchedule = paralelo.horarios.some((horario) => {
-          // Check day
+          // Filtrar por día
           if (filters.day && horario.Dia !== filters.day) {
             return false;
           }
 
-          // Convert times to minutes for comparison
+          // Convertir horas a minutos para comparación
           const classStart = timeToMinutes(horario.HoraInicio);
           const classEnd = timeToMinutes(horario.HoraFin);
           const filterStart = timeToMinutes(filters.startTime);
           const filterEnd = timeToMinutes(filters.endTime);
 
-          // Check start time
+          // filtro por hora de inicio
           if (filters.startTime && classStart < filterStart) {
             return false;
           }
 
-          // Check end time
+          // filtro por hora de fin
           if (filters.endTime && classEnd > filterEnd) {
             return false;
           }
@@ -112,7 +111,7 @@ function SelectorParalelos({
           return true;
         });
 
-        if (!hasMatchingSchedule) {
+        if (!hasMatchingSchedule) { // Si ningún horario coincide, excluir el paralelo
           return false;
         }
       }
@@ -121,13 +120,13 @@ function SelectorParalelos({
     });
   };
 
-  const [paraleloSeleccionado, setParaleloSeleccionado] = useState(null);
-  const [paraleloPractico, setParaleloPractico] = useState(null);
-  const [eventos, setEventos] = useState([]);
-  const [startIndex, setStartIndex] = useState(0);
-  const [startIndexPractico, setStartIndexPractico] = useState(0);
-  const [errorMensaje, setErrorMensaje] = useState(null);
-  const PARALELOS_POR_PAGINA = 3;
+  const [paraleloSeleccionado, setParaleloSeleccionado] = useState(null); // Inicializa el espacio para el paralelo seleccionado
+  const [paraleloPractico, setParaleloPractico] = useState(null); // Inicializa el espacio para el paralelo práctico seleccionado
+  const [eventos, setEventos] = useState([]); //Inicializa el espacio para los eventos del horario
+  const [startIndex, setStartIndex] = useState(0); // Índice de inicio para la paginación de paralelos teóricos
+  const [startIndexPractico, setStartIndexPractico] = useState(0); // Índice de inicio para la paginación de paralelos prácticos
+  const [errorMensaje, setErrorMensaje] = useState(null); // Estado para mensajes de error o éxito
+  const PARALELOS_POR_PAGINA = 3; // Número de paralelos a mostrar por página
 
   // Cargar horario desde localStorage
   useEffect(() => {
@@ -137,7 +136,7 @@ function SelectorParalelos({
     }
   }, []);
 
-  // Resetear selecciones cuando cambia la materia
+  // Resetear selecciones al cambiar de materia
   useEffect(() => {
     setParaleloSeleccionado(null);
     setParaleloPractico(null);
@@ -145,20 +144,20 @@ function SelectorParalelos({
     setStartIndexPractico(0);
   }, [codigoMateria]);
 
-  if (!materiasParalelos[codigoMateria]) {
+  if (!materiasParalelos[codigoMateria]) { // Manejo de error si la materia no existe
     return <div>No se encontró la materia.</div>;
   }
 
-  const teoricos = materiasParalelos[codigoMateria].Teorico;
-  const practicos = materiasParalelos[codigoMateria].Practico;
-  const color = getColorFromString(codigoMateria);
+  const teoricos = materiasParalelos[codigoMateria].Teorico; // Obtiene los paralelos teóricos y prácticos de la materia seleccionada
+  const practicos = materiasParalelos[codigoMateria].Practico; // Puede ser un array vacío si no hay prácticos
+  const color = getColorFromString(codigoMateria); // Obtiene un color único para la materia
 
-  const handlePrev = () => {
-    setStartIndex((prev) => Math.max(0, prev - PARALELOS_POR_PAGINA));
+  const handlePrev = () => { // Maneja el movimiento entre paginas hacia atrás
+    setStartIndex((prev) => Math.max(0, prev - PARALELOS_POR_PAGINA)); // Asegura que no se pase del límite
   };
 
-  const handleNext = () => {
-    setStartIndex((prev) =>
+  const handleNext = () => {  // Maneja el movimiento entre paginas hacia adelante
+    setStartIndex((prev) => // Asegura que no se pase del límite
       Math.min(
         teoricos.length - PARALELOS_POR_PAGINA,
         prev + PARALELOS_POR_PAGINA
@@ -166,12 +165,12 @@ function SelectorParalelos({
     );
   };
 
-  const handlePrevPractico = () => {
-    setStartIndexPractico((prev) => Math.max(0, prev - PARALELOS_POR_PAGINA));
+  const handlePrevPractico = () => { // Maneja el movimiento entre paginas hacia atrás para prácticos
+    setStartIndexPractico((prev) => Math.max(0, prev - PARALELOS_POR_PAGINA)); // Asegura que no se pase del límite
   };
 
-  const handleNextPractico = () => {
-    setStartIndexPractico((prev) =>
+  const handleNextPractico = () => { // Maneja el movimiento entre paginas hacia adelante para prácticos
+    setStartIndexPractico((prev) => // Asegura que no se pase del límite
       Math.min(
         practicos.length - PARALELOS_POR_PAGINA,
         prev + PARALELOS_POR_PAGINA
@@ -179,9 +178,9 @@ function SelectorParalelos({
     );
   };
 
-  const convertirAHorario = (paralelo, tipo) =>
+  const convertirAHorario = (paralelo, tipo) => // Convierte un paralelo en eventos de horario
     paralelo.horarios.map((h) => ({
-      title: `${nombreMateria}\n${h.HoraInicio.slice(0, 5)} - ${h.HoraFin.slice(
+      title: `${nombreMateria}\n${h.HoraInicio.slice(0, 5)} - ${h.HoraFin.slice( // Título del evento con nombre de materia y horario en formato HH:MM
         0,
         5
       )}\n📍${h.Aula}`,
@@ -198,9 +197,9 @@ function SelectorParalelos({
       color,
     }));
 
-  const hayConflictoHorario = (eventosNuevos, eventosExistentes) => {
-    for (const nuevo of eventosNuevos) {
-      for (const existente of eventosExistentes) {
+  const hayConflictoHorario = (eventosNuevos, eventosExistentes) => { // Verifica si hay conflictos entre nuevos eventos y eventos existentes
+    for (const nuevo of eventosNuevos) { 
+      for (const existente of eventosExistentes) { // Recorre cada nuevo evento y lo compara con los existentes
         // Verificar si es el mismo día
         if (nuevo.day === existente.day) {
           // Convertir horas a minutos para facilitar la comparación
@@ -210,12 +209,12 @@ function SelectorParalelos({
           const existenteFin = convertirHoraAMinutos(existente.endTime);
 
           // Verificar si hay solapamiento
-          if (
+          if ( // Tres condiciones para detectar solapamiento
             (nuevoInicio >= existenteInicio && nuevoInicio < existenteFin) ||
             (nuevoFin > existenteInicio && nuevoFin <= existenteFin) ||
             (nuevoInicio <= existenteInicio && nuevoFin >= existenteFin)
           ) {
-            return {
+            return { // Si hay conflicto, retorna detalles del conflicto
               hayConflicto: true,
               materiaConflicto: existente.title.split("\n")[0],
               dia: nuevo.day,
@@ -228,30 +227,30 @@ function SelectorParalelos({
         }
       }
     }
-    return { hayConflicto: false };
+    return { hayConflicto: false }; // Si no hay conflictos, retorna falso
   };
 
-  const hayConflictoConExamen = (eventosNuevos) => {
-    const materia = materiasParalelos[codigoMateria];
-    if (!materia || !materia.fechaexa_primer) return { hayConflicto: false };
+  const hayConflictoConExamen = (eventosNuevos) => { // Verifica si los nuevos eventos entran en conflicto con la fecha y hora del examen del primer parcial
+    const materia = materiasParalelos[codigoMateria]; // Obtiene los detalles de la materia actual
+    if (!materia || !materia.fechaexa_primer) return { hayConflicto: false }; // Si no hay materia o fecha de examen, no hay conflicto
 
     const diaExamen = materia.fechaexa_primer;
     const horaInicioExamen = materia.horaInicioE;
     const horaFinExamen = materia.horaFinE;
 
     for (const evento of eventosNuevos) {
-      if (evento.day === diaExamen) {
-        const eventoInicio = convertirHoraAMinutos(evento.startTime);
+      if (evento.day === diaExamen) { // Verifica si el evento es el mismo día que el examen
+        const eventoInicio = convertirHoraAMinutos(evento.startTime); 
         const eventoFin = convertirHoraAMinutos(evento.endTime);
         const examenInicio = convertirHoraAMinutos(horaInicioExamen);
         const examenFin = convertirHoraAMinutos(horaFinExamen);
 
-        if (
-          (eventoInicio >= examenInicio && eventoInicio < examenFin) ||
+        if ( // Verifica si hay solapamiento
+          (eventoInicio >= examenInicio && eventoInicio < examenFin) || 
           (eventoFin > examenInicio && eventoFin <= examenFin) ||
           (eventoInicio <= examenInicio && eventoFin >= examenFin)
         ) {
-          return {
+          return { // Si hay conflicto, retorna detalles del conflicto
             hayConflicto: true,
             dia: diaExamen,
             hora: `${horaInicioExamen.slice(0, 5)} - ${horaFinExamen.slice(
@@ -265,15 +264,15 @@ function SelectorParalelos({
     return { hayConflicto: false };
   };
 
-  const convertirHoraAMinutos = (hora) => {
+  const convertirHoraAMinutos = (hora) => { // Convierte una cadena de hora "HH:MM" a minutos
     const [horas, minutos] = hora.split(":").map(Number);
     return horas * 60 + minutos;
   };
 
-  const confirmarSeleccion = () => {
-    if (paraleloSeleccionado === null) return;
+  const confirmarSeleccion = () => { // Confirma la selección de paralelos y los agrega al horario si no hay conflictos 
+    if (paraleloSeleccionado === null) return; // Asegura que se haya seleccionado un paralelo teórico
 
-    const eventosTeorico = convertirAHorario(
+    const eventosTeorico = convertirAHorario( // Convierte el paralelo teórico seleccionado en eventos de horario
       teoricos[paraleloSeleccionado],
       "Teórico"
     );
@@ -300,7 +299,7 @@ function SelectorParalelos({
       eventosTeorico,
       otrosEventos
     );
-    if (conflictosTeoricos.hayConflicto) {
+    if (conflictosTeoricos.hayConflicto) { // Si hay conflicto, muestra un mensaje de error y detiene el proceso
       setErrorMensaje({
         titulo: "¡Conflicto de Horario!",
         mensaje: `No se puede agregar la materia porque hay un conflicto con ${conflictosTeoricos.materiaConflicto} el día ${conflictosTeoricos.dia} a las ${conflictosTeoricos.hora}`,
@@ -309,12 +308,12 @@ function SelectorParalelos({
       return;
     }
 
-    if (eventosPractico.length > 0) {
+    if (eventosPractico.length > 0) { // Verificar conflictos para el práctico si existe
       const conflictosPracticos = hayConflictoHorario(
         eventosPractico,
         otrosEventos
       );
-      if (conflictosPracticos.hayConflicto) {
+      if (conflictosPracticos.hayConflicto) { // Si hay conflicto, muestra un mensaje de error y detiene el proceso
         setErrorMensaje({
           titulo: "¡Conflicto de Horario!",
           mensaje: `No se puede agregar la materia porque hay un conflicto con ${conflictosPracticos.materiaConflicto} el día ${conflictosPracticos.dia} a las ${conflictosPracticos.hora}`,
@@ -326,7 +325,7 @@ function SelectorParalelos({
 
     // Verificar conflictos con exámenes
     const conflictosExamenTeorico = hayConflictoConExamen(eventosTeorico);
-    if (conflictosExamenTeorico.hayConflicto) {
+    if (conflictosExamenTeorico.hayConflicto) { // Si hay conflicto, muestra un mensaje de error y detiene el proceso
       setErrorMensaje({
         titulo: "¡Conflicto con Examen!",
         mensaje: `No se puede agregar la materia porque hay un conflicto con el examen del primer parcial el día ${conflictosExamenTeorico.dia} a las ${conflictosExamenTeorico.hora}`,
@@ -335,9 +334,9 @@ function SelectorParalelos({
       return;
     }
 
-    if (eventosPractico.length > 0) {
+    if (eventosPractico.length > 0) { // Verificar conflictos de examen para el práctico si existe
       const conflictosExamenPractico = hayConflictoConExamen(eventosPractico);
-      if (conflictosExamenPractico.hayConflicto) {
+      if (conflictosExamenPractico.hayConflicto) { // Si hay conflicto, muestra un mensaje de error y detiene el proceso
         setErrorMensaje({
           titulo: "¡Conflicto con Examen!",
           mensaje: `No se puede agregar la materia porque hay un conflicto con el examen del primer parcial el día ${conflictosExamenPractico.dia} a las ${conflictosExamenPractico.hora}`,
@@ -349,38 +348,38 @@ function SelectorParalelos({
 
     // Combinar los otros eventos con los nuevos
     const nuevosEventos = [
-      ...otrosEventos,
-      ...eventosTeorico,
-      ...eventosPractico,
+      ...otrosEventos, // Mantener otros eventos
+      ...eventosTeorico, // Agregar nuevos eventos teóricos
+      ...eventosPractico, // Agregar nuevos eventos prácticos si existen
     ].map((ev, i) => ({
       ...ev,
       id: Date.now() + i,
     }));
 
-    onConfirmar(nuevosEventos);
-    window.dispatchEvent(new Event("localStorageChange"));
-    setParaleloSeleccionado(null);
-    setParaleloPractico(null);
-    setErrorMensaje({
+    onConfirmar(nuevosEventos); // Notificar al componente padre
+    window.dispatchEvent(new Event("localStorageChange")); // Notificar a otros componentes del cambio en localStorage
+    setParaleloSeleccionado(null); // Resetear selecciones
+    setParaleloPractico(null); // Resetear selecciones  
+    setErrorMensaje({ // Mostrar mensaje de éxito
       titulo: "¡Éxito!",
       mensaje: "Paralelos guardados en el horario correctamente.",
       tipo: "success",
     });
   };
 
-  const filteredTeoricos = filterParalelos(teoricos);
-  const filteredPracticos = filterParalelos(practicos);
+  const filteredTeoricos = filterParalelos(teoricos); // Aplica los filtros a los paralelos teóricos y prácticos
+  const filteredPracticos = filterParalelos(practicos); // Puede ser un array vacío si no hay prácticos
 
-  const paralelosVisibles = filteredTeoricos.slice(
+  const paralelosVisibles = filteredTeoricos.slice( // Obtiene los paralelos teóricos visibles según la paginación
     startIndex,
     startIndex + PARALELOS_POR_PAGINA
   );
-  const paralelosPracticosVisibles = filteredPracticos.slice(
+  const paralelosPracticosVisibles = filteredPracticos.slice( // Obtiene los paralelos prácticos visibles según la paginación
     startIndexPractico,
     startIndexPractico + PARALELOS_POR_PAGINA
   );
 
-  return (
+  return ( 
     <>
       <div className="p-4">
         {errorMensaje && (
@@ -445,7 +444,7 @@ function SelectorParalelos({
               </div>
               <div className="ml-auto pl-3">
                 <button
-                  onClick={() => setErrorMensaje(null)}
+                  onClick={() => setErrorMensaje(null)} // Cierra el mensaje al hacer clic en el botón de cierre
                   className={`inline-flex rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
                     errorMensaje.tipo === "error"
                       ? "text-red-500 hover:bg-red-200 focus:ring-red-600"
@@ -488,7 +487,7 @@ function SelectorParalelos({
         <div className="relative">
           {teoricos.length > PARALELOS_POR_PAGINA && (
             <button
-              onClick={handlePrev}
+              onClick={handlePrev} // Flecha avanzar a la pag izquierda
               disabled={startIndex === 0}
               className={`
                             absolute left-0 top-1/2 -translate-y-1/2 z-10
@@ -521,7 +520,7 @@ function SelectorParalelos({
 
           <div className="overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 transition-transform duration-500 ease-in-out">
-              {paralelosVisibles.map((paralelo, idx) =>
+              {paralelosVisibles.map((paralelo, idx) => // Muestra solo los paralelos visibles según la paginación y los filtros
                 paraleloSeleccionado === null ||
                 paraleloSeleccionado === startIndex + idx ? (
                   <div
@@ -531,7 +530,7 @@ function SelectorParalelos({
                         ? "bg-blue-200"
                         : ""
                     }`}
-                    onClick={() => setParaleloSeleccionado(startIndex + idx)}
+                    onClick={() => setParaleloSeleccionado(startIndex + idx)} // Maneja la selección del paralelo
                   >
                     <div className="font-bold text-center mb-2">
                       PAR. {paralelo.Paralelo}
@@ -548,19 +547,19 @@ function SelectorParalelos({
                           : "grid-cols-2"
                       } gap-4`}
                     >
-                      {paralelo.horarios.map((h, i) => (
+                      {paralelo.horarios.map((h, i) => ( // Muestra los horarios del paralelo
                         <div key={i} className="text-center">
-                          <div className="font-medium">{h.Dia}</div>
-                          <div>
-                            ⏱️{h.HoraInicio.slice(0, 5)} -{" "}
+                          <div className="font-medium">{h.Dia}</div> 
+                          <div> 
+                            ⏱️{h.HoraInicio.slice(0, 5) } -{" "} 
                             {h.HoraFin.slice(0, 5)}
                           </div>
-                          {paralelo.horarios.length === 1 ? (
+                          {paralelo.horarios.length === 1  ? (
                             <div className="text-sm text-gray-600">
                               📍{h.Aula}
                             </div>
                           ) : (
-                            paralelo.horarios[0].Aula !==
+                            paralelo.horarios[0].Aula !== // Muestra el aula si es diferente en horarios múltiples
                               paralelo.horarios[1].Aula && (
                               <div className="text-sm text-gray-600">
                                 📍{h.Aula}
@@ -570,7 +569,7 @@ function SelectorParalelos({
                         </div>
                       ))}
                     </div>
-                    {paralelo.horarios.length > 1 &&
+                    {paralelo.horarios.length > 1 && // Muestra el aula si es la misma en horarios múltiples
                       paralelo.horarios[0].Aula ===
                         paralelo.horarios[1].Aula && (
                         <div className="text-sm text-gray-600 text-center mt-2">
@@ -586,7 +585,7 @@ function SelectorParalelos({
           {/* Flecha derecha */}
           {teoricos.length > PARALELOS_POR_PAGINA && (
             <button
-              onClick={handleNext}
+              onClick={handleNext} // Flecha avanzar a la pag derecha
               disabled={startIndex + PARALELOS_POR_PAGINA >= teoricos.length}
               className={`
                             absolute right-0 top-1/2 -translate-y-1/2 z-10
@@ -619,7 +618,7 @@ function SelectorParalelos({
           )}
         </div>
 
-        {paraleloSeleccionado !== null && practicos.length > 0 && (
+        {paraleloSeleccionado !== null && practicos.length > 0 && ( // Mostrar sección de prácticos solo si hay prácticos disponibles
           <>
             <h2 className="text-xl font-bold mt-6 mb-2">Paralelos Prácticos</h2>
             <div className="relative">
@@ -627,7 +626,7 @@ function SelectorParalelos({
               {practicos.length > PARALELOS_POR_PAGINA &&
                 paraleloPractico === null && (
                   <button
-                    onClick={handlePrevPractico}
+                    onClick={handlePrevPractico} // Flecha izquierda
                     disabled={startIndexPractico === 0}
                     className={`
                                     absolute left-0 top-1/2 -translate-y-1/2 z-10
@@ -660,7 +659,7 @@ function SelectorParalelos({
 
               <div className="overflow-hidden">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 transition-transform duration-500 ease-in-out">
-                  {paralelosPracticosVisibles.map((paralelo, idx) =>
+                  {paralelosPracticosVisibles.map((paralelo, idx) => // Muestra solo los paralelos prácticos visibles según la paginación y los filtros
                     paraleloPractico === null ||
                     paraleloPractico === startIndexPractico + idx ? (
                       <div
@@ -671,7 +670,7 @@ function SelectorParalelos({
                             : ""
                         }`}
                         onClick={() =>
-                          setParaleloPractico(startIndexPractico + idx)
+                          setParaleloPractico(startIndexPractico + idx) // Maneja la selección del paralelo práctico
                         }
                       >
                         <div className="font-bold text-center mb-2">
@@ -689,11 +688,11 @@ function SelectorParalelos({
                               : "grid-cols-2"
                           } gap-4`}
                         >
-                          {paralelo.horarios.map((h, i) => (
+                          {paralelo.horarios.map((h, i) => ( // Muestra los horarios del paralelo práctico
                             <div key={i} className="text-center">
                               <div className="font-medium">{h.Dia}</div>
                               <div>
-                                ⏱️{h.HoraInicio.slice(0, 5)} -{" "}
+                                ⏱️{h.HoraInicio.slice(0, 5)} -{" "} 
                                 {h.HoraFin.slice(0, 5)}
                               </div>
                               {paralelo.horarios.length === 1 ? (
@@ -701,7 +700,7 @@ function SelectorParalelos({
                                   📍{h.Aula}
                                 </div>
                               ) : (
-                                paralelo.horarios[0].Aula !==
+                                paralelo.horarios[0].Aula !== // Muestra el aula si es diferente en horarios múltiples
                                   paralelo.horarios[1].Aula && (
                                   <div className="text-sm text-gray-600">
                                     📍{h.Aula}
@@ -711,7 +710,7 @@ function SelectorParalelos({
                             </div>
                           ))}
                         </div>
-                        {paralelo.horarios.length > 1 &&
+                        {paralelo.horarios.length > 1 && // Muestra el aula si es la misma en horarios múltiples
                           paralelo.horarios[0].Aula ===
                             paralelo.horarios[1].Aula && (
                             <div className="text-sm text-gray-600 text-center mt-2">
@@ -728,7 +727,7 @@ function SelectorParalelos({
               {practicos.length > PARALELOS_POR_PAGINA &&
                 paraleloPractico === null && (
                   <button
-                    onClick={handleNextPractico}
+                    onClick={handleNextPractico} // Flecha derecha
                     disabled={
                       startIndexPractico + PARALELOS_POR_PAGINA >=
                       practicos.length
@@ -767,7 +766,7 @@ function SelectorParalelos({
           </>
         )}
 
-        {paraleloSeleccionado !== null && (
+        {paraleloSeleccionado !== null && ( // Mostrar botón de confirmar solo si se ha seleccionado al menos un paralelo teórico
           <div className="flex justify-center mt-8">
             <button
               className="bg-blue-800 text-white px-8 py-3 rounded-lg text-lg font-semibold 
@@ -784,4 +783,4 @@ function SelectorParalelos({
   );
 }
 
-export default SelectorParalelos;
+export default SelectorParalelos; // Exporta el componente SelectorParalelos

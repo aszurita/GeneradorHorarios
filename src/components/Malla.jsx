@@ -1,7 +1,7 @@
 import React from "react";
 
 const Malla = ({ materias, onMateriaClick, eventos }) => {
-  const isCourseAdded = (codigo) => {
+  const isCourseAdded = (codigo) => { // Verifica si una materia ya ha sido agregada al horario
     return eventos.some((evento) => evento.codigoMateria === codigo);
   };
 
@@ -18,10 +18,11 @@ const Malla = ({ materias, onMateriaClick, eventos }) => {
 
           return (
             <div
-              key={materia.codigo + String(index)}
-              className={`
+              key={materia.codigo + String(index)} // Usar un índice para evitar claves duplicadas 
+              //Define el estilo de cada materia según su tipo y si ya ha sido agregada
+              className={` 
             border rounded-lg p-1 text-center relative
-            ${materia.tipo === "basic" ? "bg-white" : ""}
+            ${materia.tipo === "basic" ? "bg-white" : ""} 
             ${materia.tipo === "general" ? "bg-[#D6DFE6]" : ""}
             ${materia.tipo === "profesional" ? "bg-[#FDF3BA]" : ""}
             ${materia.tipo === "complementadi" ? "bg-[#F8C1A0]" : ""}
@@ -36,14 +37,14 @@ const Malla = ({ materias, onMateriaClick, eventos }) => {
                 : "cursor-pointer"
             }
           `}
-              style={{
+              style={{ // Posiciona la materia en la cuadrícula según su nivel y columna
                 gridRow: materia.nivel + 1,
                 gridColumn: materia.col + 1,
               }}
-              onClick={() => {
+              onClick={() => { // Maneja el clic en la materia
                 if (!isAdded && onMateriaClick) {
                   console.log(materia);
-                  onMateriaClick(materia.CodigoExistente);
+                  onMateriaClick(materia.CodigoExistente); // Pasa el código de la materia al manejador de clics
                 }
               }}
             >
@@ -70,4 +71,4 @@ const Malla = ({ materias, onMateriaClick, eventos }) => {
   );
 };
 
-export default Malla;
+export default Malla; // Componente principal de la malla curricular

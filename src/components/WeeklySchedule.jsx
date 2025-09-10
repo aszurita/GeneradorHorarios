@@ -2,44 +2,44 @@ import { useEffect, useState, useRef } from "react";
 import html2canvas from "html2canvas";
 import html2pdf from "html2pdf.js";
 
-const DAYS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
-const HOURS = Array.from({ length: 25 }, (_, i) => {
-  const hour = Math.floor((i + 14) / 2); // Start from 7 AM (14 half-hours)
+const DAYS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]; 
+const HOURS = Array.from({ length: 25 }, (_, i) => { //Genera horas de 07:00 a 19:00 en intervalos de 30 minutos
+  const hour = Math.floor((i + 14) / 2); 
   const minute = (i + 14) % 2 === 0 ? "00" : "30";
   return `${hour.toString().padStart(2, "0")}:${minute}`;
 });
 
-const WeeklySchedule = () => {
-  const [grid, setGrid] = useState([]);
-  const scheduleRef = useRef(null);
+const WeeklySchedule = () => { //Componente principal del horario semanal
+  const [grid, setGrid] = useState([]); //Matriz que representa el horario
+  const scheduleRef = useRef(null); //Referencia al contenedor del horario
 
   const updateGrid = () => {
     const stored = localStorage.getItem("horario");
     console.log(stored);
-    const parsed = stored ? JSON.parse(stored) : null;
-    const events = parsed?.events || [];
+    const parsed = stored ? JSON.parse(stored) : null; //lectura segura desde localStorage
+    const events = parsed?.events || []; //Obtiene los eventos almacenados
 
-    const newGrid = DAYS.map(() => Array(HOURS.length).fill(null));
+    const newGrid = DAYS.map(() => Array(HOURS.length).fill(null)); //Inicializa una nueva matriz vacía
 
     events.forEach((event) => {
-      const dayIdx = DAYS.findIndex(
+      const dayIdx = DAYS.findIndex( //Busca el índice del día en la matriz DAYS
         (d) => d.toUpperCase() === event.day.toUpperCase()
       );
-      if (dayIdx === -1) return;
+      if (dayIdx === -1) return; 
 
-      const [startHour, startMinute] = event.startTime.split(":").map(Number);
-      const [endHour, endMinute] = event.endTime.split(":").map(Number);
+      const [startHour, startMinute] = event.startTime.split(":").map(Number); //Convierte la hora de inicio y fin a números
+      const [endHour, endMinute] = event.endTime.split(":").map(Number); 
 
-      const startIdx = (startHour - 7) * 2 + (startMinute === 30 ? 1 : 0);
+      const startIdx = (startHour - 7) * 2 + (startMinute === 30 ? 1 : 0); //Convierte la hora a índice de media hora en la matriz
       const endIdx = (endHour - 7) * 2 + (endMinute === 30 ? 1 : 0);
 
-      if (startIdx >= 0 && startIdx < HOURS.length) {
-        newGrid[dayIdx][startIdx] = {
+      if (startIdx >= 0 && startIdx < HOURS.length) { 
+        newGrid[dayIdx][startIdx] = { //agrega el evento a la matriz
           ...event,
           duration: endIdx - startIdx,
         };
 
-        for (let i = startIdx + 1; i < endIdx; i++) {
+        for (let i = startIdx + 1; i < endIdx; i++) { //Marca las celdas ocupadas como "occupied" y evita sobreposiciones
           if (i < HOURS.length) {
             newGrid[dayIdx][i] = "occupied";
           }
@@ -47,10 +47,10 @@ const WeeklySchedule = () => {
       }
     });
 
-    setGrid(newGrid);
+    setGrid(newGrid); //Actualiza el estado del grid
   };
 
-  const handleDownload = async () => {
+  const handleDownload = async () => { //Genera la imagen PNG del horario y la descarga
     if (!scheduleRef.current) return;
 
     try {
@@ -75,7 +75,7 @@ const WeeklySchedule = () => {
     }
   };
 
-  const handleDownloadPDF = () => {
+  const handleDownloadPDF = () => { //Genera el PDF del horario y lo descarga
     if (!scheduleRef.current) return;
 
     const opt = {
@@ -89,30 +89,30 @@ const WeeklySchedule = () => {
     html2pdf().set(opt).from(scheduleRef.current).save();
   };
 
-  const eliminarEvento = (evento) => {
-    const stored = localStorage.getItem("horario");
-    const parsed = stored ? JSON.parse(stored) : null;
-    const eventos = parsed?.events || [];
+  const eliminarEvento = (evento) => { //Elimina un evento del horario
+    const stored = localStorage.getItem("horario"); //Obtiene los eventos almacenados
+    const parsed = stored ? JSON.parse(stored) : null;  //lectura segura desde localStorage
+    const eventos = parsed?.events || []; //Lista de eventos
 
-    const codigoMateria = evento.title.split("\n")[0];
+    const codigoMateria = evento.title.split("\n")[0]; //Obtiene el código de la materia del título del evento
 
-    const eventosActualizados = eventos.filter(
+    const eventosActualizados = eventos.filter( //Filtra el evento a eliminar
       (ev) => !ev.title.startsWith(codigoMateria)
     );
 
     localStorage.setItem(
       "horario",
-      JSON.stringify({ events: eventosActualizados })
+      JSON.stringify({ events: eventosActualizados }) //Actualiza el localStorage
     );
-    window.dispatchEvent(new Event("localStorageChange"));
+    window.dispatchEvent(new Event("localStorageChange")); //Actualiza el horario visualmente
   };
 
   useEffect(() => {
-    setGrid(DAYS.map(() => Array(HOURS.length).fill(null)));
+    setGrid(DAYS.map(() => Array(HOURS.length).fill(null))); //Inicializa el grid vacío
 
-    updateGrid();
+    updateGrid(); //Carga los eventos desde localStorage
 
-    const handleStorageChange = (e) => {
+    const handleStorageChange = (e) => { 
       if (e.key === "horario") {
         updateGrid();
       }
@@ -122,11 +122,11 @@ const WeeklySchedule = () => {
       updateGrid();
     };
 
-    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("storage", handleStorageChange); //Si se realiza un cambio en la pestaña, actualiza la cuadrícula
     window.addEventListener("localStorageChange", handleLocalStorageChange);
 
     return () => {
-      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("storage", handleStorageChange); //Limpia los event listeners
       window.removeEventListener(
         "localStorageChange",
         handleLocalStorageChange
@@ -139,11 +139,11 @@ const WeeklySchedule = () => {
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold">Horario Semanal</h2>
         <div className="flex gap-2">
-          <button
+          <button //Botón para descargar imagen PNG
             onClick={handleDownload}
             className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center gap-2"
           >
-            <svg
+            <svg //Icono de descarga
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
               viewBox="0 0 20 20"
@@ -158,10 +158,10 @@ const WeeklySchedule = () => {
             Descargar Horario
           </button>
           <button
-            onClick={handleDownloadPDF}
+            onClick={handleDownloadPDF} //Botón para descargar PDF
             className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 flex items-center gap-2"
           >
-            <svg
+            <svg //Icono de PDF
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
               viewBox="0 0 20 20"
@@ -177,12 +177,12 @@ const WeeklySchedule = () => {
           </button>
         </div>
       </div>
-      <div className="overflow-x-auto" ref={scheduleRef}>
+      <div className="overflow-x-auto" ref={scheduleRef}> 
         <table className="border-separate border-spacing-0 w-full">
           <thead>
             <tr>
               <th className="bg-gray-100"></th>
-              {DAYS.map((day) => (
+              {DAYS.map((day) => ( //Encabezados de los días
                 <th
                   key={day}
                   className="text-center bg-gray-100 font-semibold px-2 py-2 border-b border-gray-300"
@@ -194,7 +194,7 @@ const WeeklySchedule = () => {
             </tr>
           </thead>
           <tbody>
-            {HOURS.map((hour, hourIdx) => (
+            {HOURS.map((hour, hourIdx) => ( //Filas de las horas
               <tr key={hour}>
                 <td
                   className="text-xs text-gray-500 bg-gray-50 border-b border-gray-200 px-2 py-1"
@@ -204,9 +204,9 @@ const WeeklySchedule = () => {
                 </td>
                 {DAYS.map((_, dayIdx) => {
                   const cell = grid[dayIdx]?.[hourIdx];
-                  if (cell === "occupied") return null;
-                  if (cell) {
-                    return (
+                  if (cell === "occupied") return null; //Salta las celdas ocupadas
+                  if (cell) { 
+                    return ( //Usa rowSpan para ocupar varias filas dependiendo de lo que dure la materia
                       <td
                         key={`${dayIdx}-${hourIdx}`}
                         rowSpan={cell.duration}
@@ -217,7 +217,7 @@ const WeeklySchedule = () => {
                           {cell.title}
                         </div>
                         <button
-                          onClick={() => eliminarEvento(cell)}
+                          onClick={() => eliminarEvento(cell)} //Botón para eliminar la materia
                           className="absolute top-1 right-1 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:text-red-200"
                           title="Eliminar materia"
                         >
@@ -239,7 +239,7 @@ const WeeklySchedule = () => {
                   }
                   return (
                     <td
-                      key={`${dayIdx}-${hourIdx}`}
+                      key={`${dayIdx}-${hourIdx}`} //Celda vacía
                       className="border-b border-gray-200 px-1 py-0 h-8"
                       style={{ minWidth: 140 }}
                     ></td>
@@ -254,4 +254,4 @@ const WeeklySchedule = () => {
   );
 };
 
-export default WeeklySchedule;
+export default WeeklySchedule; //Componente principal del horario semanal

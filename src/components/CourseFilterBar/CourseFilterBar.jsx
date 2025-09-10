@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-const CourseFilterBar = ({ onFilterChange }) => {
-  const [filters, setFilters] = useState({
+const CourseFilterBar = ({ onFilterChange }) => { // Componente para la barra de filtros
+  const [filters, setFilters] = useState({ // Estado local para los filtros
     sectionNumber: "",
     profesor: "",
     day: "",
@@ -9,7 +9,7 @@ const CourseFilterBar = ({ onFilterChange }) => {
     endTime: "",
   });
 
-  const daysOfWeek = [
+  const daysOfWeek = [ // Opciones para los días de la semana
     "Lunes",
     "Martes",
     "Miércoles",
@@ -17,9 +17,9 @@ const CourseFilterBar = ({ onFilterChange }) => {
     "Viernes",
     "Sábado",
   ];
-  const timeOptions = [];
+  const timeOptions = []; // Generar opciones de tiempo en intervalos de 30 minutos
 
-  for (let hour = 6; hour < 22; hour++) {
+  for (let hour = 6; hour < 22; hour++) { // Desde las 6 AM hasta las 10 PM
     for (let minute = 0; minute < 60; minute += 30) {
       const displayHour = hour > 12 ? hour - 12 : hour;
       const amPm = hour >= 12 ? "PM" : "AM";
@@ -33,10 +33,10 @@ const CourseFilterBar = ({ onFilterChange }) => {
     }
   }
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e) => { // Manejar cambios en los inputs y actualizar el estado
     const { name, value } = e.target;
     const newFilters = { ...filters, [name]: value };
-    setFilters(newFilters);
+    setFilters(newFilters); // Actualizar estado local
     if (onFilterChange) {
       onFilterChange(newFilters);
     }
@@ -50,7 +50,7 @@ const CourseFilterBar = ({ onFilterChange }) => {
           type="text"
           name="sectionNumber"
           value={filters.sectionNumber}
-          onChange={handleInputChange}
+          onChange={handleInputChange} // Actualizar estado al cambiar el input
           style={styles.input}
           placeholder="ej: 101"
         />
@@ -62,7 +62,7 @@ const CourseFilterBar = ({ onFilterChange }) => {
           type="text"
           name="profesor"
           value={filters.profesor}
-          onChange={handleInputChange}
+          onChange={handleInputChange} // Actualizar estado al cambiar el input
           style={styles.input}
           placeholder="Nombre del profesor"
         />
@@ -73,7 +73,7 @@ const CourseFilterBar = ({ onFilterChange }) => {
         <select
           name="day"
           value={filters.day}
-          onChange={handleInputChange}
+          onChange={handleInputChange} // Actualizar estado al cambiar el select
           style={styles.select}
         >
           <option value="">Todos los dias</option>
@@ -89,8 +89,8 @@ const CourseFilterBar = ({ onFilterChange }) => {
         <label style={styles.label}>Hora de Inicio:</label>
         <select
           name="startTime"
-          value={filters.startTime}
-          onChange={handleInputChange}
+          value={filters.startTime} 
+          onChange={handleInputChange} //  disparar cambios al componente padre
           style={styles.select}
         >
           <option value="">Cualquiera</option>
@@ -107,7 +107,7 @@ const CourseFilterBar = ({ onFilterChange }) => {
         <select
           name="endTime"
           value={filters.endTime}
-          onChange={handleInputChange}
+          onChange={handleInputChange} // enviar cambios al componente padre
           style={styles.select}
         >
           <option value="">Cualquiera</option>
@@ -158,4 +158,4 @@ const styles = {
   },
 };
 
-export default CourseFilterBar;
+export default CourseFilterBar; // Exportar el componente para usarlo en otros archivos

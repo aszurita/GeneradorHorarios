@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import ListaDesplegable from "./ListaDesplegable";
 
+//ESTA VAINA NO SE ESTA USANDO
+
 const ControladorListaDesplegable = () => {
   const [primeraSeleccion, modfPrimeraSelec] = useState("");
   const [segundaSeleccion, modfSegundaSelec] = useState("");

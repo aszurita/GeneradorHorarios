@@ -10,7 +10,7 @@ const styles = {
     display: "flex",
   },
   left: {
-    marginRight: "10px",
+    marginRight: "15px",
   },
   main: {
     flexGrow: "1",
@@ -18,12 +18,12 @@ const styles = {
 };
 
 const Calendar = () => {
-  const [calendar, setCalendar] = useState(null);
-  const [events, setEvents] = useState([]);
-  const [startDate, setStartDate] = useState("2025-10-05");
+  const [calendar, setCalendar] = useState(null); //Referencia al calendario
+  const [events, setEvents] = useState([]);  //Materias del calendario
+  const [startDate, setStartDate] = useState("2025-10-05"); //Fecha de inicio del calendario
 
   const config = {
-    viewType: "Week",
+    viewType: "Month",
     durationBarVisible: false,
     timeRangeSelectedHandling: "Enabled",
     onTimeRangeSelected: async (args) => {
