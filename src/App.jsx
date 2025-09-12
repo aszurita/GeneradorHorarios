@@ -14,19 +14,33 @@ export default function App() { // Componente principal de la aplicación
   const [carreraSeleccionada, setCarreraSeleccionada] = useState(0); //Inicializa el espacio para la carrera seleccionada
   const scheduleRef = useRef(null);
 
-  useEffect(() => {
-    const stored = localStorage.getItem("horario"); //Carga los eventos guardados en el almacenamiento local al iniciar la aplicación
-    if (stored) { 
-      try {
-        const parsed = JSON.parse(stored); // Los eventos se almacenan como un array de objetos JSON
-        if (parsed && parsed.events && Array.isArray(parsed.events)) { // Verifica que los datos sean válidos
-          setEventos(parsed.events);
-        }
-      } catch (error) {
-        console.error("Error parsing localStorage horario:", error);
-      }
+useEffect(() => {
+  const syncFromLS = () => {
+    try {
+      const stored = localStorage.getItem("horario");
+      const parsed = stored ? JSON.parse(stored) : { events: [] };  // Los eventos se almacenan como un array de objetos JSON
+      setEventos(Array.isArray(parsed?.events) ? parsed.events : []);
+    } catch (e) {
+      console.error("Error releyendo localStorage:", e);
+      setEventos([]);
     }
-  }, []);
+  };
+
+  syncFromLS();
+
+  const handleStorage = (e) => {
+    if (!e || e.key === "horario") syncFromLS();
+  };
+
+  window.addEventListener("storage", handleStorage);
+  window.addEventListener("localStorageChange", syncFromLS);
+
+  return () => {
+    window.removeEventListener("storage", handleStorage);
+    window.removeEventListener("localStorageChange", syncFromLS);
+  };
+}, []);
+
 
   const agregarEventos = (nuevos) => {
     const stored = localStorage.getItem("horario");
@@ -48,6 +62,7 @@ export default function App() { // Componente principal de la aplicación
     const actualizados = [...eventosActuales, ...eventosUnicos];
     setEventos(actualizados);
     localStorage.setItem("horario", JSON.stringify({ events: actualizados }));
+    window.dispatchEvent(new Event("localStorageChange"));
     setCodigoMateria("");
   };
 
