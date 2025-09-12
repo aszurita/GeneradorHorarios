@@ -144,6 +144,13 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
     setStartIndexPractico(0);
   }, [codigoMateria]);
 
+  // Resetear paralelo práctico si se deselecciona el teórico
+  useEffect(() => {
+    if (paraleloSeleccionado === null) {
+      setParaleloPractico(null);
+    }
+  }, [paraleloSeleccionado]);
+
   if (!materiasParalelos[codigoMateria]) { // Manejo de error si la materia no existe
     return <div>No se encontró la materia.</div>;
   }
@@ -537,7 +544,12 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
                         ? "bg-blue-200"
                         : ""
                     }`}
-                    onClick={() => setParaleloSeleccionado(startIndex + idx)} // Maneja la selección del paralelo
+                    onClick={() =>
+                      setParaleloSeleccionado(prev =>
+                        prev === startIndex + idx ? null : startIndex + idx
+                      )
+                    }
+                    aria-pressed={paraleloSeleccionado === startIndex + idx}
                   >
                     <div className="font-bold text-center mb-2">
                       PAR. {paralelo.Paralelo}
@@ -677,8 +689,11 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
                             : ""
                         }`}
                         onClick={() =>
-                          setParaleloPractico(startIndexPractico + idx) // Maneja la selección del paralelo práctico
+                          setParaleloPractico(prev =>
+                            prev === startIndexPractico + idx ? null : startIndexPractico + idx
+                          )
                         }
+                        aria-pressed={paraleloPractico === startIndexPractico + idx}
                       >
                         <div className="font-bold text-center mb-2">
                           PAR. {paralelo.Paralelo}
