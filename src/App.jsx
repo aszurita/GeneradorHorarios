@@ -17,7 +17,7 @@ export default function App() { // Componente principal de la aplicación
 useEffect(() => {
   const syncFromLS = () => {
     try {
-      const stored = localStorage.getItem("horario");
+      const stored = localStorage.getItem("horario"); //Carga los eventos guardados en el almacenamiento local al iniciar la aplicación
       const parsed = stored ? JSON.parse(stored) : { events: [] };  // Los eventos se almacenan como un array de objetos JSON
       setEventos(Array.isArray(parsed?.events) ? parsed.events : []);
     } catch (e) {

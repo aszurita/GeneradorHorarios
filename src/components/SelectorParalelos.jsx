@@ -88,10 +88,10 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
       if (filters.day || filters.startTime || filters.endTime) {
         const hasMatchingSchedule = paralelo.horarios.some((horario) => {
           // Filtrar por día
-          if (filters.day && horario.Dia !== filters.day) {
+          if (filters.day.toUpperCase() && horario.Dia !== filters.day.toUpperCase()) {
             return false;
           }
-
+          
           // Convertir horas a minutos para comparación
           const classStart = timeToMinutes(horario.HoraInicio);
           const classEnd = timeToMinutes(horario.HoraFin);
@@ -271,7 +271,14 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
 
   const confirmarSeleccion = () => { // Confirma la selección de paralelos y los agrega al horario si no hay conflictos 
     if (paraleloSeleccionado === null) return; // Asegura que se haya seleccionado un paralelo teórico
-
+    if (practicos.length > 0 && paraleloPractico == null) { // Si hay prácticos, asegura que se haya seleccionado uno
+      setErrorMensaje({
+        titulo: "Selección Incompleta",
+        mensaje: "Selecciona un paralelo práctico",
+        tipo: "error",
+      });
+      return;
+    }
     const eventosTeorico = convertirAHorario( // Convierte el paralelo teórico seleccionado en eventos de horario
       teoricos[paraleloSeleccionado],
       "Teórico"
@@ -765,8 +772,7 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
             </div>
           </>
         )}
-
-        {paraleloSeleccionado !== null && ( // Mostrar botón de confirmar solo si se ha seleccionado al menos un paralelo teórico
+        {paraleloSeleccionado !== null && (!practicos.length > 0 || paraleloPractico !== null) && ( // Mostrar botón de confirmar solo si se ha seleccionado al menos un paralelo teórico
           <div className="flex justify-center mt-8">
             <button
               className="bg-blue-800 text-white px-8 py-3 rounded-lg text-lg font-semibold 

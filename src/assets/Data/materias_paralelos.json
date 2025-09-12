@@ -1,4 +1,25 @@
-{
+{   "MATG1045": {
+        "Teorico": [
+            {
+                "Paralelo": 1,
+                "Profesor": "BAQUERIZO PALMA GUILLERMO ALEJANDRO",
+                "horarios": [
+                    {
+                        "Dia": "LUNES",
+                        "Aula": "A102 -9B",
+                        "HoraInicio": "09:30:00",
+                        "HoraFin": "11:00:00",
+                        "FechaExa_Primer": "17/11/2025",
+                        "FechaExa_Segundo": "19/01/2026",
+                        "FechaExa_Mejoramiento": "02/02/2026",
+                        "HoraInicioE": "09:00:00",
+                        "HoraFinE": "11:00:00"
+                    }
+                ]
+            }
+        ],
+        "Practico": []
+    },
     "ADMG1006": {
         "Teorico": [
             {
