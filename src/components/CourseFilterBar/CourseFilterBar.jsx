@@ -19,8 +19,8 @@ const CourseFilterBar = ({ onFilterChange }) => { // Componente para la barra de
   ];
   const timeOptions = []; // Generar opciones de tiempo en intervalos de 30 minutos
 
-  for (let hour = 6; hour < 22; hour++) { // Desde las 6 AM hasta las 10 PM
-    for (let minute = 0; minute < 60; minute += 30) {
+  for (let hour = 7; hour < 22; hour+= 2) { // Desde las 6 AM hasta las 10 PM
+    for (let minute = 0; minute < 60; minute += 120) {
       const displayHour = hour > 12 ? hour - 12 : hour;
       const amPm = hour >= 12 ? "PM" : "AM";
       const timeString = `${displayHour}:${

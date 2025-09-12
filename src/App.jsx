@@ -90,7 +90,7 @@ export default function App() { // Componente principal de la aplicación
               alt="Logo Espol"
               style={{ width: "150px", height: "59px" }}
             />
-            <h1
+            <h1 // Título de la aplicación
               className="text-xl mb-2 mt-6"
               style={{
                 color: "#787878",
@@ -101,7 +101,7 @@ export default function App() { // Componente principal de la aplicación
             >
               Generador de Horarios
             </h1>
-            <img // Logo de la TAWS
+            <img // Logo de TAWS
               src={LogoTaws}
               alt="Logo Taws"
               style={{ width: "55px", marginLeft: "825px" }}
@@ -109,7 +109,7 @@ export default function App() { // Componente principal de la aplicación
           </div>
         </div>
         <div
-          style={{ width: "100%", height: "3px", backgroundColor: "#FAB900" }}
+          style={{ width: "100%", height: "3px", backgroundColor: "#FAB900" }} // Línea amarilla decorativa
         ></div>
         <div
           className="flex gap-4 text-white"
@@ -136,7 +136,7 @@ export default function App() { // Componente principal de la aplicación
           <Malla // Componente de la malla curricular
             materias={FiecMallas.Fiec[carreraSeleccionada].materias} 
             onMateriaClick={handleCodigoMateria} // Maneja el clic en una materia
-            eventos={eventos} 
+            eventos={eventos}
           />
         ) : (
           <SelectorParalelos // Componente para seleccionar paralelos de la materia

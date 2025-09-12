@@ -104,7 +104,7 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
           }
 
           // filtro por hora de fin
-          if (filters.endTime && classEnd > filterEnd) {
+          if (filters.endTime && classEnd >= filterEnd) {
             return false;
           }
 
@@ -551,7 +551,7 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
                         <div key={i} className="text-center">
                           <div className="font-medium">{h.Dia}</div> 
                           <div> 
-                            ⏱️{h.HoraInicio.slice(0, 5) } -{" "} 
+                            ⏱️{h.HoraInicio.slice(0, 5) } -{" "}  
                             {h.HoraFin.slice(0, 5)}
                           </div>
                           {paralelo.horarios.length === 1  ? (
