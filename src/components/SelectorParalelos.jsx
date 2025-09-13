@@ -151,6 +151,51 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
     }
   }, [paraleloSeleccionado]);
 
+    // Función para selección automática de paralelo práctico basada en el número de paralelo
+    const seleccionarPracticoAutomatico = (indiceTeorico, teoricosArray, practicosArray) => {
+      // Solo aplicar selección automática para materias que NO sean TLMG1032 ni EYAG1037
+      if (codigoMateria === 'TLMG1032' || codigoMateria === 'EYAG1037') {
+        return;
+      }
+      
+      // Solo si hay paralelos prácticos disponibles
+      if (practicosArray.length === 0) {
+        return;
+      }
+      
+      const paraleloTeorico = teoricosArray[indiceTeorico];
+      
+      if (paraleloTeorico) {
+        // Obtener el número del paralelo teórico
+        const numeroParaleloTeorico = paraleloTeorico.Paralelo;
+        
+        // Calcular el número del paralelo práctico correspondiente (teórico + 100)
+        const numeroParaleloPractico = numeroParaleloTeorico + 100;
+        
+        // Buscar el índice del paralelo práctico con el número correspondiente
+        const indicePracticoAutomatico = practicosArray.findIndex(
+          practico => practico.Paralelo === numeroParaleloPractico
+        );
+        
+        // Si se encuentra un paralelo práctico con el número correspondiente, seleccionarlo automáticamente
+        if (indicePracticoAutomatico !== -1) {
+          setParaleloPractico(indicePracticoAutomatico);
+          // Ajustar la paginación para mostrar el paralelo seleccionado
+          const paginaPractico = Math.floor(indicePracticoAutomatico / PARALELOS_POR_PAGINA) * PARALELOS_POR_PAGINA;
+          setStartIndexPractico(paginaPractico);
+        }
+      }
+    };
+  
+    // Selección automática de paralelo práctico cuando se selecciona un teórico
+    useEffect(() => {
+      if (paraleloSeleccionado !== null && materiasParalelos[codigoMateria]) {
+        const teoricos = materiasParalelos[codigoMateria].Teorico;
+        const practicos = materiasParalelos[codigoMateria].Practico;
+        seleccionarPracticoAutomatico(paraleloSeleccionado, teoricos, practicos);
+      }
+    }, [paraleloSeleccionado, codigoMateria, materiasParalelos]);
+
   if (!materiasParalelos[codigoMateria]) { // Manejo de error si la materia no existe
     return <div>No se encontró la materia.</div>;
   }
@@ -688,11 +733,21 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
                             ? "bg-green-200"
                             : ""
                         }`}
-                        onClick={() =>
-                          setParaleloPractico(prev =>
-                            prev === startIndexPractico + idx ? null : startIndexPractico + idx
-                          )
-                        }
+                        onClick={() => {
+                          // Solo permitir deselección en materias EYAG1037 y TLMG1032
+                          if (codigoMateria === 'EYAG1037' || codigoMateria === 'TLMG1032') {
+                            // En estas materias se puede seleccionar y deseleccionar normalmente
+                            setParaleloPractico(prev =>
+                              prev === startIndexPractico + idx ? null : startIndexPractico + idx
+                            );
+                          } else {
+                            // En otras materias, solo se puede seleccionar, no deseleccionar
+                            if (paraleloPractico !== startIndexPractico + idx) {
+                              setParaleloPractico(startIndexPractico + idx);
+                            }
+                            // Si ya está seleccionado, no hacer nada (no permitir deselección)
+                          }
+                        }}
                         aria-pressed={paraleloPractico === startIndexPractico + idx}
                       >
                         <div className="font-bold text-center mb-2">
