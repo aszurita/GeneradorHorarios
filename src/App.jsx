@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import WeeklySchedule from "./components/WeeklySchedule";
 import ExamSchedule from "./components/ExamSchedule";
+import DownloadAllPDF from "./components/DownloadAllPDF";
 import SelectorParalelos from "./components/SelectorParalelos";
 import materiasParalelos from "./assets/Data/materias_paralelos.json";
 import FiecMallas from "./assets/Data/FiecMallas_con_codigos.json";
@@ -127,22 +128,52 @@ useEffect(() => {
           style={{ width: "100%", height: "3px", backgroundColor: "#FAB900" }} // Línea amarilla decorativa
         ></div>
         <div
-          className="flex gap-4 text-white"
+          className="flex justify-between items-center text-white"
           style={{ backgroundColor: "#001C43", height: "50px" }}
         >
-          {FiecMallas.Fiec.map((carrera, index) => ( // Mapea las carreras disponibles para crear botones de selección
-            <button
-              key={carrera.carrera}
-              onClick={() => handleCarreraChange(index)} // Maneja el cambio de carrera al hacer clic
-              className={`px-4 py-2 rounded ${
-                carreraSeleccionada === index
-                  ? "text-yellow-500"
-                  : "hover:bg-blue-500"
-              }`}
+          <div className="flex items-center">
+            <select
+              value={carreraSeleccionada}
+              onChange={(e) => handleCarreraChange(parseInt(e.target.value))}
+              className="px-4 py-2 pr-10 rounded border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
+              style={{
+                minWidth: "200px",
+                backgroundColor: "#001C43",
+                color: "#FFFFFF",
+                backgroundImage:
+                  "url(\"data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='white'><path d='M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z'/></svg>\")",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "right 10px center",
+                backgroundSize: "14px",
+                borderColor: "#001C43",
+              }}
             >
-              {carrera.carrera}
-            </button>
-          ))}
+              {FiecMallas.Fiec.map((carrera, index) => (
+                <option key={carrera.carrera} value={index}>
+                  {carrera.carrera}
+                </option>
+              ))}
+            </select>
+          </div>
+          {codigoMateria && (
+            <button
+            onClick={handleBackToMalla}
+            className="p-2 rounded flex items-center justify-center group"
+            aria-label="Volver a la malla"
+            title="Volver a la malla"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="-4.5 0 32 32"
+              fill="white"
+              stroke="white"
+              className="w-7 h-7 transition-transform duration-200 group-hover:scale-110 group-hover:fill-blue-400"
+            >
+              <path d="M19.469 12.594l3.625 3.313c0.438 0.406 0.313 0.719-0.281 0.719h-2.719v8.656c0 0.594-0.5 1.125-1.094 1.125h-4.719v-6.063c0-0.594-0.531-1.125-1.125-1.125h-2.969c-0.594 0-1.125 0.531-1.125 1.125v6.063h-4.719c-0.594 0-1.125-0.531-1.125-1.125v-8.656h-2.688c-0.594 0-0.719-0.313-0.281-0.719l10.594-9.625c0.438-0.406 1.188-0.406 1.656 0l2.406 2.156v-1.719c0-0.594 0.531-1.125 1.125-1.125h2.344c0.594 0 1.094 0.531 1.094 1.125v5.875z"></path>
+            </svg>
+          </button>
+          
+          )}
         </div>
       </nav>
 
@@ -169,12 +200,15 @@ useEffect(() => {
       </div>
 
       <div className="flex w-full place-items-center place-content-center">
-        <div className="overflow-x-auto" ref={scheduleRef}> 
+        <div className="overflow-x-auto" id="weekly-schedule" ref={scheduleRef}> 
           <WeeklySchedule key={carreraSeleccionada} /> {/* Componente del horario semanal */}
         </div>
-        <div className="overflow-x-auto" ref={scheduleRef}>
+        <div className="overflow-x-auto" id="exam-schedule" ref={scheduleRef}>
           <ExamSchedule key={carreraSeleccionada} /> {/* Componente del horario de exámenes */}
         </div>
+      </div>
+      <div className="flex w-full place-content-center mt-4 mb-6">
+        <DownloadAllPDF />
       </div>
     </div>
   );

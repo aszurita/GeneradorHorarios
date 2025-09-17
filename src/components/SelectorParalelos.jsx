@@ -528,19 +528,7 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
         )}
 
         <h2 className="text-xl font-bold mb-2">Paralelos Teóricos</h2>
-        <div className="flex items-center gap-4">
-          <div className="relative group">
-            <button
-              onClick={onBack}
-              className="text-2xl p-2 hover:bg-gray-100 rounded-full transition-colors"
-              aria-label="Back to Curriculum"
-            >
-              🏠⬅️
-            </button>
-            <div className="absolute hidden group-hover:block bg-black text-white text-xs py-1 px-2 rounded whitespace-nowrap -bottom-8 left-1/2 transform -translate-x-1/2">
-              Back to Curriculum
-            </div>
-          </div>
+        <div className="w-full">
           <CourseFilterBar onFilterChange={handleFilterChange} />
         </div>
         <div className="relative">

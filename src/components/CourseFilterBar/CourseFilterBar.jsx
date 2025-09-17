@@ -43,7 +43,7 @@ const CourseFilterBar = ({ onFilterChange }) => { // Componente para la barra de
   };
 
   return (
-    <div style={styles.filterBar}>
+    <div style={{...styles.filterBar, width: '100%'}}>
       <div style={styles.filterGroup}>
         <label style={styles.label}>Numero de paralelo:</label>
         <input
@@ -132,11 +132,14 @@ const styles = {
     borderRadius: "8px",
     marginBottom: "20px",
     alignItems: "center",
+    justifyContent: "space-between",
   },
   filterGroup: {
     display: "flex",
     flexDirection: "column",
-    minWidth: "150px",
+    flex: "1",
+    minWidth: "120px",
+    maxWidth: "200px",
   },
   label: {
     marginBottom: "5px",
