@@ -1,13 +1,24 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 
 const Malla = ({ materias, onMateriaClick, eventos }) => {
   const isCourseAdded = (codigo) => {
     return eventos.some((evento) => evento.codigoMateria === codigo);
   };
 
-  // Estado modal y materia activa
-  const [open, setOpen] = useState(false);
-  const [active, setActive] = useState(null);
+  // Estado modal y materia activa - COMENTADO: Ya no se usa modal
+  // const [open, setOpen] = useState(false);
+  // const [active, setActive] = useState(null);
+  
+  // Estado para modo de aprobación
+  const [approvalMode, setApprovalMode] = useState(false);
+  const [pendingApprovals, setPendingApprovals] = useState(new Set());
+  const [refreshTrigger, setRefreshTrigger] = useState(0); // Para forzar actualización
+
+  // Forzar re-render cuando cambien los eventos
+  useEffect(() => {
+    // Este efecto se ejecuta cuando cambia la prop 'eventos'
+    // No necesita hacer nada, solo forzar el re-render
+  }, [eventos]);
 
   // Cargar y exponer Set de aprobadas 
   const aprobadasSet = useMemo(() => {
@@ -18,19 +29,68 @@ const Malla = ({ materias, onMateriaClick, eventos }) => {
     } catch {
       return new Set();
     }
-  }, [open]);
+  }, [approvalMode, refreshTrigger]); // Agregar refreshTrigger para forzar actualización - removido 'open' ya que no se usa modal
 
-  // Toggle de aprobada
-  const toggleAprobada = (codigo) => {
+  // Toggle de aprobada - COMENTADO: Ya no se usa modal
+  // const toggleAprobada = (codigo) => {
+  //   try {
+  //     const raw = localStorage.getItem("materiasAprobadas");
+  //     const arr = raw ? JSON.parse(raw) : [];
+  //     const set = new Set(Array.isArray(arr) ? arr.map((c) => String(c).trim()) : []);
+  //     if (set.has(codigo)) set.delete(codigo);
+  //     else set.add(codigo);
+  //     localStorage.setItem("materiasAprobadas", JSON.stringify(Array.from(set)));
+  //     setOpen(false);
+  //   } catch {}
+  // };
+
+  // Toggle de aprobación pendiente en modo aprobación
+  const togglePendingApproval = (codigo) => {
+    const newPending = new Set(pendingApprovals);
+    if (newPending.has(codigo)) {
+      newPending.delete(codigo);
+    } else {
+      newPending.add(codigo);
+    }
+    setPendingApprovals(newPending);
+  };
+
+  // Toggle de aprobación existente (para desmarcar las ya guardadas)
+  const toggleExistingApproval = (codigo) => {
     try {
       const raw = localStorage.getItem("materiasAprobadas");
       const arr = raw ? JSON.parse(raw) : [];
       const set = new Set(Array.isArray(arr) ? arr.map((c) => String(c).trim()) : []);
-      if (set.has(codigo)) set.delete(codigo);
-      else set.add(codigo);
+      if (set.has(codigo)) {
+        set.delete(codigo);
+      } else {
+        set.add(codigo);
+      }
       localStorage.setItem("materiasAprobadas", JSON.stringify(Array.from(set)));
-      setOpen(false);
+      setRefreshTrigger(prev => prev + 1); // Forzar actualización del estado
     } catch {}
+  };
+
+  // Guardar aprobaciones pendientes
+  const saveApprovals = () => {
+    try {
+      const raw = localStorage.getItem("materiasAprobadas");
+      const arr = raw ? JSON.parse(raw) : [];
+      const currentSet = new Set(Array.isArray(arr) ? arr.map((c) => String(c).trim()) : []);
+      
+      // Agregar las nuevas aprobaciones
+      pendingApprovals.forEach(codigo => currentSet.add(codigo));
+      
+      localStorage.setItem("materiasAprobadas", JSON.stringify(Array.from(currentSet)));
+      setPendingApprovals(new Set());
+      setApprovalMode(false);
+    } catch {}
+  };
+
+  // Cancelar modo aprobación
+  const cancelApprovalMode = () => {
+    setPendingApprovals(new Set());
+    setApprovalMode(false);
   };
 
   return (
@@ -44,6 +104,8 @@ const Malla = ({ materias, onMateriaClick, eventos }) => {
         {materias.map((materia, index) => {
           const isAdded = isCourseAdded(materia.codigo);
           const isApproved = aprobadasSet.has(String(materia.codigo).trim()); // [NEW]
+          const isPendingApproval = pendingApprovals.has(String(materia.codigo).trim());
+          const isDisabled = isAdded || (isApproved && !approvalMode) || (approvalMode && isPendingApproval); // En modo aprobación, permitir desmarcar las aprobadas
 
           return (
             <div
@@ -59,18 +121,26 @@ const Malla = ({ materias, onMateriaClick, eventos }) => {
             ${materia.tipo === "Itenerario" ? "bg-[#81A5C8] text-white" : ""}
             ${materia.tipo === "comunitarias" ? "bg-[#FBDC7D]" : ""}
             ${materia.tipo === "pracprofesionales" ? "bg-[#FBDC7D]" : ""}
-            ${isAdded ? "opacity-80 cursor-not-allowed select-none" : "cursor-pointer"}
-            ${isApproved && !isAdded ? "ring-2 ring-emerald-500" : ""}
+            ${isDisabled ? "opacity-80 cursor-not-allowed select-none" : approvalMode ? "cursor-pointer hover:opacity-70" : "cursor-pointer"}
           `}
               style={{
                 gridRow: materia.nivel + 1,
                 gridColumn: materia.col + 1,
               }}
               onClick={() => {
-                if (!isAdded) {
-                  // [NEW] abrir modal con opciones
-                  setActive(materia);
-                  setOpen(true);
+                if (approvalMode) {
+                  // En modo aprobación, toggle según el estado actual
+                  const codigo = String(materia.codigo).trim();
+                  if (isApproved) {
+                    // Si ya está aprobada, desmarcarla directamente
+                    toggleExistingApproval(codigo);
+                  } else {
+                    // Si no está aprobada, toggle de aprobación pendiente
+                    togglePendingApproval(codigo);
+                  }
+                } else if (!isDisabled) {
+                  // Seleccionar materia directamente - sin modal
+                  onMateriaClick && onMateriaClick(materia.codigo);
                 }
               }}
             >
@@ -80,7 +150,7 @@ const Malla = ({ materias, onMateriaClick, eventos }) => {
                 </div>
                 <div className="text-[10px] md:text-xs">{materia.Materia}</div>
               </div>
-              {isAdded && (
+              {(isAdded || isApproved || (approvalMode && isPendingApproval)) && (
                 <div
                   className="absolute top-1 right-1 bg-green-500 text-white rounded-full 
                                w-5 h-5 flex items-center justify-center text-xs border-2 border-white
@@ -94,8 +164,8 @@ const Malla = ({ materias, onMateriaClick, eventos }) => {
         })}
       </div>
 
-      {/* Modal simple */}
-      {open && active && (
+      {/* Modal simple - COMENTADO: Ya no se usa modal, selección directa */}
+      {/* {open && active && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-4 w-full max-w-sm shadow-xl">
             <h3 className="font-semibold text-lg mb-2">
@@ -127,7 +197,40 @@ const Malla = ({ materias, onMateriaClick, eventos }) => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
+
+      {/* Botones de modo aprobación */}
+      <div className="mt-4 flex justify-start gap-4 pb-4">
+        {!approvalMode ? (
+          <button
+            className="px-6 py-2 text-white rounded-lg hover:opacity-90 transition-opacity"
+            style={{ backgroundColor: '#001c43' }}
+            onClick={() => setApprovalMode(true)}
+          >
+            Marcar materias aprobadas
+          </button>
+        ) : (
+          <div className="flex flex-col items-center gap-2">
+            <p className="text-sm text-gray-600 mb-2">
+              Modo aprobación activo - Haz clic en las materias para marcarlas/desmarcarlas como aprobadas
+            </p>
+            <div className="flex gap-2">
+              <button
+                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                onClick={saveApprovals}
+              >
+                Guardar selección ({pendingApprovals.size})
+              </button>
+              <button
+                className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
+                onClick={cancelApprovalMode}
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

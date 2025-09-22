@@ -87,6 +87,9 @@ export default function Navbar({
                 borderColor: "#001C43",
               }}
             >
+              <option value="" disabled>
+                Selecciona la carrera
+              </option>
               {FiecMallas.Fiec.map((carrera, index) => (
                 <option key={carrera.carrera} value={index}>
                   {carrera.carrera}

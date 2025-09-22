@@ -20,7 +20,7 @@ export default function App() {
     if (!Number.isNaN(fromUrl)) return fromUrl;
     const ls = parseInt(localStorage.getItem("carreraSeleccionada") ?? "", 10);
     if (!Number.isNaN(ls)) return ls;
-    return 0;
+    return ""; // Valor vacío por defecto para mostrar "Selecciona la carrera"
   });
 
   const scheduleRef = useRef(null);
@@ -111,7 +111,16 @@ export default function App() {
 
       {/* Contenido */}
       <div className="flex w-full place-content-center">
-        {!codigoMateria ? (
+        {carreraSeleccionada === "" ? (
+          <div className="flex flex-col items-center justify-center py-20">
+            <h2 className="text-2xl font-semibold text-gray-600 mb-4">
+              Selecciona una carrera para comenzar
+            </h2>
+            <p className="text-gray-500">
+              Elige tu carrera desde el menú desplegable para ver las materias disponibles
+            </p>
+          </div>
+        ) : !codigoMateria ? (
           <Malla
             materias={FiecMallas.Fiec[carreraSeleccionada].materias}
             onMateriaClick={handleCodigoMateria}
@@ -132,18 +141,22 @@ export default function App() {
         )}
       </div>
 
-      <div className="flex w-full place-items-center place-content-center">
-        <div className="overflow-x-auto" id="weekly-schedule" ref={scheduleRef}>
-          <WeeklySchedule key={carreraSeleccionada} />
+      {carreraSeleccionada !== "" && (
+        <div className="flex w-full place-items-center place-content-center">
+          <div className="overflow-x-auto" id="weekly-schedule" ref={scheduleRef}>
+            <WeeklySchedule key={carreraSeleccionada} />
+          </div>
+          <div className="overflow-x-auto" id="exam-schedule" ref={scheduleRef}>
+            <ExamSchedule key={carreraSeleccionada} />
+          </div>
         </div>
-        <div className="overflow-x-auto" id="exam-schedule" ref={scheduleRef}>
-          <ExamSchedule key={carreraSeleccionada} />
-        </div>
-      </div>
+      )}
 
-      <div className="flex w-full place-content-center mt-4 mb-6">
-        <DownloadAllPDF />
-      </div>
+      {carreraSeleccionada !== "" && (
+        <div className="flex w-full place-content-center mt-4 mb-6">
+          <DownloadAllPDF />
+        </div>
+      )}
 
       <SiteFooter />
     </div>

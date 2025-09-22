@@ -5,10 +5,7 @@ import Navbar from "./components/Navbar";
 import SiteFooter from "./components/SiteFooter";
 
 export default function Home() {
-  const [carrera, setCarrera] = useState(() => {
-    const ls = parseInt(localStorage.getItem("carreraSeleccionada") ?? "", 10);
-    return Number.isNaN(ls) ? 0 : ls;
-  });
+  const [carrera, setCarrera] = useState(""); // Siempre vacío en Home para mostrar "Selecciona la carrera"
 
   return (
     <div className="min-h-screen bg-white">
