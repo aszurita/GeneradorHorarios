@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 
 const Malla = ({ materias, onMateriaClick, eventos }) => {
-  const isCourseAdded = (codigo) => { // Verifica si una materia ya ha sido agregada al horario
+  const isCourseAdded = (codigo) => {
     return eventos.some((evento) => evento.codigoMateria === codigo);
+  };
+
+  // Estado modal y materia activa
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(null);
+
+  // Cargar y exponer Set de aprobadas 
+  const aprobadasSet = useMemo(() => {
+    try {
+      const raw = localStorage.getItem("materiasAprobadas");
+      const arr = raw ? JSON.parse(raw) : [];
+      return new Set(Array.isArray(arr) ? arr.map((c) => String(c).trim()) : []);
+    } catch {
+      return new Set();
+    }
+  }, [open]);
+
+  // Toggle de aprobada
+  const toggleAprobada = (codigo) => {
+    try {
+      const raw = localStorage.getItem("materiasAprobadas");
+      const arr = raw ? JSON.parse(raw) : [];
+      const set = new Set(Array.isArray(arr) ? arr.map((c) => String(c).trim()) : []);
+      if (set.has(codigo)) set.delete(codigo);
+      else set.add(codigo);
+      localStorage.setItem("materiasAprobadas", JSON.stringify(Array.from(set)));
+      setOpen(false);
+    } catch {}
   };
 
   return (
@@ -14,12 +42,12 @@ const Malla = ({ materias, onMateriaClick, eventos }) => {
         }}
       >
         {materias.map((materia, index) => {
-          const isAdded = isCourseAdded(materia.CodigoExistente);
+          const isAdded = isCourseAdded(materia.codigo);
+          const isApproved = aprobadasSet.has(String(materia.codigo).trim()); // [NEW]
 
           return (
             <div
-              key={materia.codigo + String(index)} // Usar un índice para evitar claves duplicadas 
-              //Define el estilo de cada materia según su tipo y si ya ha sido agregada
+              key={materia.codigo + String(index)}
               className={` 
             border rounded-lg p-1 text-center relative
             ${materia.tipo === "basic" ? "bg-white" : ""} 
@@ -31,20 +59,18 @@ const Malla = ({ materias, onMateriaClick, eventos }) => {
             ${materia.tipo === "Itenerario" ? "bg-[#81A5C8] text-white" : ""}
             ${materia.tipo === "comunitarias" ? "bg-[#FBDC7D]" : ""}
             ${materia.tipo === "pracprofesionales" ? "bg-[#FBDC7D]" : ""}
-            ${
-              isAdded
-                ? "opacity-80 cursor-not-allowed select-none"
-                : "cursor-pointer"
-            }
+            ${isAdded ? "opacity-80 cursor-not-allowed select-none" : "cursor-pointer"}
+            ${isApproved && !isAdded ? "ring-2 ring-emerald-500" : ""}
           `}
-              style={{ // Posiciona la materia en la cuadrícula según su nivel y columna
+              style={{
                 gridRow: materia.nivel + 1,
                 gridColumn: materia.col + 1,
               }}
-              onClick={() => { // Maneja el clic en la materia
-                if (!isAdded && onMateriaClick) {
-                  console.log(materia);
-                  onMateriaClick(materia.CodigoExistente); // Pasa el código de la materia al manejador de clics
+              onClick={() => {
+                if (!isAdded) {
+                  // [NEW] abrir modal con opciones
+                  setActive(materia);
+                  setOpen(true);
                 }
               }}
             >
@@ -67,8 +93,43 @@ const Malla = ({ materias, onMateriaClick, eventos }) => {
           );
         })}
       </div>
+
+      {/* Modal simple */}
+      {open && active && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-4 w-full max-w-sm shadow-xl">
+            <h3 className="font-semibold text-lg mb-2">
+              {active.codigo} — {active.Materia || "Materia"}
+            </h3>
+            <p className="text-sm text-gray-600 mb-4">¿Qué deseas hacer?</p>
+            <div className="flex gap-2">
+              <button
+                className="px-4 py-2 rounded bg-emerald-600 text-white"
+                onClick={() => toggleAprobada(String(active.codigo).trim())}
+              >
+                Aprobada
+              </button>
+              <button
+                className="px-4 py-2 rounded bg-blue-600 text-white"
+                onClick={() => {
+                  setOpen(false);
+                  onMateriaClick && onMateriaClick(active.codigo);
+                }}
+              >
+                Seleccionar
+              </button>
+              <button
+                className="px-4 py-2 rounded bg-gray-200"
+                onClick={() => setOpen(false)}
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-export default Malla; // Componente principal de la malla curricular
+export default Malla;

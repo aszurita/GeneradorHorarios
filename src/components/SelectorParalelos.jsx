@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CourseFilterBar from "./CourseFilterBar/CourseFilterBar";
+import { useMemo } from "react";
+import FiecMallas from "../assets/Data/FiecMallas_con_codigos.json";
 
 // Lista de colores predefinidos para las materias
 const MATERIA_COLORS = [
@@ -200,6 +202,52 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
     return <div>No se encontró la materia.</div>;
   }
 
+  // índice por codigo para consultar pre/co
+  const materiaIndex = useMemo(() => {
+    const map = new Map();
+    for (const carrera of FiecMallas.Fiec || []) {
+      for (const m of carrera.materias || []) {
+        if (m?.codigo) map.set(String(m.codigo).trim(), m);
+      }
+    }
+    return map;
+  }, []);
+
+  // Set de materias aprobadas (codigo)
+  const aprobadasSet = useMemo(() => {
+    try {
+      const raw = localStorage.getItem("materiasAprobadas");
+      const arr = raw ? JSON.parse(raw) : [];
+      return new Set((Array.isArray(arr) ? arr : []).map(c => String(c).trim()));
+    } catch { return new Set(); }
+  }, []);
+
+  // Set de materias ya seleccionadas en el horario actual (para correquisitos)
+  const cursadasAhoraSet = useMemo(() => {
+    try {
+      const parsed = JSON.parse(localStorage.getItem("horario") || "{}");
+      const events = parsed?.events || [];
+      return new Set(events.filter(ev => ev?.codigoMateria).map(ev => String(ev.codigoMateria).trim()));
+    } catch { return new Set(); }
+  }, []);
+
+  // Valida prerrequisitos (aprobadas) y correquisitos (aprobadas o ya en horario)
+  const canEnroll = (code) => {
+    const m = materiaIndex.get(String(code).trim());
+    if (!m) return { ok: true, reasons: [] }; // sin metadata no bloquea
+    const pre = Array.isArray(m.prerequisitos) ? m.prerequisitos.map(x => String(x).trim()) : [];
+    const co  = Array.isArray(m.corequisitos)  ? m.corequisitos.map(x => String(x).trim())  : [];
+
+    const reasons = [];
+    const faltanPre = pre.filter(p => !aprobadasSet.has(p));
+    if (faltanPre.length) reasons.push(`Faltan prerrequisitos: ${faltanPre.join(", ")}`);
+
+    const faltanCo = co.filter(x => !aprobadasSet.has(x) && !cursadasAhoraSet.has(x));
+    if (faltanCo.length) reasons.push(`Correquisitos pendientes (aprobado o ya seleccionado): ${faltanCo.join(", ")}`);
+
+    return { ok: reasons.length === 0, reasons };
+  };
+
   const teoricos = materiasParalelos[codigoMateria].Teorico; // Obtiene los paralelos teóricos y prácticos de la materia seleccionada
   const practicos = materiasParalelos[codigoMateria].Practico; // Puede ser un array vacío si no hay prácticos
   const color = getColorFromString(codigoMateria); // Obtiene un color único para la materia
@@ -346,11 +394,22 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
     const eventosActuales = parsed?.events || [];
 
     // Obtener el código de la materia del primer evento teórico
-    const codigoMateria = eventosTeorico[0].title.split("\n")[0];
+    const code = eventosTeorico[0].codigoMateria;
 
-    // Filtrar eventos que no sean de esta materia
+    // Validación de prerrequisitos / correquisitos
+    const eleg = canEnroll(code);
+    if (!eleg.ok) {
+      setErrorMensaje({
+        titulo: "No cumple requisitos",
+        mensaje: eleg.reasons.join(" · "),
+        tipo: "error",
+      });
+      return;
+    }
+
+    // Filtrar por codigo
     const otrosEventos = eventosActuales.filter(
-      (ev) => !ev.title.startsWith(codigoMateria)
+      (ev) => String(ev.codigoMateria).trim() !== String(code).trim()
     );
 
     // Verificar conflictos con los eventos existentes
