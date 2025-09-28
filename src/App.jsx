@@ -109,6 +109,19 @@ export default function App() {
         // NO pases redirectTo aquí, así no navega fuera de App
       />
 
+      {/* Botón Extraer materias disponibles debajo del encabezado */}
+      {carreraSeleccionada !== "" && !codigoMateria && (
+        <div className="mt-8 mb-4 w-full flex justify-center">
+          <button
+            className="px-6 py-2 text-white rounded-lg hover:opacity-90 transition-opacity"
+            style={{ backgroundColor: '#003566' }}
+            onClick={() => alert('Materias disponibles extraídas')}
+          >
+            Extraer materias disponibles
+          </button>
+        </div>
+      )}
+
       {/* Contenido */}
       <div className="flex w-full place-content-center">
         {carreraSeleccionada === "" ? (
@@ -121,11 +134,13 @@ export default function App() {
             </p>
           </div>
         ) : !codigoMateria ? (
-          <Malla
-            materias={FiecMallas.Fiec[carreraSeleccionada].materias}
-            onMateriaClick={handleCodigoMateria}
-            eventos={eventos}
-          />
+          <div className="w-full flex flex-col items-center">
+            <Malla
+              materias={FiecMallas.Fiec[carreraSeleccionada].materias}
+              onMateriaClick={handleCodigoMateria}
+              eventos={eventos}
+            />
+          </div>
         ) : (
           <SelectorParalelos
             codigoMateria={codigoMateria}

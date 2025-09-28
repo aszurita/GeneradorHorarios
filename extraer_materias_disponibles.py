@@ -1,0 +1,629 @@
+# -*- coding: utf-8 -*-
+import requests
+from bs4 import BeautifulSoup
+import os
+import time
+import json
+import getpass
+from urllib.parse import urljoin
+from concurrent.futures import ThreadPoolExecutor
+import threading
+
+def transformar_a_formato_requerido(materias_con_detalles):
+    """
+    Transforma los datos extraídos al formato JSON requerido
+    """
+    resultado = {}
+    
+    for materia in materias_con_detalles:
+        codigo = materia["codigo"]
+        
+        if codigo not in resultado:
+            resultado[codigo] = {
+                "materia": materia["materia"],
+                "Teorico": [],
+                "Practico": []
+            }
+        
+        for paralelo_detalle in materia["paralelos_detallados"]:
+            # Procesar datos del paralelo teórico principal
+            if "error" not in paralelo_detalle:
+                # Extraer fechas de exámenes
+                fecha_parcial = extraer_fecha(paralelo_detalle["examenes"]["parcial"]["fecha_hora"])
+                fecha_final = extraer_fecha(paralelo_detalle["examenes"]["final"]["fecha_hora"])
+                fecha_mejoramiento = extraer_fecha(paralelo_detalle["examenes"]["mejoramiento"]["fecha_hora"])
+                
+                # Extraer horas de exámenes
+                hora_inicio_e, hora_fin_e = extraer_horas_examen(paralelo_detalle["examenes"]["parcial"]["fecha_hora"])
+                
+                # Procesar horarios del paralelo teórico
+                horarios_teorico = []
+                for horario in paralelo_detalle["horarios"]:
+                    horario_transformado = {
+                        "Dia": horario["dia"].upper(),
+                        "Aula": horario["aula"] + " -" + extraer_bloque(horario["bloque_campus"]),
+                        "HoraInicio": horario["hora_inicio"],
+                        "HoraFin": horario["hora_fin"],
+                        "FechaExa_Primer": fecha_parcial,
+                        "FechaExa_Segundo": fecha_final,
+                        "FechaExa_Mejoramiento": fecha_mejoramiento,
+                        "HoraInicioE": hora_inicio_e,
+                        "HoraFinE": hora_fin_e
+                    }
+                    horarios_teorico.append(horario_transformado)
+                
+                paralelo_teorico = {
+                    "Paralelo": int(paralelo_detalle["numero_paralelo"]) if paralelo_detalle["numero_paralelo"].isdigit() else paralelo_detalle["numero_paralelo"],
+                    "Profesor": paralelo_detalle["profesor"],
+                    "horarios": horarios_teorico
+                }
+                
+                resultado[codigo]["Teorico"].append(paralelo_teorico)
+                
+                # Procesar paralelos prácticos asociados
+                for i, paralelo_practico in enumerate(paralelo_detalle["paralelos_asociados"]):
+                    horarios_practico = []
+                    for horario_p in paralelo_practico["horarios"]:
+                        horario_p_transformado = {
+                            "Dia": horario_p["dia"].upper(),
+                            "Aula": horario_p["aula"] + " -" + extraer_bloque(horario_p["bloque_campus"]),
+                            "HoraInicio": horario_p["hora_inicio"],
+                            "HoraFin": horario_p["hora_fin"],
+                            "FechaExa_Primer": fecha_parcial,
+                            "FechaExa_Segundo": fecha_final,
+                            "FechaExa_Mejoramiento": fecha_mejoramiento,
+                            "HoraInicioE": hora_inicio_e,
+                            "HoraFinE": hora_fin_e
+                        }
+                        horarios_practico.append(horario_p_transformado)
+                    
+                    if horarios_practico:  # Solo agregar si tiene horarios
+                        # Usar el número de paralelo específico si está disponible
+                        numero_paralelo_practico = paralelo_practico.get("numero_paralelo", str(101 + i))
+                        if numero_paralelo_practico.isdigit():
+                            numero_paralelo_practico = int(numero_paralelo_practico)
+                        
+                        paralelo_practico_obj = {
+                            "Paralelo": numero_paralelo_practico,
+                            "Profesor": paralelo_practico.get("profesor", paralelo_detalle["profesor"]),
+                            "horarios": horarios_practico
+                        }
+                        
+                        resultado[codigo]["Practico"].append(paralelo_practico_obj)
+    
+    return resultado
+
+def extraer_fecha(fecha_hora_str):
+    """
+    Extrae la fecha de un string como '20/11/2025 - 09:00 a 11:00'
+    """
+    try:
+        if " - " in fecha_hora_str:
+            fecha_parte = fecha_hora_str.split(" - ")[0]
+            return fecha_parte
+        return fecha_hora_str
+    except:
+        return "No encontrado"
+
+def extraer_horas_examen(fecha_hora_str):
+    """
+    Extrae las horas de inicio y fin de un string como '20/11/2025 - 09:00 a 11:00'
+    """
+    try:
+        if " - " in fecha_hora_str and " a " in fecha_hora_str:
+            horas_parte = fecha_hora_str.split(" - ")[1]
+            hora_inicio = horas_parte.split(" a ")[0] + ":00"
+            hora_fin = horas_parte.split(" a ")[1] + ":00"
+            return hora_inicio, hora_fin
+        return "09:00:00", "11:00:00"  # Default
+    except:
+        return "09:00:00", "11:00:00"
+
+def extraer_bloque(bloque_campus_str):
+    """
+    Extrae el bloque de un string como '14B CAMPUS GUSTAVO GALINDO'
+    """
+    try:
+        partes = bloque_campus_str.split()
+        if partes:
+            return partes[0]  # Devuelve '14B'
+        return ""
+    except:
+        return ""
+
+def mostrar_captcha(ruta):
+    try:
+        # Windows
+        os.startfile(ruta)
+    except AttributeError:
+        # MacOS
+        from subprocess import call
+        call(['open', ruta])
+    except Exception:
+        # Linux
+        from subprocess import call
+        call(['xdg-open', ruta])
+
+def extraer_detalles_materia(session, url_materia, max_intentos=3):
+    """
+    Extrae los detalles de una materia específica desde su página de planificación
+    """
+    for intento in range(max_intentos):
+        try:
+            if intento > 0:
+                print(f"  Reintentando... (intento {intento + 1}/{max_intentos})")
+                time.sleep(0.5)  # Pausa reducida en reintentos
+            
+            resp = session.get(url_materia, timeout=15)  # Timeout reducido
+            resp.raise_for_status()  # Lanza excepción si hay error HTTP
+            
+            # Guardar HTML para debug solo en caso de error
+            if resp.status_code != 200:
+                filename = f"error_materia_{url_materia.split('=')[-1]}.html"
+                with open(filename, "w", encoding="utf-8") as f:
+                    f.write(resp.text)
+            
+            soup = BeautifulSoup(resp.text, "html.parser")
+            
+            detalles = {}
+            
+            # Información básica de la materia - usar selectores más eficientes
+            elementos_basicos = {
+                "nombre_materia": "ctl00_contenido_LabelNombreMateria",
+                "paralelo": "ctl00_contenido_LabelParalelo", 
+                "profesor": "ctl00_contenido_LabelProfesor",
+                "modalidad": "ctl00_contenido_modo_curso",
+                "cupo_maximo": "ctl00_contenido_LabelCupo",
+                "cupo_disponible": "ctl00_contenido_LabelDisponible"
+            }
+            
+            # Extraer información básica en una sola pasada
+            for key, elemento_id in elementos_basicos.items():
+                elemento = soup.find("span", {"id": elemento_id})
+                detalles[key] = elemento.get_text(strip=True) if elemento else "No encontrado"
+            
+            # Información de exámenes - optimizada
+            examenes = {}
+            elementos_examenes = {
+                "parcial": {
+                    "fecha_hora": "ctl00_contenido_LabelParcial",
+                    "aula": "ctl00_contenido_aulaParcial"
+                },
+                "final": {
+                    "fecha_hora": "ctl00_contenido_LabelFinal", 
+                    "aula": "ctl00_contenido_aulaFinal"
+                },
+                "mejoramiento": {
+                    "fecha_hora": "ctl00_contenido_LabelMejora",
+                    "aula": "ctl00_contenido_aulaMej"
+                }
+            }
+            
+            # Extraer información de exámenes en una sola pasada
+            for tipo_examen, campos in elementos_examenes.items():
+                examenes[tipo_examen] = {}
+                for campo, elemento_id in campos.items():
+                    elemento = soup.find("span", {"id": elemento_id})
+                    examenes[tipo_examen][campo] = elemento.get_text(strip=True) if elemento else "No encontrado"
+            
+            detalles["examenes"] = examenes
+            
+            # Información de horarios
+            horarios = []
+            tabla_horarios = soup.find("table", {"id": "ctl00_contenido_TableHorarios"})
+            
+            if tabla_horarios:
+                tbody = tabla_horarios.find("tbody")
+                if tbody:
+                    for fila in tbody.find_all("tr"):
+                        celdas = fila.find_all("td")
+                        if len(celdas) >= 5:
+                            horario = {
+                                "dia": celdas[0].get_text(strip=True),
+                                "hora_inicio": celdas[1].get_text(strip=True),
+                                "hora_fin": celdas[2].get_text(strip=True),
+                                "aula": celdas[3].get_text(strip=True),
+                                "bloque_campus": celdas[4].get_text(strip=True)
+                            }
+                            horarios.append(horario)
+            
+            detalles["horarios"] = horarios
+            
+            # Paralelos asociados (prácticos) - mejorar extracción
+            paralelos_asociados = []
+            
+            # Buscar enlaces de paralelos asociados
+            enlaces_paralelos = soup.find_all("a", onclick=lambda x: x and "cargarparalelo" in x)
+            
+            for enlace in enlaces_paralelos:
+                try:
+                    # Extraer número del paralelo del ID
+                    id_paralelo = enlace.get("id", "")
+                    if id_paralelo:
+                        # Buscar la tabla correspondiente
+                        tabla_id = f"tabla_{id_paralelo}"
+                        div_tabla = soup.find("div", {"id": tabla_id})
+                        
+                        if div_tabla:
+                            paralelo_info = {}
+                            
+                            # Extraer información del profesor del paralelo práctico
+                            tabla_info = div_tabla.find("table")
+                            if tabla_info:
+                                filas = tabla_info.find_all("tr")
+                                for fila in filas:
+                                    texto = fila.get_text()
+                                    if "Profesor:" in texto:
+                                        parts = texto.split("Profesor:")
+                                        if len(parts) > 1:
+                                            profesor_texto = parts[1].split("Paralelo:")[0].strip()
+                                            paralelo_info["profesor"] = profesor_texto
+                                    
+                                    if "Paralelo::" in texto:
+                                        parts = texto.split("Paralelo::")
+                                        if len(parts) > 1:
+                                            paralelo_info["numero_paralelo"] = parts[1].strip()
+                                    
+                                    if "Capacidad:" in texto:
+                                        parts = texto.split("Capacidad:")
+                                        if len(parts) > 1:
+                                            capacidad = parts[1].split("Cupo disponible:")[0].strip()
+                                            paralelo_info["capacidad"] = capacidad
+                                    
+                                    if "Cupo disponible:" in texto:
+                                        parts = texto.split("Cupo disponible:")
+                                        if len(parts) > 1:
+                                            cupo_disp = parts[1].strip()
+                                            paralelo_info["cupo_disponible"] = cupo_disp
+                            
+                            # Extraer horarios del paralelo práctico
+                            tabla_horarios_p = div_tabla.find("table", class_="display")
+                            horarios_paralelo = []
+                            
+                            if tabla_horarios_p:
+                                tbody_p = tabla_horarios_p.find("tbody")
+                                if tbody_p:
+                                    for fila_p in tbody_p.find_all("tr"):
+                                        celdas_p = fila_p.find_all("td")
+                                        if len(celdas_p) >= 5:
+                                            horario_p = {
+                                                "dia": celdas_p[0].get_text(strip=True),
+                                                "hora_inicio": celdas_p[1].get_text(strip=True),
+                                                "hora_fin": celdas_p[2].get_text(strip=True),
+                                                "aula": celdas_p[3].get_text(strip=True),
+                                                "bloque_campus": celdas_p[4].get_text(strip=True)
+                                            }
+                                            horarios_paralelo.append(horario_p)
+                            
+                            if horarios_paralelo:
+                                paralelo_info["horarios"] = horarios_paralelo
+                                paralelos_asociados.append(paralelo_info)
+                
+                except Exception as e_paralelo:
+                    print(f"    Error extrayendo paralelo {enlace.get('id', 'desconocido')}: {e_paralelo}")
+                    continue
+            
+            detalles["paralelos_asociados"] = paralelos_asociados
+            
+            # Si llegamos aquí, la extracción fue exitosa
+            return detalles
+            
+        except requests.exceptions.Timeout:
+            print(f"  ⚠️ Timeout en intento {intento + 1}")
+            if intento == max_intentos - 1:
+                return {"error": "Timeout después de varios intentos", "url": url_materia}
+        except requests.exceptions.RequestException as e:
+            print(f"  ⚠️ Error de conexión en intento {intento + 1}: {e}")
+            if intento == max_intentos - 1:
+                return {"error": f"Error de conexión: {str(e)}", "url": url_materia}
+        except Exception as e:
+            print(f"  ⚠️ Error al parsear datos en intento {intento + 1}: {e}")
+            if intento == max_intentos - 1:
+                return {"error": f"Error de parsing: {str(e)}", "url": url_materia}
+    
+    return {"error": "Falló después de todos los intentos", "url": url_materia}
+
+def procesar_paralelo_individual(args):
+    """
+    Función auxiliar para procesar un paralelo individual en threading
+    """
+    session, paralelo, numero_paralelo, total_paralelos = args
+    try:
+        print(f"  [{numero_paralelo}/{total_paralelos}] Paralelo {paralelo['numero']}")
+        
+        detalles = extraer_detalles_materia(session, paralelo["url"])
+        detalles["numero_paralelo"] = paralelo["numero"]
+        detalles["url"] = paralelo["url"]
+        
+        return detalles
+    except Exception as e:
+        print(f"  ❌ Error procesando paralelo {paralelo['numero']}: {e}")
+        return {"error": f"Error: {str(e)}", "numero_paralelo": paralelo["numero"], "url": paralelo["url"]}
+
+def main():
+    # Solicitar credenciales por terminal
+    print("=" * 60)
+    print("🎓 SISTEMA DE EXTRACCIÓN DE MATERIAS ESPOL")
+    print("=" * 60)
+    print("Este programa extraerá información detallada de materias disponibles")
+    print("desde el sistema académico de ESPOL.")
+    print()
+    print("📋 Requisitos:")
+    print("  • Credenciales válidas del sistema académico ESPOL")
+    print("  • Conexión a internet estable")
+    print("  • Capacidad de resolver CAPTCHA")
+    print()
+    print("🔐 Por favor, ingrese sus credenciales:")
+    print("💡 Tip: Presiona Ctrl+C en cualquier momento para cancelar")
+    print()
+    
+    try:
+        usuario = input("👤 Usuario: ").strip()
+        if not usuario:
+            print("❌ Error: Debe ingresar un usuario válido")
+            return
+        
+        password = getpass.getpass("🔐 Contraseña: ")
+        if not password:
+            print("❌ Error: Debe ingresar una contraseña válida")
+            return
+    except KeyboardInterrupt:
+        print("\n❌ Operación cancelada por el usuario.")
+        return
+    except EOFError:
+        print("\n❌ Entrada inesperada. Programa terminado.")
+        return
+    
+    print(f"✅ Credenciales recibidas para usuario: {usuario}")
+    print("🚀 Iniciando proceso de autenticación...")
+    print()
+    
+    url_login = "https://www.academico.espol.edu.ec/login.aspx?ReturnUrl=%2fUI%2fRegistros%2fmateriasdisponibles.aspx"
+
+    # Configurar sesión con optimizaciones de rendimiento
+    session = requests.Session()
+    
+    # Configurar adapter con pool connections para reutilizar conexiones
+    from requests.adapters import HTTPAdapter
+    from urllib3.util.retry import Retry
+    
+    adapter = HTTPAdapter(
+        pool_connections=10,
+        pool_maxsize=10,
+        max_retries=Retry(
+            total=3,
+            backoff_factor=0.3,
+            status_forcelist=[500, 502, 503, 504]
+        )
+    )
+    session.mount('https://', adapter)
+    session.mount('http://', adapter)
+    
+    # Headers para mejorar rendimiento
+    session.headers.update({
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        'Connection': 'keep-alive',
+        'Keep-Alive': 'timeout=30, max=100'
+    })
+
+    # Paso 1: Obtener la página de login y extraer campos ocultos
+    resp = session.get(url_login)
+    soup = BeautifulSoup(resp.text, "html.parser")
+    viewstate = soup.find("input", {"name": "__VIEWSTATE"})["value"]
+    eventvalidation = soup.find("input", {"name": "__EVENTVALIDATION"})["value"]
+    viewstategen = soup.find("input", {"name": "__VIEWSTATEGENERATOR"})["value"]
+
+    # Paso 2: Enviar usuario (POST)
+    payload1 = {
+        "__VIEWSTATE": viewstate,
+        "__EVENTVALIDATION": eventvalidation,
+        "__VIEWSTATEGENERATOR": viewstategen,
+        "ctl00$contenido$txtuser": usuario,
+        "ctl00$contenido$btnSigte": "Siguiente"
+    }
+    resp2 = session.post(url_login, data=payload1)
+    soup2 = BeautifulSoup(resp2.text, "html.parser")
+
+    # Paso 3: Extraer campos ocultos y captcha
+    try:
+        viewstate2 = soup2.find("input", {"name": "__VIEWSTATE"})["value"]
+        eventvalidation2 = soup2.find("input", {"name": "__EVENTVALIDATION"})["value"]
+        viewstategen2 = soup2.find("input", {"name": "__VIEWSTATEGENERATOR"})["value"]
+        lbd_vcid = soup2.find("input", {"name": lambda x: x and x.startswith("LBD_VCID_")})
+        lbd_vcid_name = lbd_vcid["name"]
+        lbd_vcid_value = lbd_vcid["value"]
+
+        # Captcha image
+        captcha_img = soup2.find("img", {"class": "LBD_CaptchaImage"})
+        captcha_url = captcha_img["src"]
+        if captcha_url.startswith("/"):
+            from urllib.parse import urljoin
+            captcha_url = urljoin(url_login, captcha_url)
+    except Exception:
+        print("[ERROR] No se pudo extraer el captcha o los campos ocultos del segundo paso. Revisa debug_usuario.html.")
+        return
+    
+    try:
+        captcha_resp = session.get(captcha_url)
+        captcha_path = "captcha.jpg"
+        with open(captcha_path, "wb") as f:
+            f.write(captcha_resp.content)
+        try:
+            mostrar_captcha(captcha_path)
+        except Exception:
+            print(f"[ADVERTENCIA] No se pudo abrir el captcha automáticamente. Ábrelo manualmente desde el archivo {captcha_path}.")
+        captcha_code = input("Introduce el texto del captcha (mira la imagen captcha.jpg): ")
+    except Exception:
+        print("[ERROR] No se pudo descargar o mostrar el captcha.")
+        return
+
+    payload2 = {
+        "__VIEWSTATE": viewstate2,
+        "__EVENTVALIDATION": eventvalidation2,
+        "__VIEWSTATEGENERATOR": viewstategen2,
+        lbd_vcid_name: lbd_vcid_value,
+        "ctl00$contenido$txtpsw": password,
+        "ctl00$contenido$CaptchaCodeTextBox": captcha_code,
+        "ctl00$contenido$btnIniciarSesion": "Iniciar sesión"
+    }
+
+    form = soup2.find("form", {"id": "aspnetForm"})
+    action = form["action"]
+    if action.startswith("./"):
+        from urllib.parse import urljoin
+        post_url = urljoin(url_login, action)
+    else:
+        post_url = action
+
+    resp3 = session.post(post_url, data=payload2)
+    with open("debug_postlogin.html", "w", encoding="utf-8") as f:
+        f.write(resp3.text)
+    
+    # Verificar si el login fue exitoso
+    if "historiaacademica_" in resp3.url or "materiasdisponibles" in resp3.url or "logout" in resp3.text:
+        print("✅ ¡Login exitoso!")
+    else:
+        # Verificar mensajes de error comunes
+        if "captcha" in resp3.text.lower() or "código de verificación" in resp3.text.lower():
+            print("❌ Error: Código CAPTCHA incorrecto. Inténtalo de nuevo.")
+        elif "contraseña" in resp3.text.lower() or "usuario" in resp3.text.lower():
+            print("❌ Error: Usuario o contraseña incorrectos.")
+        else:
+            print("❌ Error: No se pudo iniciar sesión. Revisa debug_postlogin.html para más detalles.")
+        return
+
+    url_materias_disponibles = "https://www.academico.espol.edu.ec/UI/Registros/materiasdisponibles.aspx"
+    resp4 = session.get(url_materias_disponibles)
+    with open("respuesta_materias_disponibles.html", "w", encoding="utf-8") as f:
+        f.write(resp4.text)
+
+    soup4 = BeautifulSoup(resp4.text, "html.parser")
+    try:
+        # Buscar el título "Materias disponibles"
+        h1 = soup4.find("h1")
+        if not h1 or "Materias disponibles" not in h1.get_text():
+            print("[ERROR] No se encontró el título 'Materias disponibles' en la página. Revisa respuesta_materias_disponibles.html.")
+            return
+        
+        # Buscar la tabla con id "ctl00_contenido_tbMateriasDisp"
+        tabla = soup4.find("table", {"id": "ctl00_contenido_tbMateriasDisp"})
+        if not tabla:
+            print("[ERROR] No se encontró la tabla de materias disponibles. Revisa respuesta_materias_disponibles.html.")
+            return
+        
+        materias = []
+        tbody = tabla.find("tbody")
+        if tbody:
+            for fila in tbody.find_all("tr"):
+                celdas = fila.find_all("td")
+                if len(celdas) >= 5:  # Código, Materia, Estado Académico, Tipo Crédito, Paralelos
+                    # Extraer enlaces de paralelos de la última celda
+                    paralelos_info = []
+                    enlaces_paralelos = celdas[4].find_all("a", class_="myLink")
+                    
+                    for enlace in enlaces_paralelos:
+                        href = enlace.get("href")
+                        numero_paralelo = enlace.get_text(strip=True).replace("[", "").replace("]", "")
+                        
+                        if href:
+                            # Construir URL completa
+                            url_completa = "https://www.academico.espol.edu.ec/UI/Registros/" + href
+                            paralelos_info.append({
+                                "numero": numero_paralelo,
+                                "url": url_completa
+                            })
+                    
+                    materia = {
+                        "codigo": celdas[0].get_text(strip=True),
+                        "materia": celdas[1].get_text(strip=True),
+                        "estado_academico": celdas[2].get_text(strip=True),
+                        "tipo_credito": celdas[3].get_text(strip=True),
+                        "paralelos_texto": celdas[4].get_text(strip=True),
+                        "paralelos": paralelos_info
+                    }
+                    materias.append(materia)
+        
+        # Obtener también el año y término
+        anio_elem = soup4.find("span", {"id": "ctl00_contenido_lblAnio"})
+        termino_elem = soup4.find("span", {"id": "ctl00_contenido_lblTermino"})
+        
+        print(f"Se encontraron {len(materias)} materias disponibles para el año {anio_elem.get_text(strip=True) if anio_elem else 'No encontrado'}, término {termino_elem.get_text(strip=True) if termino_elem else 'No encontrado'}")
+        
+        # Ahora extraer detalles de cada paralelo con procesamiento concurrente
+        print("\n=== Extrayendo detalles de cada paralelo (modo concurrente) ===")
+        start_time = time.time()
+        materias_con_detalles = []
+        
+        total_paralelos = sum(len(materia["paralelos"]) for materia in materias)
+        contador = 0
+        
+        print(f"🚀 Iniciando procesamiento de {total_paralelos} paralelos en {len(materias)} materias...")
+        
+        for idx, materia in enumerate(materias, 1):
+            materia_start_time = time.time()
+            print(f"\n[{idx}/{len(materias)}] Procesando materia: {materia['codigo']} - {materia['materia']}")
+            materia_detallada = {
+                "codigo": materia["codigo"],
+                "materia": materia["materia"],
+                "estado_academico": materia["estado_academico"],
+                "tipo_credito": materia["tipo_credito"],
+                "paralelos_detallados": []
+            }
+            
+            # Preparar argumentos para procesamiento concurrente
+            args_paralelos = []
+            for paralelo in materia["paralelos"]:
+                contador += 1
+                args_paralelos.append((session, paralelo, contador, total_paralelos))
+            
+            # Procesar paralelos concurrentemente (máximo 5 threads simultáneos para no saturar el servidor)
+            if args_paralelos:
+                with ThreadPoolExecutor(max_workers=5) as executor:
+                    resultados = list(executor.map(procesar_paralelo_individual, args_paralelos))
+                
+                # Agregar resultados a la materia
+                for resultado in resultados:
+                    materia_detallada["paralelos_detallados"].append(resultado)
+            
+            materias_con_detalles.append(materia_detallada)
+            
+            materia_time = time.time() - materia_start_time
+            elapsed_total = time.time() - start_time
+            avg_time_per_materia = elapsed_total / idx
+            remaining_materias = len(materias) - idx
+            estimated_remaining = remaining_materias * avg_time_per_materia
+            
+            print(f"  ✅ Completada materia {materia['codigo']} con {len(materia_detallada['paralelos_detallados'])} paralelos")
+            print(f"  ⏱️ Tiempo: {materia_time:.1f}s | Total: {elapsed_total:.1f}s | ETA: {estimated_remaining:.1f}s")
+        
+        # Estructura final del JSON (formato original)
+        # Transformar a formato requerido y guardar únicamente este archivo
+        print("\n=== Transformando datos al formato requerido ===")
+        datos_formato_requerido = transformar_a_formato_requerido(materias_con_detalles)
+        
+        # Guardar JSON en formato requerido
+        with open("materias_formato_requerido.json", "w", encoding="utf-8") as f:
+            json.dump(datos_formato_requerido, f, ensure_ascii=False, indent=4)
+        
+        # Calcular estadísticas finales de rendimiento
+        total_time = time.time() - start_time
+        paralelos_exitosos = sum(len([p for p in m["paralelos_detallados"] if "error" not in p]) 
+                                for m in materias_con_detalles)
+        paralelos_con_error = total_paralelos - paralelos_exitosos
+        
+        print(f"\n🎯 ¡EXTRACCIÓN COMPLETADA!")
+        print(f"📊 Estadísticas de rendimiento:")
+        print(f"  • Tiempo total: {total_time:.1f} segundos ({total_time/60:.1f} minutos)")
+        print(f"  • Materias procesadas: {len(datos_formato_requerido)}")
+        print(f"  • Paralelos exitosos: {paralelos_exitosos}/{total_paralelos}")
+        if paralelos_con_error > 0:
+            print(f"  • Paralelos con errores: {paralelos_con_error}")
+        print(f"  • Promedio por paralelo: {total_time/total_paralelos:.2f}s")
+        print(f"  • Velocidad de procesamiento: {total_paralelos/total_time:.1f} paralelos/segundo")
+        print(f"📄 Archivo 'materias_formato_requerido.json': {len(datos_formato_requerido)} materias en formato requerido")
+        
+    except Exception as e:
+        print(f"[ERROR] Error extrayendo la tabla de materias disponibles: {e}")
+
+if __name__ == "__main__":
+    main()

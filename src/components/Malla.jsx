@@ -103,43 +103,38 @@ const Malla = ({ materias, onMateriaClick, eventos }) => {
       >
         {materias.map((materia, index) => {
           const isAdded = isCourseAdded(materia.codigo);
-          const isApproved = aprobadasSet.has(String(materia.codigo).trim()); // [NEW]
+          const isApproved = aprobadasSet.has(String(materia.codigo).trim());
           const isPendingApproval = pendingApprovals.has(String(materia.codigo).trim());
-          const isDisabled = isAdded || (isApproved && !approvalMode) || (approvalMode && isPendingApproval); // En modo aprobación, permitir desmarcar las aprobadas
-
+          const isDisabled = isAdded || (isApproved && !approvalMode) || (approvalMode && isPendingApproval);
           return (
             <div
               key={materia.codigo + String(index)}
               className={` 
-            border rounded-lg p-1 text-center relative
-            ${materia.tipo === "basic" ? "bg-white" : ""} 
-            ${materia.tipo === "general" ? "bg-[#D6DFE6]" : ""}
-            ${materia.tipo === "profesional" ? "bg-[#FDF3BA]" : ""}
-            ${materia.tipo === "complementadi" ? "bg-[#F8C1A0]" : ""}
-            ${materia.tipo === "complementh" ? "bg-[#93D0CC]" : ""}
-            ${materia.tipo === "integradora" ? "bg-[#003566] text-white" : ""}
-            ${materia.tipo === "Itenerario" ? "bg-[#81A5C8] text-white" : ""}
-            ${materia.tipo === "comunitarias" ? "bg-[#FBDC7D]" : ""}
-            ${materia.tipo === "pracprofesionales" ? "bg-[#FBDC7D]" : ""}
-            ${isDisabled ? "opacity-80 cursor-not-allowed select-none" : approvalMode ? "cursor-pointer hover:opacity-70" : "cursor-pointer"}
-          `}
+                border rounded-lg p-1 text-center relative
+                ${materia.tipo === "basic" ? "bg-white" : ""}
+                ${materia.tipo === "general" ? "bg-[#D6DFE6]" : ""}
+                ${materia.tipo === "profesional" ? "bg-[#FDF3BA]" : ""}
+                ${materia.tipo === "complementadi" ? "bg-[#F8C1A0]" : ""}
+                ${materia.tipo === "complementh" ? "bg-[#93D0CC]" : ""}
+                ${materia.tipo === "integradora" ? "bg-[#003566] text-white" : ""}
+                ${materia.tipo === "Itenerario" ? "bg-[#81A5C8] text-white" : ""}
+                ${materia.tipo === "comunitarias" ? "bg-[#FBDC7D]" : ""}
+                ${materia.tipo === "pracprofesionales" ? "bg-[#FBDC7D]" : ""}
+                ${isDisabled ? "opacity-80 cursor-not-allowed select-none" : approvalMode ? "cursor-pointer hover:opacity-70" : "cursor-pointer"}
+              `}
               style={{
                 gridRow: materia.nivel + 1,
                 gridColumn: materia.col + 1,
               }}
               onClick={() => {
                 if (approvalMode) {
-                  // En modo aprobación, toggle según el estado actual
                   const codigo = String(materia.codigo).trim();
                   if (isApproved) {
-                    // Si ya está aprobada, desmarcarla directamente
                     toggleExistingApproval(codigo);
                   } else {
-                    // Si no está aprobada, toggle de aprobación pendiente
                     togglePendingApproval(codigo);
                   }
                 } else if (!isDisabled) {
-                  // Seleccionar materia directamente - sin modal
                   onMateriaClick && onMateriaClick(materia.codigo);
                 }
               }}
