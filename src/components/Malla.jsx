@@ -87,6 +87,13 @@ const Malla = ({ materias, onMateriaClick, eventos, highlightComplementariaCodig
     } catch {}
   };
 
+  const disponiblesSet = useMemo(() => {
+    try {
+      const arr = JSON.parse(localStorage.getItem("materiasDisponibles") || "[]");
+      return new Set((Array.isArray(arr) ? arr : []).map(c => String(c).trim()));
+    } catch { return new Set(); }
+  }, []);
+
   // Cancelar modo aprobación
   const cancelApprovalMode = () => {
     setPendingApprovals(new Set());
@@ -133,18 +140,18 @@ const Malla = ({ materias, onMateriaClick, eventos, highlightComplementariaCodig
                 gridColumn: materia.col + 1,
               }}
               onClick={() => {
+                const codigo = String(materia.codigo).trim();
+                if (disponiblesSet.size > 0 && !disponiblesSet.has(codigo)) {
+                  return;
+                }
                 if (approvalMode) {
                   // En modo aprobación, toggle según el estado actual
-                  const codigo = String(materia.codigo).trim();
                   if (isApproved) {
-                    // Si ya está aprobada, desmarcarla directamente
                     toggleExistingApproval(codigo);
                   } else {
-                    // Si no está aprobada, toggle de aprobación pendiente
                     togglePendingApproval(codigo);
                   }
                 } else if (!isDisabled) {
-                  const codigo = String(materia.codigo).trim();
                   const esVerde = isComplementaria || isMatched;
                   if (esVerde && onClickHighlighted) {
                     onClickHighlighted(codigo);
@@ -153,6 +160,7 @@ const Malla = ({ materias, onMateriaClick, eventos, highlightComplementariaCodig
                   }
                 }
               }}
+
             >
               <div className="flex flex-col justify-center items-center h-full">
                 <div className="font-bold text-xs md:text-sm">

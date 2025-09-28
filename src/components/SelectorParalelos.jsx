@@ -130,6 +130,15 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
   const [errorMensaje, setErrorMensaje] = useState(null); // Estado para mensajes de error o éxito
   const PARALELOS_POR_PAGINA = 3; // Número de paralelos a mostrar por página
 
+  const disponiblesSet = useMemo(() => {
+  try {
+    const arr = JSON.parse(localStorage.getItem("materiasDisponibles") || "[]");
+    return new Set((Array.isArray(arr) ? arr : []).map(c => String(c).trim()));
+  } catch { 
+    return new Set(); 
+  }
+}, []);
+
   // Cargar horario desde localStorage
   useEffect(() => {
     const saved = localStorage.getItem("horario");
@@ -233,19 +242,27 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
 
   // Valida prerrequisitos (aprobadas) y correquisitos (aprobadas o ya en horario)
   const canEnroll = (code) => {
-    const m = materiaIndex.get(String(code).trim());
-    if (!m) return { ok: true, reasons: [] }; // sin metadata no bloquea
-    const pre = Array.isArray(m.prerequisitos) ? m.prerequisitos.map(x => String(x).trim()) : [];
-    const co  = Array.isArray(m.corequisitos)  ? m.corequisitos.map(x => String(x).trim())  : [];
+    const c = String(code).trim();
 
-    const reasons = [];
-    const faltanPre = pre.filter(p => !aprobadasSet.has(p));
-    if (faltanPre.length) reasons.push(`Faltan prerrequisitos: ${faltanPre.join(", ")}`);
+    // 2.1) Si hay lista de disponibles y esta materia NO está ahí → bloquear
+    if (disponiblesSet.size > 0 && !disponiblesSet.has(c)) {
+      return { ok: false, reasons: ["Materia no disponible este período según el portal"] };
+    }
 
-    const faltanCo = co.filter(x => !aprobadasSet.has(x) && !cursadasAhoraSet.has(x));
-    if (faltanCo.length) reasons.push(`Correquisitos pendientes (aprobado o ya seleccionado): ${faltanCo.join(", ")}`);
+    // 2.2) Cargar metadata de la malla para leer correquisitos (los prerrequisitos se IGNORAN)
+    const m = materiaIndex.get(c);
+    if (!m) return { ok: true, reasons: [] }; // sin metadata, no bloquea
 
-    return { ok: reasons.length === 0, reasons };
+    const co = Array.isArray(m.corequisitos) ? m.corequisitos.map(x => String(x).trim()) : [];
+
+    // 2.3) Validar SOLO correquisitos: aprobados o ya seleccionados en el horario
+    const faltanCo = co.filter((x) => !aprobadasSet.has(x) && !cursadasAhoraSet.has(x));
+
+    if (faltanCo.length) {
+      return { ok: false, reasons: [`Correquisitos pendientes (aprobado o ya seleccionado): ${faltanCo.join(", ")}`] };
+    }
+
+    return { ok: true, reasons: [] };
   };
 
   const teoricos = materiasParalelos[codigoMateria].Teorico; // Obtiene los paralelos teóricos y prácticos de la materia seleccionada
