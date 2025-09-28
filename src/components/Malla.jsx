@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect } from "react";
 
-const Malla = ({ materias, onMateriaClick, eventos, highlightComplementariaCodigoSet = new Set(), highlightMatchedCodigoSet = new Set() }) => {
+const Malla = ({ materias, onMateriaClick, eventos, highlightComplementariaCodigoSet = new Set(), highlightMatchedCodigoSet = new Set(), onClickHighlighted }) => {
   const isCourseAdded = (codigo) => {
     return eventos.some((evento) => evento.codigoMateria === codigo);
   };
@@ -144,8 +144,13 @@ const Malla = ({ materias, onMateriaClick, eventos, highlightComplementariaCodig
                     togglePendingApproval(codigo);
                   }
                 } else if (!isDisabled) {
-                  // Seleccionar materia directamente - sin modal
-                  onMateriaClick && onMateriaClick(materia.codigo);
+                  const codigo = String(materia.codigo).trim();
+                  const esVerde = isComplementaria || isMatched;
+                  if (esVerde && onClickHighlighted) {
+                    onClickHighlighted(codigo);
+                  } else {
+                    onMateriaClick && onMateriaClick(materia.codigo);
+                  }
                 }
               }}
             >

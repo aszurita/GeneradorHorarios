@@ -33,6 +33,37 @@ export default function App() {
   const [highlightComplementaria, setHighlightComplementaria] = useState(new Set());
   const [highlightMatched, setHighlightMatched] = useState(new Set());
   const [resultadoExtraccion, setResultadoExtraccion] = useState(null);
+  const [paralelosDinamicos, setParalelosDinamicos] = useState({});
+  const HIGHLIGHT_KEY = 'extraccionHighlightsV1';
+  const [faseExtraccion, setFaseExtraccion] = useState('idle'); // idle | captcha | procesando | completado
+  const [captchaEnviado, setCaptchaEnviado] = useState(false);
+
+  // Cargar highlights persistidos
+  useEffect(() => {
+    // Reinicio completo solicitado: limpiar horario, aprobadas, highlights, paralelos dinámicos al recargar
+    try {
+      localStorage.removeItem('horario');
+      localStorage.removeItem('materiasAprobadas');
+      localStorage.removeItem(HIGHLIGHT_KEY);
+      localStorage.removeItem('paralelosDinamicosV1');
+    } catch {}
+    setEventos([]);
+    setHighlightComplementaria(new Set());
+    setHighlightMatched(new Set());
+    setParalelosDinamicos({});
+    setResultadoExtraccion(null);
+  }, []);
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(HIGHLIGHT_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        setHighlightComplementaria(new Set(parsed.comp || []));
+        setHighlightMatched(new Set(parsed.mats || []));
+      }
+    } catch {}
+  }, []);
   const [carreraSeleccionada, setCarreraSeleccionada] = useState(() => {
     const url = new URL(window.location.href);
     const fromUrl = parseInt(url.searchParams.get("c") ?? "", 10);
@@ -162,6 +193,12 @@ export default function App() {
           const res = await fetch('/api/extraccion/logs');
           const data = await res.json();
           setExtraccionLogs(data.logs || []);
+          const logsTxt = (data.logs || []).join('\n');
+          if (logsTxt.includes('Introduce el texto del captcha')) {
+            if (!captchaEnviado) setFaseExtraccion('captcha');
+          } else if (captchaEnviado && faseExtraccion !== 'completado') {
+            setFaseExtraccion('procesando');
+          }
           // Detectar finalización
           if ((data.logs || []).some(l => l.includes('EXTRACCION COMPLETADA'))) {
             // Intentar obtener resultado
@@ -171,6 +208,7 @@ export default function App() {
                 const json = await rj.json();
                 procesarResultado(json);
                 clearInterval(logsIntervalRef.current);
+                setFaseExtraccion('completado');
               }
             } catch {}
           }
@@ -226,6 +264,7 @@ export default function App() {
       });
       setHighlightComplementaria(compFiltered);
       setHighlightMatched(matchedSet);
+      try { localStorage.setItem(HIGHLIGHT_KEY, JSON.stringify({ comp: Array.from(compFiltered), mats: Array.from(matchedSet) })); } catch {}
     } catch (e) {
       console.error('Error computando highlights:', e);
     }
@@ -234,7 +273,32 @@ export default function App() {
   const procesarResultado = (json) => {
     setResultadoExtraccion(json);
     computeHighlights(json, carreraSeleccionada);
+    // Construir mapa de paralelos a partir del JSON extraído
+    try {
+      const dyn = {};
+      const secciones = ['Materias Complementarias', 'Materias'];
+      secciones.forEach(sec => {
+        const grupo = json[sec] || {};
+        Object.entries(grupo).forEach(([codigo, data]) => {
+          if (!data) return;
+          dyn[codigo.trim()] = {
+            Teorico: data.Teorico || [],
+            Practico: data.Practico || []
+          };
+        });
+      });
+      setParalelosDinamicos(dyn);
+      localStorage.setItem('paralelosDinamicosV1', JSON.stringify(dyn));
+    } catch (e) { console.error('No se pudo construir paralelos dinamicos', e); }
   };
+
+  // Cargar dinámicos previos si existen
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem('paralelosDinamicosV1');
+      if (raw) setParalelosDinamicos(JSON.parse(raw));
+    } catch {}
+  }, []);
 
   useEffect(() => {
     // Recalcular cuando cambie carrera o el resultado ya existente
@@ -291,14 +355,23 @@ export default function App() {
           )}
           {extraccionActiva && (
             <div className="w-full max-w-3xl text-left p-4 border rounded bg-gray-50 text-xs h-64 overflow-auto">
-              {extraccionLogs.map((l, i) => (
-                <div key={i} className="whitespace-pre-wrap font-mono">{l}</div>
-              ))}
-              {captchaImg && (
-                <div className="mt-3 flex flex-col items-start gap-1">
-                  <span className="font-semibold text-gray-700">Captcha detectado:</span>
-                  <img src={captchaImg} alt="captcha" className="border rounded max-h-24" />
-                  <span className="text-[10px] text-gray-500">Escribe el texto del captcha en el campo y presiona Enter</span>
+              {faseExtraccion === 'captcha' && (
+                <div className="flex flex-col gap-2">
+                  <div className="font-mono text-sm">Introduce el texto del captcha (mira la imagen captcha.jpg):</div>
+                  {captchaImg && <img src={captchaImg} alt="captcha" className="border rounded max-h-24 w-auto" />}
+                  <div className="text-[11px] text-gray-500">Sus materias disponibles aparecerán con un contorno verde en la malla</div>
+                </div>
+              )}
+              {faseExtraccion === 'procesando' && (
+                <div className="flex flex-col gap-1">
+                  <div className="font-mono text-sm">Introduce el texto del captcha (mira la imagen captcha.jpg):</div>
+                  <div className="text-[12px] text-gray-700 font-medium">Cargando materias disponibles...</div>
+                  <div className="text-[11px] text-gray-500">El proceso puede tomar unos segundos, sus materias disponibles aparecerán con un contorno verde en la malla</div>
+                </div>
+              )}
+              {faseExtraccion === 'completado' && (
+                <div className="flex flex-col gap-1">
+                  <div className="text-[12px] text-gray-700 font-medium">El proceso puede tomar unos segundos, sus materias disponibles aparecerán con un contorno verde en la malla</div>
                 </div>
               )}
               <div className="mt-2 flex gap-2">
@@ -308,7 +381,12 @@ export default function App() {
                   className="border px-2 py-1 flex-1 rounded"
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' && e.currentTarget.value.trim()) {
-                      enviarEntradaProceso(e.currentTarget.value.trim());
+                      const val = e.currentTarget.value.trim();
+                      enviarEntradaProceso(val);
+                      if (faseExtraccion === 'captcha') {
+                        setCaptchaEnviado(true);
+                        setFaseExtraccion('procesando');
+                      }
                       e.currentTarget.value = '';
                     }
                   }}
@@ -339,12 +417,20 @@ export default function App() {
               eventos={eventos}
               highlightComplementariaCodigoSet={highlightComplementaria}
               highlightMatchedCodigoSet={highlightMatched}
+              onClickHighlighted={(codigo) => {
+                if (paralelosDinamicos[codigo]) {
+                  // Navegar a selector usando datos dinámicos
+                  setCodigoMateria(codigo);
+                } else {
+                  handleCodigoMateria(codigo);
+                }
+              }}
             />
           </div>
         ) : (
           <SelectorParalelos
             codigoMateria={codigoMateria}
-            materiasParalelos={materiasParalelos}
+            materiasParalelos={paralelosDinamicos[codigoMateria] ? paralelosDinamicos : materiasParalelos}
             onConfirmar={agregarEventos}
             onBack={handleBackToMalla}
             nombreMateria={
