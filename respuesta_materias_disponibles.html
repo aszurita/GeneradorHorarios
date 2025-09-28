@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+
+</title><meta name="CODE_LANGUAGE" content="C#" /><meta name="vs_defaultClientScript" content="JavaScript" /><meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5" /><meta name="keywords" content="Académico, en línea, online, información, info, academico, academica, informacion general, general, factor, promedio, carrera, socioeconomico, graduado, egresado" /><meta name="description" content="Podrá visualizar datos académicos como factor socioeconómico P, el número de materias tomadas, el número de materias aprobadas por año/término, promedio obtenido en cada una de las carreras tomadas.  En el caso de ser un estudiante egresado podrá visualizar la fecha en la cual egresó. De igual forma los estudiantes graduados en la ESPOL, podrán visualizar la fecha de graduación y la modalidad de la misma (Tesis, Tópico, Informe Técnico... entre otros)." /><meta http-equiv="Pragma" content="no-cache" />
+    <script language="javaScript" type="text/javascript" src="../../js/jquery-1.10.2.min.js"></script>
+    <script language="javaScript" type="text/javascript" src="../../js/jquery-ui-1.10.3.js"></script>
+    <script language="javaScript" type="text/javascript" src="../../js/ajax_v2.js"></script>
+    <script language="javaScript" type="text/javascript" src="../../js/jquery.dataTables.min.js"></script>
+    <script language="javaScript" type="text/javascript" src="../../js/ZeroClipboard.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2T67Tlkmx9ewAZ2t-JHR8rbQknquZ0gE" type="text/javascript"> </script>
+    <script language="javascript" type="text/javascript" src="../../js/color/jquery.colorbox.js"></script>
+    <script language="javascript" type="text/javascript" src="../../fancybox/jquery.fancybox.pack.js"></script>
+    
+    <script  language=javascript"  type="text/javascript" src="https://www.academico.espol.edu.ec/UI/css/wg_sistemas/wg_espol.js"></script>
+     <script language="javascript" type="text/javascript">
+
+        function activarDiv() {
+            document.getElementById('inline_content').style.display = "";
+            setTimeout("load()", 1000);
+        }
+ </script>
+    <link href="../css/table.css" rel="stylesheet" type="text/css" /><link href="../css/bootstrap.css" rel="stylesheet" type="text/css" /><link href="../css/jquery-ui.css" rel="stylesheet" type="text/css" /><link href="../css/Site.css" rel="stylesheet" type="text/css" /><link href="../css/estiloAcademico.css?v=1.5" rel="stylesheet" type="text/css" /><link href="https://www.academico.espol.edu.ec/UI/css/wg_sistemas/wg_espol.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var dontSort = [];
+
+            $('#ctl00_contenido_tbMateriasDisp thead th').each(function () {
+                dontSort.push({ "bSortable": true });
+            });
+            var oTable = $('#ctl00_contenido_tbMateriasDisp').dataTable({
+                "sDom": 'T<"clear">lfrtip',
+                "bScrollCollapse": true,
+                "oLanguage": {
+                    "sEmptyTable": "No existe información para mostrar",
+                    "sSearch": "Buscar Todo: ",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sInfo": "Mostrando _START_ - _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "No existe registros",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior",
+                        "sLast": "Último"
+                    },
+                    "sInfoFiltered": "(filtrado desde un total de _MAX_ registros)"
+                },
+                "sPaginationType": "full_numbers",
+                "aoColumns": dontSort,
+                "iDisplayLength": 10,
+                "aaSorting": [[0, 'asc']]
+            });
+            $("tfoot input").keyup(function () {
+                oTable.fnFilter(this.value, $("tfoot input").index(this));
+            });
+            $("tfoot input").each(function (i) {
+                asInitVals[i] = this.value;
+            });
+            $("tfoot input").focus(function () {
+                if (this.className == "search_init") {
+                    this.className = "";
+                    this.value = "";
+                }
+            });
+            $("tfoot input").blur(function (i) {
+                if (this.value == "") {
+                    this.className = "search_init";
+                    this.value = asInitVals[$("tfoot input").index(this)];
+                }
+            });
+        });
+    </script>
+    <style> 
+table.test {
+    table-layout:fixed;
+    
+}
+table.test td{
+    word-wrap:break-word;
+    overflow-wrap::break-word;
+    
+}
+</style>
+
+
+
+    <style>
+    
+    </style>
+</head>
+<body>
+    <form name="aspnetForm" method="post" action="./materiasdisponibles.aspx" id="aspnetForm">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE4ODg2Nzc2MjIPZBYCZg9kFgICAw9kFggCAQ8PFgIeBFRleHQFGlpBSElEIEFMRUpBTkRSTyBESUFaIFRBUElBZGQCAw8WAh4JaW5uZXJodG1sBa4EPHVsIGNsYXNzPSJuYXYgbmF2YmFyLW5hdiIgaWQ9Im5hdiI+PGxpIGNsYXNzPSJkcm9wZG93biI+PGEgIGhyZWY9Ii9VSS9JbmZvcm1hY2lvbkFjYWRlbWljYS9pbmZvcm1hY2lvbmdlbmVyYWwuYXNweD9vcHQ9MSI+TUkgSU5GT1JNQUNJw5NOPC9hPjwvbGk+PGxpIGNsYXNzPSJkcm9wZG93biI+PGEgIGhyZWY9Ii9VSS9SZWdpc3Ryb3NPbmxpbmUvbWF0ZXJpYVJlZ2lzdHJvTm9ybWFsLmFzcHg/b3B0PTMiPlJFR0lTVFJPIEVOIEzDjU5FQTwvYT48L2xpPjxsaSBjbGFzcz0iZHJvcGRvd24iPjxhICBocmVmPSIvVUkvUGFnb3NQZW5kaWVudGVzL2RldWRhc0cuYXNweD9vcHQ9NCI+UEFHT1M8L2E+PC9saT48bGkgY2xhc3M9ImRyb3Bkb3duIj48YSAgaHJlZj0iL1VJL1JlZ2lzdHJvcy9ob3Jhcmlvc3BsYW5pZmljYWRvcy5hc3B4P29wdD01Ij5SRUdJU1RST1M8L2E+PC9saT48bGkgY2xhc3M9ImRyb3Bkb3duIj48YSAgaHJlZj0iL1VJL1JlZ2lzdHJvc0luZ2xlcy9wcmVyZWdpc3Ryb0V4YW1lbkV4dHJhb3JkaW5hcmlvLmFzcHg/b3B0PTYiPkVYw4FNRU5FUzwvYT48L2xpPjwvdWw+ZAIEDxYCHwEFwQk8bGkgY2xhc3M9ImRyb3Bkb3duIj48YSA+TUkgSU5GT1JNQUNJw5NOPC9hPjx1bCBjbGFzcz0ibmF2IG5hdi1waWxscyBuYXYtc3RhY2tlZCI+PGxpIGNsYXNzPSJkcm9wZG93biI+PGEgIGhyZWY9Ii9VSS9lc3R1ZGlhbnRlL2RhdG9zRXN0dWRpYW50ZU5ldy5hc3B4P29wdD0xIj5EYXRvcyBQZXJzb25hbGVzPC9hPjwvbGk+PGxpIGNsYXNzPSJkcm9wZG93biI+PGEgIGhyZWY9Ii9VSS9JbmZvcm1hY2lvbkFjYWRlbWljYS9pbmZvcm1hY2lvbmdlbmVyYWwuYXNweCI+SW5mb3JtYWNpw7NuIEdlbmVyYWw8L2E+PC9saT48bGkgY2xhc3M9ImRyb3Bkb3duIj48YSAgaHJlZj0iL1VJL0luZm9ybWFjaW9uQWNhZGVtaWNhL2hpc3RvcmlhYWNhZGVtaWNhXy5hc3B4Ij5IaXN0b3JpYSBBY2Fkw6ltaWNhPC9hPjwvbGk+PGxpIGNsYXNzPSJkcm9wZG93biI+PGEgIGhyZWY9Ii9VSS9JbmZvcm1hY2lvbkFjYWRlbWljYS9jYWxpZmljYWNpb25lc2J1c3F1ZWRhXy5hc3B4Ij5DYWxpZmljYWNpb25lczwvYT48L2xpPjxsaSBjbGFzcz0iZHJvcGRvd24iPjxhICBocmVmPSIvVUkvSW5mb3JtYWNpb25BY2FkZW1pY2EvQ3JlZGl0b3NDYXJyZXJhLmFzcHgiPkNyw6lkaXRvcyBwb3IgQ2FycmVyYTwvYT48L2xpPjxsaSBjbGFzcz0iZHJvcGRvd24iPjxhICBocmVmPSIvVUkvSW5mb3JtYWNpb25BY2FkZW1pY2EvQWN0aXZpZGFkZXNFeHRyYUN1cnJpY3VsYXJlcy5hc3B4Ij5QcsOhY3RpY2FzICBhY3JlZGl0YWRhczwvYT48L2xpPjxsaSBjbGFzcz0iZHJvcGRvd24iPjxhICBocmVmPSIvVUkvSW5mb3JtYWNpb25BY2FkZW1pY2EvaG9yYXJpb1ZpZXcuYXNweCI+Q29uc3VsdGEgdHUgaG9yYXJpbzwvYT48L2xpPjxsaSBjbGFzcz0iZHJvcGRvd24iPjxhICBocmVmPSIvVUkvSW5mb3JtYWNpb25BY2FkZW1pY2EvaG9yYXJpb0V4Vmlldy5hc3B4Ij5Db25zdWx0YSB0dSBob3JhcmlvIGRlIEV4w6FtZW5lczwvYT48L2xpPjxsaSBjbGFzcz0iZHJvcGRvd24iPjxhICBocmVmPSIvVUkvUHJhY3RpY2FzL1ByZVByb2Zlc2lvbmFsZXMuYXNweCI+IFBvc3R1bGFjacOzbiBlbiBQcsOhY3RpY2FzIEVtcHJlc2FyaWFsZXM8L2E+PC9saT48bGkgY2xhc3M9ImRyb3Bkb3duIj48YSAgaHJlZj0iL1VJL1ByYWN0aWNhcy9QcmFDb211bml0YXJpYXMuYXNweCI+IFBvc3R1bGFjacOzbiBlbiBQcsOhY3RpY2FzIGRlIFNlcnZpY2lvIENvbXVuaXRhcmlvPC9hPjwvbGk+PC91bD48L2xpPmQCBg9kFgQCAQ8PFgIfAAUEMjAyNWRkAgMPDxYCHwAFAjJTZGRkmzkqjKTT+tkEKm1f20806ItR6we0SeNm9rEK3D1fE3Q=" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=1Jr-ObcLwOpceAeLhttTzQqm6ElGc2M_-acGAWitvYKE_GmwTYIPPcorpFy8HFWKIt-8MMmhffNY2z5RYDb_nLvUtPJp7udRhCV_xuo883I1&amp;t=638658962132788744" type="text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=wasnS3WaA5DS1dJpgA6L4nelHq44Wz2r2WisxcZvhyrx8NSdkYf_c92s9FwEBofMMHCTa4TyUJskkdwFTikq0ES2aP3-TrkzqjZ4W3pAhkBki17le6L_5w2O-q9n4CFtVByAfwW-eOd7oWthnbh3dg2&amp;t=23c9c237" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+//]]>
+</script>
+
+<script src="/ScriptResource.axd?d=gYV9AaFamnTd1j1Gz570cElx9-H1DISpBoRvTkR97R34uqnd6780ODauuMVvXF4YsRrGF1kxGzKLy8jfmjsqlS1e4qATSgbgr2RhRbka3dq9pNl8WdnKVmsYBS4IaqS5lwaRBUErMA30H9eF76Q0aQ2&amp;t=23c9c237" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="24B2A180" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAI0MeGnALhTtaRHJjsv39/zdVgTxtzlQp3bIg6bm0ufzlTUMdW3gjR9uYH6QgSahVx0nnm40xb+baUCdjK+aRTs" />
+</div>
+    <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'aspnetForm', [], [], [], 0, 'ctl00');
+//]]>
+</script>
+
+    <div id="master2">
+      <div id="header">
+        <div class="container headerespol">
+            <div class="row">
+                <div class="col-md-8 col-sm-8 col-xs-8">
+                    
+                     <a href="http://www.espol.edu.ec">
+                         <img class="pull-left logoespol" src="/images/espol/logo-gris.png" alt="ESPOL" title="ESPOL" />
+
+                     </a>
+
+                    <div class="pull-left logotitulocontent">
+                        <span class="fontespol logotitulo">
+                           <p>Académico</p>
+                        </span>    
+                    </div>
+                    
+ 
+                 </div>
+
+                  <div class="hidden-xs col-md-4"> <div class="login-container">
+                <br />
+                <div class="text-right usuario" >
+                    <span id="ctl00_lblNombreUsuario">ZAHID ALEJANDRO DIAZ TAPIA</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+             </div></div>
+
+            </div>
+        </div>
+         <hr class="hr_header">
+        <div id="divNavbar">
+            <div  class="container">
+                <nav class="navbar" id="myNavbar">
+               <ul class="nav user pull-right">
+              
+                       
+                    <li>
+                        <a id="widgetsistemas"></a>
+                    </li>                
+                <li>&nbsp;</li>
+                    <li>
+                     <a id="ctl00_lbtSalir" tabindex="100" class="rol_exit" title="Cerrar Sesión" href="javascript:__doPostBack(&#39;ctl00$lbtSalir&#39;,&#39;&#39;)"></a>&nbsp;&nbsp;
+                    </li>
+                    
+                </ul>
+                    <div class="collapse navbar-collapse" id="MenuPrincipal">
+                        <div id="ctl00_navigator" class="menu rowMain"><ul class="nav navbar-nav" id="nav"><li class="dropdown"><a  href="/UI/InformacionAcademica/informaciongeneral.aspx?opt=1">MI INFORMACIÓN</a></li><li class="dropdown"><a  href="/UI/RegistrosOnline/materiaRegistroNormal.aspx?opt=3">REGISTRO EN LÍNEA</a></li><li class="dropdown"><a  href="/UI/PagosPendientes/deudasG.aspx?opt=4">PAGOS</a></li><li class="dropdown"><a  href="/UI/Registros/horariosplanificados.aspx?opt=5">REGISTROS</a></li><li class="dropdown"><a  href="/UI/RegistrosIngles/preregistroExamenExtraordinario.aspx?opt=6">EXÁMENES</a></li></ul></div>
+                       
+                    </div>
+                </nav>
+            </div>
+        </div>
+      </div>
+
+    <br />
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div id="c-menu" style="margin-left: -38px;">
+                        <div id="ctl00_smenu"><li class="dropdown"><a >MI INFORMACIÓN</a><ul class="nav nav-pills nav-stacked"><li class="dropdown"><a  href="/UI/estudiante/datosEstudianteNew.aspx?opt=1">Datos Personales</a></li><li class="dropdown"><a  href="/UI/InformacionAcademica/informaciongeneral.aspx">Información General</a></li><li class="dropdown"><a  href="/UI/InformacionAcademica/historiaacademica_.aspx">Historia Académica</a></li><li class="dropdown"><a  href="/UI/InformacionAcademica/calificacionesbusqueda_.aspx">Calificaciones</a></li><li class="dropdown"><a  href="/UI/InformacionAcademica/CreditosCarrera.aspx">Créditos por Carrera</a></li><li class="dropdown"><a  href="/UI/InformacionAcademica/ActividadesExtraCurriculares.aspx">Prácticas  acreditadas</a></li><li class="dropdown"><a  href="/UI/InformacionAcademica/horarioView.aspx">Consulta tu horario</a></li><li class="dropdown"><a  href="/UI/InformacionAcademica/horarioExView.aspx">Consulta tu horario de Exámenes</a></li><li class="dropdown"><a  href="/UI/Practicas/PreProfesionales.aspx"> Postulación en Prácticas Empresariales</a></li><li class="dropdown"><a  href="/UI/Practicas/PraComunitarias.aspx"> Postulación en Prácticas de Servicio Comunitario</a></li></ul></li></div>
+                        
+                            
+                        
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div id="c-container">
+                        
+    <div id="container">
+	    <h1><b>Materias disponibles</b><br /></h1>
+        <h2><b>Año: 
+            <span id="ctl00_contenido_lblAnio">2025</span>
+            - Término: 
+            <span id="ctl00_contenido_lblTermino">2S</span></b></h2>
+            <br />
+            <table id="ctl00_contenido_tbMateriasDisp" class="display test" cellspacing="0" cellpadding="0" border="0" style="border-color:#F1F1F1;border-width:2px;border-style:solid;border-collapse:collapse;">
+	<thead>
+		<tr>
+			<th>Código</th><th>Materia</th><th>Estado Académico</th><th>Tipo Credito</th><th>Paralelos</th>
+		</tr>
+	</thead><tbody>
+		<tr class="gradeA">
+			<td style="width:10px;">ARTG2044  </td><td>ACTUACIÓN</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA ARTES, DEPORTES E IDIOMAS</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=173971&p=603&idMateria=7599">[1]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">ARTG2035  </td><td>APRECIACIÓN CINEMATOGRÁFICA</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA ARTES, DEPORTES E IDIOMAS</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=174033&p=603&idMateria=7590">[2]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">ARTG2045  </td><td>APRECIACIÓN MUSICAL</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA ARTES, DEPORTES E IDIOMAS</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=173891&p=603&idMateria=7600">[1]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=173936&p=603&idMateria=7600">[2]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=173943&p=603&idMateria=7600">[3]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=173951&p=603&idMateria=7600">[4]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">INDG1059  </td><td>ATENCIÓN PLENA</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA HUMANIDADES</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=174925&p=603&idMateria=7565">[1]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=174932&p=603&idMateria=7565">[2]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=174936&p=603&idMateria=7565">[3]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=174941&p=603&idMateria=7565">[4]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">DEPG2018  </td><td>BUCEO Y ACTIVIDADES NÁUTICAS</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA ARTES, DEPORTES E IDIOMAS</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=177840&p=603&idMateria=7555">[1]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=177842&p=603&idMateria=7555">[2]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=177844&p=603&idMateria=7555">[3]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">IDIG1801  </td><td>COMUNICACIÓN</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA HUMANIDADES</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=179411&p=603&idMateria=7929">[1]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">ARTG2036  </td><td>DANZA FOLCLÓRICA</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA ARTES, DEPORTES E IDIOMAS</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=175610&p=603&idMateria=7591">[1]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">CCAG1006  </td><td>DESARROLLO SOCIAL Y NUEVAS TECNOLOGÍAS</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA HUMANIDADES</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=177999&p=603&idMateria=7568">[1]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=178002&p=603&idMateria=7568">[2]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=178097&p=603&idMateria=7568">[3]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">CCAG1007  </td><td>DESARROLLO SOCIAL Y VOLUNTARIADO</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA HUMANIDADES</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=179912&p=603&idMateria=7570">[1]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=179913&p=603&idMateria=7570">[2]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=179914&p=603&idMateria=7570">[3]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=179915&p=603&idMateria=7570">[4]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">CCPG1041  </td><td>DIRECCIÓN DE PROYECTOS INFORMÁTICOS</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN PROFESIONAL</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=173507&p=603&idMateria=6825">[1]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=173524&p=603&idMateria=6825">[2]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">ECOG1010  </td><td>ECONOMÍA POLÍTICA</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA HUMANIDADES</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=178608&p=603&idMateria=7567">[1]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=176979&p=603&idMateria=7567">[2]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">CCAG1005  </td><td>EDUCACIÓN SOCIOEMOCIONAL</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA HUMANIDADES</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=174980&p=603&idMateria=7566">[1]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=175048&p=603&idMateria=7566">[2]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=174984&p=603&idMateria=7566">[3]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">DEPG2019  </td><td>ENTRENAMIENTO DE FUERZA</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA ARTES, DEPORTES E IDIOMAS</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=175447&p=603&idMateria=7556">[1]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=175448&p=603&idMateria=7556">[2]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=175450&p=603&idMateria=7556">[3]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=175452&p=603&idMateria=7556">[4]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=175453&p=603&idMateria=7556">[5]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=175455&p=603&idMateria=7556">[6]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=175457&p=603&idMateria=7556">[7]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=175458&p=603&idMateria=7556">[8]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=175461&p=603&idMateria=7556">[9]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=175465&p=603&idMateria=7556">[10]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">ARTG2038  </td><td>EXPRESIÓN CORPORAL</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA ARTES, DEPORTES E IDIOMAS</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=173974&p=603&idMateria=7593">[1]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">ARTG2039  </td><td>FOTOGRAFÍA</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA ARTES, DEPORTES E IDIOMAS</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=174969&p=603&idMateria=7594">[2]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">IDIG2016  </td><td>FRANCÉS I</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA ARTES, DEPORTES E IDIOMAS</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=176812&p=603&idMateria=7579">[1]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=176818&p=603&idMateria=7579">[2]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=176824&p=603&idMateria=7579">[3]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=176829&p=603&idMateria=7579">[4]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=176838&p=603&idMateria=7579">[5]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=176847&p=603&idMateria=7579">[6]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">DEPG2016  </td><td>FÚTBOL</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA ARTES, DEPORTES E IDIOMAS</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=177440&p=603&idMateria=7549">[1]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=177444&p=603&idMateria=7549">[2]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=177462&p=603&idMateria=7549">[3]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=177473&p=603&idMateria=7549">[4]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=177478&p=603&idMateria=7549">[5]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=177483&p=603&idMateria=7549">[6]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=177489&p=603&idMateria=7549">[7]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=177493&p=603&idMateria=7549">[8]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=177498&p=603&idMateria=7549">[9]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">HISG1002  </td><td>HISTORIA CONTEMPORÁNEA DE AMÉRICA LATINA</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA HUMANIDADES</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=177931&p=603&idMateria=7573">[1]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">HISG1003  </td><td>HISTORIA Y FILOSOFÍA DE LAS CIENCIAS</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA HUMANIDADES</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=174955&p=603&idMateria=7574">[1]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=177812&p=603&idMateria=7574">[2]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">SOFG1007  </td><td>INGENIERÍA DE SOFTWARE I</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN PROFESIONAL</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=174127&p=603&idMateria=6845">[1]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=175249&p=603&idMateria=6845">[2]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">IDIG1010  </td><td>INGLÉS V</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">EDUCACIÓN GENERAL</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=176775&p=603&idMateria=7467">[4]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=176810&p=603&idMateria=7467">[5]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=176846&p=603&idMateria=7467">[6]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=176828&p=603&idMateria=7467">[13]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=176873&p=603&idMateria=7467">[11]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=176861&p=603&idMateria=7467">[12]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=176765&p=603&idMateria=7467">[1]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=176771&p=603&idMateria=7467">[2]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=176778&p=603&idMateria=7467">[3]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=176794&p=603&idMateria=7467">[7]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=176798&p=603&idMateria=7467">[8]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=176801&p=603&idMateria=7467">[9]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=176804&p=603&idMateria=7467">[10]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">SOFG1009  </td><td>LENGUAJES DE PROGRAMACIÓN</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN PROFESIONAL</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=174623&p=603&idMateria=6855">[2]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=174616&p=603&idMateria=6855">[1]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">CCPG1048  </td><td>METODOLOGÍA DE LA INVESTIGACIÓN EN COMPUTACIÓN</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN PROFESIONAL</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=179370&p=603&idMateria=6863">[1]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=179372&p=603&idMateria=6863">[2]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">ARTG2049  </td><td>MODELADO ARTÍSTICO</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA ARTES, DEPORTES E IDIOMAS</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=172407&p=603&idMateria=7947">[1]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=179701&p=603&idMateria=7947">[2]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">ARTG2040  </td><td>MÚSICA FOLCLÓRICA LATINOAMERICANA</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA ARTES, DEPORTES E IDIOMAS</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=179800&p=603&idMateria=7595">[1]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">HISG2003  </td><td>SABERES ANCESTRALES AMERICANOS</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA HUMANIDADES</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=179087&p=603&idMateria=7580">[1]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">CCPG1053  </td><td>SEGURIDAD DE LA INFORMACIÓN</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN PROFESIONAL</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=173365&p=603&idMateria=6882">[2]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">ARTG2047  </td><td>SERIGRAFÍA</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA ARTES, DEPORTES E IDIOMAS</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=172414&p=603&idMateria=7945">[1]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">CCPG1055  </td><td>SISTEMAS DISTRIBUIDOS Y COMPUTACIÓN EN LA NUBE</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN PROFESIONAL</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=176697&p=603&idMateria=6894">[1]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=176708&p=603&idMateria=6894">[2]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">CCPG1056  </td><td>SISTEMAS OPERATIVOS</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN PROFESIONAL</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=173644&p=603&idMateria=6897">[1]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=179271&p=603&idMateria=6897">[2]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">ARTG2043  </td><td>TEORÍA DEL ARTE</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA ARTES, DEPORTES E IDIOMAS</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=179907&p=603&idMateria=7598">[1]</a>&nbsp;</td>
+		</tr><tr class="gradeA">
+			<td style="width:10px;">DEPG2024  </td><td>VOLEIBOL</td><td style="width:10px;">DISPONIBLE</td><td style="width:10px;">FORMACIÓN COMPLEMENTARIA DEL ÁREA ARTES, DEPORTES E IDIOMAS</td><td style="width:35px;"><a class="myLink" href="MateriaPlanificada.aspx?idCurso=175396&p=603&idMateria=7561">[1]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=175398&p=603&idMateria=7561">[2]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=175399&p=603&idMateria=7561">[3]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=175401&p=603&idMateria=7561">[4]</a>&nbsp;<a class="myLink" href="MateriaPlanificada.aspx?idCurso=175402&p=603&idMateria=7561">[5]</a>&nbsp;</td>
+		</tr>
+	</tbody><tfoot>
+		<tr>
+			<th><input type="text" name="Código" value="Código" class="search_init"></input></th><th><input type="text" name="Materia" value="Materia" class="search_init"></input></th><th><input type="text" name="Estado Académico" value="Estado Académico" class="search_init"></input></th><th><input type="text" name="Tipo Credito" value="Tipo Credito" class="search_init"></input></th><th><input type="text" name="Paralelos" value="Paralelos" class="search_init"></input></th>
+		</tr>
+	</tfoot>
+</table>
+            <br />
+            <br />
+            <div id="divGridViewData"></div>
+
+	    <span id="ctl00_contenido_LabelError" class="textoNegro"></span>
+						
+	</div>
+     <br /> <br />
+
+                    </div>
+                </div>
+           
+            <div id="c-mapa">
+                
+                
+            </div>
+        </div>
+            </div>
+        <div class="footer" style="margin-top:100px;">
+            <div class="container footer-portal">
+                <div class="row">
+                    <div class="col-md-12 text-center footer-left" >
+                        <p>
+                            <br/>
+                            Escuela Superior Politécnica del Litoral - Campus Gustavo Galindo - Guayaquil - Ecuador<br />
+                            © El contenido de esta obra es de propiedad intelectual de la ESPOL. Todos los derechos reservados. Prohibida su reproducción total o parcial,<br />
+                            comunicación pública o distribución sin autorización previa del titular de los derechos
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    </form>
+    <!-- This contains the hidden content for inline calls -->
+    <div style="display: none;">
+        <div id='inline_content' class='callbacks' style='padding: 10px; background: #fff;
+            overflow: hidden; height: 700px; display: none;'>
+            
+            <div id="div_mostrar_casilleros" style="margin: 5px; position: absolute; top: 0px;
+                right: 0px;">
+                <br />
+                <p style="font-size: 10px; font-family: verdana; font-weight: bold;">
+                    Dirección a buscar:
+                    <input type="text" name="address" id="address" style="width: 400px; font-size: 10px;
+                        font-family: verdana; font-weight: bold;" value="" />
+                    <input type="hidden" name="zoom" value="8" />
+                    <input type="button" value="Buscar" onclick="codeAddress1()" />
+                    <br />
+                    &nbsp;<label style="color: gray; font-size: xx-small">Ej: Guayaquil, Ecuador</label>
+                </p>
+                <div id="map" style="width: 700px; height: 500px;">
+                </div>
+                <br />
+                <div align="center">
+                    <button id="aceptar" type="button" onclick="cambiar2()">
+                        Aceptar</button>
+                    <button id="ctl00_cancelar" type="button" onclick="cancelar()">
+                        Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script language="Javascript" type="text/javascript">
+        var warning = 1200;
+        var timeout = 1740;
+        var current = 0;
+        var popupWindow = 0;   // javascript Window Handle 
+
+        function popUpTimeOut(sURL) {
+            var rc = 0;
+            var altURL = "https://www.academico.espol.edu.ec/" + sURL;
+            popupWindow = window.open(unescape(altURL), 'timeout', 'toolbar=no,scrollbars=no,resizable=no,width=400,height=300');
+        }
+        function getSecs() {
+            current = current + 1;
+            if (current == warning) {
+                popUpTimeOut('warning.htm');   // 20 minute inactivity timer
+            }
+            if (current == (timeout - 60)) {
+                popUpTimeOut('warning1.htm');   // 29 minute inactivity timer
+            }
+            else if ((current == timeout) || (current == (timeout - 1))) {
+                if (popupWindow != null) {
+                    if (popupWindow != 0)
+                    { popupWindow.close(); }
+                }
+                window.location = "https://www.academico.espol.edu.ec/timeout_.aspx";
+            }
+            window.setTimeout('getSecs()', 1000);
+        }
+        getSecs();
+        $(document).ready(function () {
+            var menu = [];
+           
+          
+ });
+       
+
+
+    </script>
+</body>
+</html>
+<script id="f5_cspm">(function(){var f5_cspm={f5_p:'IJAFPDAOCCCAEGBPGGPBHCKHCKNKNPBGNGJLMOGEKAEGACOEOFPLMCEMKDFNAPDGIOOBBMJAAAPHFEGMCCDAFABCAALONMFLBNABBFGKOMIPOGFCDFDBKCDKOOHONLLH',setCharAt:function(str,index,chr){if(index>str.length-1)return str;return str.substr(0,index)+chr+str.substr(index+1);},get_byte:function(str,i){var s=(i/16)|0;i=(i&15);s=s*32;return((str.charCodeAt(i+16+s)-65)<<4)|(str.charCodeAt(i+s)-65);},set_byte:function(str,i,b){var s=(i/16)|0;i=(i&15);s=s*32;str=f5_cspm.setCharAt(str,(i+16+s),String.fromCharCode((b>>4)+65));str=f5_cspm.setCharAt(str,(i+s),String.fromCharCode((b&15)+65));return str;},set_latency:function(str,latency){latency=latency&0xffff;str=f5_cspm.set_byte(str,40,(latency>>8));str=f5_cspm.set_byte(str,41,(latency&0xff));str=f5_cspm.set_byte(str,35,2);return str;},wait_perf_data:function(){try{var wp=window.performance.timing;if(wp.loadEventEnd>0){var res=wp.loadEventEnd-wp.navigationStart;if(res<60001){var cookie_val=f5_cspm.set_latency(f5_cspm.f5_p,res);window.document.cookie='f5avr0592175747aaaaaaaaaaaaaaaa_cspm_='+encodeURIComponent(cookie_val)+';path=/;'+'';}
+return;}}
+catch(err){return;}
+setTimeout(f5_cspm.wait_perf_data,100);return;},go:function(){var chunk=window.document.cookie.split(/\s*;\s*/);for(var i=0;i<chunk.length;++i){var pair=chunk[i].split(/\s*=\s*/);if(pair[0]=='f5_cspm'&&pair[1]=='1234')
+{var d=new Date();d.setTime(d.getTime()-1000);window.document.cookie='f5_cspm=;expires='+d.toUTCString()+';path=/;'+';';setTimeout(f5_cspm.wait_perf_data,100);}}}}
+f5_cspm.go();}());</script>

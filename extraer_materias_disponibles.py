@@ -8,6 +8,18 @@ import getpass
 from urllib.parse import urljoin
 from concurrent.futures import ThreadPoolExecutor
 import threading
+import sys
+
+# ===== Ajuste de encoding para ejecución desde backend Node en Windows =====
+# Forzamos stdout/stderr a UTF-8 para evitar UnicodeEncodeError con emojis o caracteres fuera de cp1252.
+try:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+    if hasattr(sys.stderr, "reconfigure"):
+        sys.stderr.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+
 
 def transformar_a_formato_requerido(materias_con_detalles):
     """
@@ -309,15 +321,15 @@ def extraer_detalles_materia(session, url_materia, max_intentos=3):
             return detalles
             
         except requests.exceptions.Timeout:
-            print(f"  ⚠️ Timeout en intento {intento + 1}")
+            print(f"  [WARN] Timeout en intento {intento + 1}")
             if intento == max_intentos - 1:
                 return {"error": "Timeout después de varios intentos", "url": url_materia}
         except requests.exceptions.RequestException as e:
-            print(f"  ⚠️ Error de conexión en intento {intento + 1}: {e}")
+            print(f"  [WARN] Error de conexion en intento {intento + 1}: {e}")
             if intento == max_intentos - 1:
                 return {"error": f"Error de conexión: {str(e)}", "url": url_materia}
         except Exception as e:
-            print(f"  ⚠️ Error al parsear datos en intento {intento + 1}: {e}")
+            print(f"  [WARN] Error al parsear datos en intento {intento + 1}: {e}")
             if intento == max_intentos - 1:
                 return {"error": f"Error de parsing: {str(e)}", "url": url_materia}
     
@@ -337,45 +349,56 @@ def procesar_paralelo_individual(args):
         
         return detalles
     except Exception as e:
-        print(f"  ❌ Error procesando paralelo {paralelo['numero']}: {e}")
+        print(f"  [ERROR] Error procesando paralelo {paralelo['numero']}: {e}")
         return {"error": f"Error: {str(e)}", "numero_paralelo": paralelo["numero"], "url": paralelo["url"]}
 
 def main():
     # Solicitar credenciales por terminal
     print("=" * 60)
-    print("🎓 SISTEMA DE EXTRACCIÓN DE MATERIAS ESPOL")
+    print("SISTEMA DE EXTRACCION DE MATERIAS ESPOL")
     print("=" * 60)
-    print("Este programa extraerá información detallada de materias disponibles")
-    print("desde el sistema académico de ESPOL.")
+    print("Este programa extraera informacion detallada de materias disponibles")
+    print("desde el sistema academico de ESPOL.")
     print()
-    print("📋 Requisitos:")
-    print("  • Credenciales válidas del sistema académico ESPOL")
-    print("  • Conexión a internet estable")
-    print("  • Capacidad de resolver CAPTCHA")
+    print("Requisitos:")
+    print("  - Credenciales validas del sistema academico ESPOL")
+    print("  - Conexion a internet estable")
+    print("  - Capacidad de resolver CAPTCHA")
     print()
-    print("🔐 Por favor, ingrese sus credenciales:")
-    print("💡 Tip: Presiona Ctrl+C en cualquier momento para cancelar")
+    print("Por favor, ingrese sus credenciales:")
+    print("Tip: Presiona Ctrl+C en cualquier momento para cancelar")
     print()
-    
+
+    # Permitir inyección de credenciales desde variables de entorno
+    usuario_env = os.getenv("EXTRACCION_USUARIO", "").strip()
+    password_env = os.getenv("EXTRACCION_PASSWORD", "")
+
     try:
-        usuario = input("👤 Usuario: ").strip()
-        if not usuario:
-            print("❌ Error: Debe ingresar un usuario válido")
-            return
-        
-        password = getpass.getpass("🔐 Contraseña: ")
-        if not password:
-            print("❌ Error: Debe ingresar una contraseña válida")
-            return
+        if usuario_env:
+            usuario = usuario_env
+            print("Usando usuario provisto por backend.")
+        else:
+            usuario = input("Usuario: ").strip()
+            if not usuario:
+                print("Error: Debe ingresar un usuario valido")
+                return
+
+        if password_env:
+            password = password_env
+            print("Usando contrasena provista por backend.")
+        else:
+            password = getpass.getpass("Contrasena: ")
+            if not password:
+                print("Error: Debe ingresar una contrasena valida")
+                return
     except KeyboardInterrupt:
-        print("\n❌ Operación cancelada por el usuario.")
+        print("\nOperacion cancelada por el usuario.")
         return
     except EOFError:
-        print("\n❌ Entrada inesperada. Programa terminado.")
+        print("\nEntrada inesperada. Programa terminado.")
         return
-    
-    print(f"✅ Credenciales recibidas para usuario: {usuario}")
-    print("🚀 Iniciando proceso de autenticación...")
+
+    print("Iniciando proceso de autenticacion...")
     print()
     
     url_login = "https://www.academico.espol.edu.ec/login.aspx?ReturnUrl=%2fUI%2fRegistros%2fmateriasdisponibles.aspx"
@@ -481,15 +504,15 @@ def main():
     
     # Verificar si el login fue exitoso
     if "historiaacademica_" in resp3.url or "materiasdisponibles" in resp3.url or "logout" in resp3.text:
-        print("✅ ¡Login exitoso!")
+        print("Login exitoso")
     else:
         # Verificar mensajes de error comunes
         if "captcha" in resp3.text.lower() or "código de verificación" in resp3.text.lower():
-            print("❌ Error: Código CAPTCHA incorrecto. Inténtalo de nuevo.")
+            print("Error: Codigo CAPTCHA incorrecto. Intentelo de nuevo.")
         elif "contraseña" in resp3.text.lower() or "usuario" in resp3.text.lower():
-            print("❌ Error: Usuario o contraseña incorrectos.")
+            print("Error: Usuario o contrasena incorrectos.")
         else:
-            print("❌ Error: No se pudo iniciar sesión. Revisa debug_postlogin.html para más detalles.")
+            print("Error: No se pudo iniciar sesion. Revise debug_postlogin.html para mas detalles.")
         return
 
     url_materias_disponibles = "https://www.academico.espol.edu.ec/UI/Registros/materiasdisponibles.aspx"
@@ -505,7 +528,7 @@ def main():
             print("[ERROR] No se encontró el título 'Materias disponibles' en la página. Revisa respuesta_materias_disponibles.html.")
             return
         
-        # Buscar la tabla con id "ctl00_contenido_tbMateriasDisp"
+    # Buscar la tabla con id "ctl00_contenido_tbMateriasDisp"
         tabla = soup4.find("table", {"id": "ctl00_contenido_tbMateriasDisp"})
         if not tabla:
             print("[ERROR] No se encontró la tabla de materias disponibles. Revisa respuesta_materias_disponibles.html.")
@@ -546,8 +569,8 @@ def main():
         # Obtener también el año y término
         anio_elem = soup4.find("span", {"id": "ctl00_contenido_lblAnio"})
         termino_elem = soup4.find("span", {"id": "ctl00_contenido_lblTermino"})
-        
-        print(f"Se encontraron {len(materias)} materias disponibles para el año {anio_elem.get_text(strip=True) if anio_elem else 'No encontrado'}, término {termino_elem.get_text(strip=True) if termino_elem else 'No encontrado'}")
+
+        print(f"Se encontraron {len(materias)} materias disponibles para el anio {anio_elem.get_text(strip=True) if anio_elem else 'No encontrado'}, termino {termino_elem.get_text(strip=True) if termino_elem else 'No encontrado'}")
         
         # Ahora extraer detalles de cada paralelo con procesamiento concurrente
         print("\n=== Extrayendo detalles de cada paralelo (modo concurrente) ===")
@@ -556,8 +579,8 @@ def main():
         
         total_paralelos = sum(len(materia["paralelos"]) for materia in materias)
         contador = 0
-        
-        print(f"🚀 Iniciando procesamiento de {total_paralelos} paralelos en {len(materias)} materias...")
+
+        print(f"Iniciando procesamiento de {total_paralelos} paralelos en {len(materias)} materias...")
         
         for idx, materia in enumerate(materias, 1):
             materia_start_time = time.time()
@@ -592,9 +615,9 @@ def main():
             avg_time_per_materia = elapsed_total / idx
             remaining_materias = len(materias) - idx
             estimated_remaining = remaining_materias * avg_time_per_materia
-            
-            print(f"  ✅ Completada materia {materia['codigo']} con {len(materia_detallada['paralelos_detallados'])} paralelos")
-            print(f"  ⏱️ Tiempo: {materia_time:.1f}s | Total: {elapsed_total:.1f}s | ETA: {estimated_remaining:.1f}s")
+
+            print(f"Completada materia {materia['codigo']} con {len(materia_detallada['paralelos_detallados'])} paralelos")
+            print(f"Tiempo: {materia_time:.1f}s | Total: {elapsed_total:.1f}s | ETA: {estimated_remaining:.1f}s")
         
         # Estructura final del JSON (formato original)
         # Transformar a formato requerido y guardar únicamente este archivo
@@ -610,17 +633,17 @@ def main():
         paralelos_exitosos = sum(len([p for p in m["paralelos_detallados"] if "error" not in p]) 
                                 for m in materias_con_detalles)
         paralelos_con_error = total_paralelos - paralelos_exitosos
-        
-        print(f"\n🎯 ¡EXTRACCIÓN COMPLETADA!")
-        print(f"📊 Estadísticas de rendimiento:")
-        print(f"  • Tiempo total: {total_time:.1f} segundos ({total_time/60:.1f} minutos)")
-        print(f"  • Materias procesadas: {len(datos_formato_requerido)}")
-        print(f"  • Paralelos exitosos: {paralelos_exitosos}/{total_paralelos}")
+
+        print(f"\nEXTRACCION COMPLETADA")
+        print(f"Estadisticas de rendimiento:")
+        print(f"  Tiempo total: {total_time:.1f} segundos ({total_time/60:.1f} minutos)")
+        print(f"  Materias procesadas: {len(datos_formato_requerido)}")
+        print(f"  Paralelos exitosos: {paralelos_exitosos}/{total_paralelos}")
         if paralelos_con_error > 0:
-            print(f"  • Paralelos con errores: {paralelos_con_error}")
-        print(f"  • Promedio por paralelo: {total_time/total_paralelos:.2f}s")
-        print(f"  • Velocidad de procesamiento: {total_paralelos/total_time:.1f} paralelos/segundo")
-        print(f"📄 Archivo 'materias_formato_requerido.json': {len(datos_formato_requerido)} materias en formato requerido")
+            print(f"  Paralelos con errores: {paralelos_con_error}")
+        print(f"  Promedio por paralelo: {total_time/total_paralelos:.2f}s")
+        print(f"  Velocidad de procesamiento: {total_paralelos/total_time:.1f} paralelos/segundo")
+        print(f"Archivo 'materias_formato_requerido.json': {len(datos_formato_requerido)} materias en formato requerido")
         
     except Exception as e:
         print(f"[ERROR] Error extrayendo la tabla de materias disponibles: {e}")

@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	Académico en Línea :: Historia Académica
+</title><meta name="CODE_LANGUAGE" content="C#" /><meta name="vs_defaultClientScript" content="JavaScript" /><meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5" /><meta name="keywords" content="Académico, en línea, online, información, info, academico, academica, informacion general, general, factor, promedio, carrera, socioeconomico, graduado, egresado" /><meta name="description" content="Podrá visualizar datos académicos como factor socioeconómico P, el número de materias tomadas, el número de materias aprobadas por año/término, promedio obtenido en cada una de las carreras tomadas.  En el caso de ser un estudiante egresado podrá visualizar la fecha en la cual egresó. De igual forma los estudiantes graduados en la ESPOL, podrán visualizar la fecha de graduación y la modalidad de la misma (Tesis, Tópico, Informe Técnico... entre otros)." /><meta http-equiv="Pragma" content="no-cache" />
+    <script language="javaScript" type="text/javascript" src="../../js/jquery-1.10.2.min.js"></script>
+    <script language="javaScript" type="text/javascript" src="../../js/jquery-ui-1.10.3.js"></script>
+    <script language="javaScript" type="text/javascript" src="../../js/ajax_v2.js"></script>
+    <script language="javaScript" type="text/javascript" src="../../js/jquery.dataTables.min.js"></script>
+    <script language="javaScript" type="text/javascript" src="../../js/ZeroClipboard.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2T67Tlkmx9ewAZ2t-JHR8rbQknquZ0gE" type="text/javascript"> </script>
+    <script language="javascript" type="text/javascript" src="../../js/color/jquery.colorbox.js"></script>
+    <script language="javascript" type="text/javascript" src="../../fancybox/jquery.fancybox.pack.js"></script>
+    
+    <script  language=javascript"  type="text/javascript" src="https://www.academico.espol.edu.ec/UI/css/wg_sistemas/wg_espol.js"></script>
+     <script language="javascript" type="text/javascript">
+
+        function activarDiv() {
+            document.getElementById('inline_content').style.display = "";
+            setTimeout("load()", 1000);
+        }
+ </script>
+    <link href="../css/table.css" rel="stylesheet" type="text/css" /><link href="../css/bootstrap.css" rel="stylesheet" type="text/css" /><link href="../css/jquery-ui.css" rel="stylesheet" type="text/css" /><link href="../css/Site.css" rel="stylesheet" type="text/css" /><link href="../css/estiloAcademico.css?v=1.5" rel="stylesheet" type="text/css" /><link href="https://www.academico.espol.edu.ec/UI/css/wg_sistemas/wg_espol.css" rel="stylesheet" type="text/css" />
+    <style>
+        tbody {
+    border: solid;
+    border-width: 1px;
+    border-color: #ebebeb;
+ 
+}
+    </style>
+    <script type="text/javascript">
+        var asInitVals = new Array();
+        $(document).ready(function () {
+            var dontSort = [];
+            $('#ctl00_contenido_tbResultados thead th').each(function () {
+                dontSort.push({ "bSortable": true });
+            });
+            var oTable = $('#ctl00_contenido_tbResultados').dataTable({
+                "sDom": 'T<"clear">lfrtip',
+                "bScrollCollapse": true,
+                "oLanguage": {
+                    "sEmptyTable": "No existe información para mostrar",
+                    "sSearch": "Buscar Todo: ",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sInfo": "Mostrando _START_ - _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "No existe registros",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior",
+                        "sLast": "Último"
+                    },
+                    "sInfoFiltered": "(filtrado desde un total de _MAX_ registros)"
+                },
+                "sPaginationType": "full_numbers",
+                "aoColumns": dontSort,
+                "iDisplayLength": 10,
+                "aaSorting": [[0, 'asc']]
+            });
+            $("tfoot input").keyup(function () {
+                oTable.fnFilter(this.value, $("tfoot input").index(this));
+            });
+            $("tfoot input").each(function (i) {
+                asInitVals[i] = this.value;
+            });
+            $("tfoot input").focus(function () {
+                if (this.className == "search_init") {
+                    this.className = "";
+                    this.value = "";
+                }
+            });
+            $("tfoot input").blur(function (i) {
+                if (this.value == "") {
+                    this.className = "search_init";
+                    this.value = asInitVals[$("tfoot input").index(this)];
+                }
+            });
+        });
+    </script>
+
+
+
+    <style>
+    
+    </style>
+</head>
+<body>
+    <form name="aspnetForm" method="post" action="./historiaacademica_.aspx" id="aspnetForm">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMjA4NjUwNDgyMA9kFgJmD2QWAgIDD2QWBgIBDw8WAh4EVGV4dAUaWkFISUQgQUxFSkFORFJPIERJQVogVEFQSUFkZAIDDxYCHglpbm5lcmh0bWwFrgQ8dWwgY2xhc3M9Im5hdiBuYXZiYXItbmF2IiBpZD0ibmF2Ij48bGkgY2xhc3M9ImRyb3Bkb3duIj48YSAgaHJlZj0iL1VJL0luZm9ybWFjaW9uQWNhZGVtaWNhL2luZm9ybWFjaW9uZ2VuZXJhbC5hc3B4P29wdD0xIj5NSSBJTkZPUk1BQ0nDk048L2E+PC9saT48bGkgY2xhc3M9ImRyb3Bkb3duIj48YSAgaHJlZj0iL1VJL1JlZ2lzdHJvc09ubGluZS9tYXRlcmlhUmVnaXN0cm9Ob3JtYWwuYXNweD9vcHQ9MyI+UkVHSVNUUk8gRU4gTMONTkVBPC9hPjwvbGk+PGxpIGNsYXNzPSJkcm9wZG93biI+PGEgIGhyZWY9Ii9VSS9QYWdvc1BlbmRpZW50ZXMvZGV1ZGFzRy5hc3B4P29wdD00Ij5QQUdPUzwvYT48L2xpPjxsaSBjbGFzcz0iZHJvcGRvd24iPjxhICBocmVmPSIvVUkvUmVnaXN0cm9zL2hvcmFyaW9zcGxhbmlmaWNhZG9zLmFzcHg/b3B0PTUiPlJFR0lTVFJPUzwvYT48L2xpPjxsaSBjbGFzcz0iZHJvcGRvd24iPjxhICBocmVmPSIvVUkvUmVnaXN0cm9zSW5nbGVzL3ByZXJlZ2lzdHJvRXhhbWVuRXh0cmFvcmRpbmFyaW8uYXNweD9vcHQ9NiI+RVjDgU1FTkVTPC9hPjwvbGk+PC91bD5kAgQPFgIfAQXQCTxsaSBjbGFzcz0iZHJvcGRvd24iPjxhID5NSSBJTkZPUk1BQ0nDk048L2E+PHVsIGNsYXNzPSJuYXYgbmF2LXBpbGxzIG5hdi1zdGFja2VkIj48bGkgY2xhc3M9ImRyb3Bkb3duIj48YSAgaHJlZj0iL1VJL2VzdHVkaWFudGUvZGF0b3NFc3R1ZGlhbnRlTmV3LmFzcHg/b3B0PTEiPkRhdG9zIFBlcnNvbmFsZXM8L2E+PC9saT48bGkgY2xhc3M9ImRyb3Bkb3duIj48YSAgaHJlZj0iL1VJL0luZm9ybWFjaW9uQWNhZGVtaWNhL2luZm9ybWFjaW9uZ2VuZXJhbC5hc3B4Ij5JbmZvcm1hY2nDs24gR2VuZXJhbDwvYT48L2xpPjxsaSBjbGFzcz0iZHJvcGRvd24iPjxhIGNsYXNzPSJjdXJyZW50IiBocmVmPSIvVUkvSW5mb3JtYWNpb25BY2FkZW1pY2EvaGlzdG9yaWFhY2FkZW1pY2FfLmFzcHgiPkhpc3RvcmlhIEFjYWTDqW1pY2E8L2E+PC9saT48bGkgY2xhc3M9ImRyb3Bkb3duIj48YSAgaHJlZj0iL1VJL0luZm9ybWFjaW9uQWNhZGVtaWNhL2NhbGlmaWNhY2lvbmVzYnVzcXVlZGFfLmFzcHgiPkNhbGlmaWNhY2lvbmVzPC9hPjwvbGk+PGxpIGNsYXNzPSJkcm9wZG93biI+PGEgIGhyZWY9Ii9VSS9JbmZvcm1hY2lvbkFjYWRlbWljYS9DcmVkaXRvc0NhcnJlcmEuYXNweCI+Q3LDqWRpdG9zIHBvciBDYXJyZXJhPC9hPjwvbGk+PGxpIGNsYXNzPSJkcm9wZG93biI+PGEgIGhyZWY9Ii9VSS9JbmZvcm1hY2lvbkFjYWRlbWljYS9BY3RpdmlkYWRlc0V4dHJhQ3VycmljdWxhcmVzLmFzcHgiPlByw6FjdGljYXMgIGFjcmVkaXRhZGFzPC9hPjwvbGk+PGxpIGNsYXNzPSJkcm9wZG93biI+PGEgIGhyZWY9Ii9VSS9JbmZvcm1hY2lvbkFjYWRlbWljYS9ob3JhcmlvVmlldy5hc3B4Ij5Db25zdWx0YSB0dSBob3JhcmlvPC9hPjwvbGk+PGxpIGNsYXNzPSJkcm9wZG93biI+PGEgIGhyZWY9Ii9VSS9JbmZvcm1hY2lvbkFjYWRlbWljYS9ob3JhcmlvRXhWaWV3LmFzcHgiPkNvbnN1bHRhIHR1IGhvcmFyaW8gZGUgRXjDoW1lbmVzPC9hPjwvbGk+PGxpIGNsYXNzPSJkcm9wZG93biI+PGEgIGhyZWY9Ii9VSS9QcmFjdGljYXMvUHJlUHJvZmVzaW9uYWxlcy5hc3B4Ij4gUG9zdHVsYWNpw7NuIGVuIFByw6FjdGljYXMgRW1wcmVzYXJpYWxlczwvYT48L2xpPjxsaSBjbGFzcz0iZHJvcGRvd24iPjxhICBocmVmPSIvVUkvUHJhY3RpY2FzL1ByYUNvbXVuaXRhcmlhcy5hc3B4Ij4gUG9zdHVsYWNpw7NuIGVuIFByw6FjdGljYXMgZGUgU2VydmljaW8gQ29tdW5pdGFyaW88L2E+PC9saT48L3VsPjwvbGk+ZGRWqjVKphkmxhiVKZM/Wj/985bQlARx/Q1XEJlTKScbsQ==" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=1Jr-ObcLwOpceAeLhttTzQqm6ElGc2M_-acGAWitvYKE_GmwTYIPPcorpFy8HFWKIt-8MMmhffNY2z5RYDb_nLvUtPJp7udRhCV_xuo883I1&amp;t=638658962132788744" type="text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=wasnS3WaA5DS1dJpgA6L4nelHq44Wz2r2WisxcZvhyrx8NSdkYf_c92s9FwEBofMMHCTa4TyUJskkdwFTikq0ES2aP3-TrkzqjZ4W3pAhkBki17le6L_5w2O-q9n4CFtVByAfwW-eOd7oWthnbh3dg2&amp;t=23c9c237" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+//]]>
+</script>
+
+<script src="/ScriptResource.axd?d=gYV9AaFamnTd1j1Gz570cElx9-H1DISpBoRvTkR97R34uqnd6780ODauuMVvXF4YsRrGF1kxGzKLy8jfmjsqlS1e4qATSgbgr2RhRbka3dq9pNl8WdnKVmsYBS4IaqS5lwaRBUErMA30H9eF76Q0aQ2&amp;t=23c9c237" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="1026F189" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAKtnPeSjhJuj++hhQeunD0CdVgTxtzlQp3bIg6bm0ufzkNAnguakyVFTLqX70n3G12Oithenlgr2yTbh3hpYVvD" />
+</div>
+    <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'aspnetForm', [], [], [], 0, 'ctl00');
+//]]>
+</script>
+
+    <div id="master2">
+      <div id="header">
+        <div class="container headerespol">
+            <div class="row">
+                <div class="col-md-8 col-sm-8 col-xs-8">
+                    
+                     <a href="http://www.espol.edu.ec">
+                         <img class="pull-left logoespol" src="/images/espol/logo-gris.png" alt="ESPOL" title="ESPOL" />
+
+                     </a>
+
+                    <div class="pull-left logotitulocontent">
+                        <span class="fontespol logotitulo">
+                           <p>Académico</p>
+                        </span>    
+                    </div>
+                    
+ 
+                 </div>
+
+                  <div class="hidden-xs col-md-4"> <div class="login-container">
+                <br />
+                <div class="text-right usuario" >
+                    <span id="ctl00_lblNombreUsuario">ZAHID ALEJANDRO DIAZ TAPIA</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+             </div></div>
+
+            </div>
+        </div>
+         <hr class="hr_header">
+        <div id="divNavbar">
+            <div  class="container">
+                <nav class="navbar" id="myNavbar">
+               <ul class="nav user pull-right">
+              
+                       
+                    <li>
+                        <a id="widgetsistemas"></a>
+                    </li>                
+                <li>&nbsp;</li>
+                    <li>
+                     <a id="ctl00_lbtSalir" tabindex="100" class="rol_exit" title="Cerrar Sesión" href="javascript:__doPostBack(&#39;ctl00$lbtSalir&#39;,&#39;&#39;)"></a>&nbsp;&nbsp;
+                    </li>
+                    
+                </ul>
+                    <div class="collapse navbar-collapse" id="MenuPrincipal">
+                        <div id="ctl00_navigator" class="menu rowMain"><ul class="nav navbar-nav" id="nav"><li class="dropdown"><a  href="/UI/InformacionAcademica/informaciongeneral.aspx?opt=1">MI INFORMACIÓN</a></li><li class="dropdown"><a  href="/UI/RegistrosOnline/materiaRegistroNormal.aspx?opt=3">REGISTRO EN LÍNEA</a></li><li class="dropdown"><a  href="/UI/PagosPendientes/deudasG.aspx?opt=4">PAGOS</a></li><li class="dropdown"><a  href="/UI/Registros/horariosplanificados.aspx?opt=5">REGISTROS</a></li><li class="dropdown"><a  href="/UI/RegistrosIngles/preregistroExamenExtraordinario.aspx?opt=6">EXÁMENES</a></li></ul></div>
+                       
+                    </div>
+                </nav>
+            </div>
+        </div>
+      </div>
+
+    <br />
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div id="c-menu" style="margin-left: -38px;">
+                        <div id="ctl00_smenu"><li class="dropdown"><a >MI INFORMACIÓN</a><ul class="nav nav-pills nav-stacked"><li class="dropdown"><a  href="/UI/estudiante/datosEstudianteNew.aspx?opt=1">Datos Personales</a></li><li class="dropdown"><a  href="/UI/InformacionAcademica/informaciongeneral.aspx">Información General</a></li><li class="dropdown"><a class="current" href="/UI/InformacionAcademica/historiaacademica_.aspx">Historia Académica</a></li><li class="dropdown"><a  href="/UI/InformacionAcademica/calificacionesbusqueda_.aspx">Calificaciones</a></li><li class="dropdown"><a  href="/UI/InformacionAcademica/CreditosCarrera.aspx">Créditos por Carrera</a></li><li class="dropdown"><a  href="/UI/InformacionAcademica/ActividadesExtraCurriculares.aspx">Prácticas  acreditadas</a></li><li class="dropdown"><a  href="/UI/InformacionAcademica/horarioView.aspx">Consulta tu horario</a></li><li class="dropdown"><a  href="/UI/InformacionAcademica/horarioExView.aspx">Consulta tu horario de Exámenes</a></li><li class="dropdown"><a  href="/UI/Practicas/PreProfesionales.aspx"> Postulación en Prácticas Empresariales</a></li><li class="dropdown"><a  href="/UI/Practicas/PraComunitarias.aspx"> Postulación en Prácticas de Servicio Comunitario</a></li></ul></li></div>
+                        
+                            
+                        
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div id="c-container">
+                        
+    <h1>Historia Académica</h1>
+    <table id="ctl00_contenido_tbResultados" class="display" cellspacing="0" cellpadding="0" border="0" style="border-color:#D6D6D6;border-width:1px;border-style:solid;border-collapse:collapse;">
+	<thead>
+		<tr>
+			<th>Año Termino</th><th>Código</th><th>Materia</th><th>Prom.</th><th>No. Vez</th><th>Estado</th>
+		</tr>
+	</thead><tbody>
+		<tr class="gradeA">
+			<td style="width:20px;">2023-1   </td><td style="width:25px;">INDG1033  </td><td>ANÁLISIS Y RESOLUCIÓN DE PROBLEMAS</td><td style="width:15px;">9,30</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2023-1   </td><td style="width:25px;">MATG1045  </td><td>CÁLCULO DE UNA VARIABLE</td><td style="width:15px;">8,46</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2023-1   </td><td style="width:25px;">ADM001099 </td><td>FÍSICA (2020)</td><td style="width:15px;">0,00</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2023-1   </td><td style="width:25px;">FISG1005  </td><td>FÍSICA: MECÁNICA</td><td style="width:15px;">7,35</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2023-1   </td><td style="width:25px;">CCPG1043  </td><td>FUNDAMENTOS DE PROGRAMACIÓN</td><td style="width:15px;">8,65</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2023-1   </td><td style="width:25px;">IDIG1006  </td><td>INGLÉS I</td><td style="width:15px;">9,48</td><td style="width:15px;">1</td><td style="width:25px;">Convalidada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2023-1   </td><td style="width:25px;">IDIG1007  </td><td>INGLÉS II</td><td style="width:15px;">6,50</td><td style="width:15px;">1</td><td style="width:25px;">Convalidada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2023-1   </td><td style="width:25px;">IDIG1008  </td><td>INGLÉS III</td><td style="width:15px;">7,92</td><td style="width:15px;">1</td><td style="width:25px;">Convalidada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2023-1   </td><td style="width:25px;">ADM001081 </td><td>MATEMÁTICAS (2020)</td><td style="width:15px;">0,00</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2023-1   </td><td style="width:25px;">ADM001065 </td><td>PRUEBA DE APTITUD (EX)</td><td style="width:15px;">0,00</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2023-2   </td><td style="width:25px;">DEPG2017  </td><td>AJEDREZ</td><td style="width:15px;">9,70</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2023-2   </td><td style="width:25px;">MATG1049  </td><td>ÁLGEBRA LINEAL</td><td style="width:15px;">9,10</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2023-2   </td><td style="width:25px;">MATG1046  </td><td>CÁLCULO VECTORIAL</td><td style="width:15px;">7,92</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2023-2   </td><td style="width:25px;">CCPG1039  </td><td>COMPUTACIÓN Y SOCIEDAD</td><td style="width:15px;">9,21</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2023-2   </td><td style="width:25px;">CCPG1052  </td><td>PROGRAMACIÓN ORIENTADA A OBJETOS</td><td style="width:15px;">8,17</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2024-1   </td><td style="width:25px;">IDIG2012  </td><td>COMUNICACIÓN</td><td style="width:15px;">9,64</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2024-1   </td><td style="width:25px;">CCPG1042  </td><td>DISEÑO DE SOFTWARE</td><td style="width:15px;">8,12</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2024-1   </td><td style="width:25px;">CCPG1034  </td><td>ESTRUCTURAS DE DATOS</td><td style="width:15px;">8,52</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2024-1   </td><td style="width:25px;">MATG1051  </td><td>MATEMÁTICAS DISCRETAS</td><td style="width:15px;">8,67</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2024-1   </td><td style="width:25px;">TICG1018  </td><td>SISTEMA DE BASES DE DATOS</td><td style="width:15px;">7,55</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2024-2   </td><td style="width:25px;">ESTG1034  </td><td>ESTADÍSTICA</td><td style="width:15px;">6,71</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2024-2   </td><td style="width:25px;">EYAG1037  </td><td>FUNDAMENTOS DE ELECTRICIDAD Y SISTEMAS DIGITALES</td><td style="width:15px;">8,43</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2024-2   </td><td style="width:25px;">CCPG1046  </td><td>INTERACCIÓN HUMANO COMPUTADOR</td><td style="width:15px;">9,07</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2024-2   </td><td style="width:25px;">CCPG1051  </td><td>PROGRAMACIÓN DE SISTEMAS</td><td style="width:15px;">8,25</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2024-2   </td><td style="width:25px;">TLMG1032  </td><td>REDES DE DATOS</td><td style="width:15px;">8,20</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2025-0   </td><td style="width:25px;">CCAG2024  </td><td>COMPLEMENTARIA HUMANISTICA</td><td style="width:15px;">0,00</td><td style="width:15px;">1</td><td style="width:25px;">Convalidada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2025-1   </td><td style="width:25px;">CCPG1036  </td><td>ANÁLISIS DE ALGORITMOS</td><td style="width:15px;">8,40</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2025-1   </td><td style="width:25px;">ADSG1026  </td><td>CIENCIAS DE LA SOSTENIBILIDAD</td><td style="width:15px;">9,10</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2025-1   </td><td style="width:25px;">SOFG1006  </td><td>DESARROLLO DE APLICACIONES WEB Y MÓVILES</td><td style="width:15px;">8,56</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2025-1   </td><td style="width:25px;">ADMG1005  </td><td>EMPRENDIMIENTO E INNOVACIÓN</td><td style="width:15px;">9,52</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2025-1   </td><td style="width:25px;">IDIG1009  </td><td>INGLÉS IV</td><td style="width:15px;">7,60</td><td style="width:15px;">1</td><td style="width:25px;">Convalidada</td>
+		</tr><tr class="gradeA">
+			<td style="width:20px;">2025-1   </td><td style="width:25px;">CCPG1049  </td><td>ORGANIZACIÓN DE COMPUTADORES</td><td style="width:15px;">8,58</td><td style="width:15px;">1</td><td style="width:25px;">Aprobada</td>
+		</tr>
+	</tbody>
+</table>
+    <br/><br/>
+    &nbsp;&nbsp;&nbsp;<a>Información Actualizada el 27/09/2025</a>
+
+                    </div>
+                </div>
+           
+            <div id="c-mapa">
+                
+                
+            </div>
+        </div>
+            </div>
+        <div class="footer" style="margin-top:100px;">
+            <div class="container footer-portal">
+                <div class="row">
+                    <div class="col-md-12 text-center footer-left" >
+                        <p>
+                            <br/>
+                            Escuela Superior Politécnica del Litoral - Campus Gustavo Galindo - Guayaquil - Ecuador<br />
+                            © El contenido de esta obra es de propiedad intelectual de la ESPOL. Todos los derechos reservados. Prohibida su reproducción total o parcial,<br />
+                            comunicación pública o distribución sin autorización previa del titular de los derechos
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    </form>
+    <!-- This contains the hidden content for inline calls -->
+    <div style="display: none;">
+        <div id='inline_content' class='callbacks' style='padding: 10px; background: #fff;
+            overflow: hidden; height: 700px; display: none;'>
+            
+            <div id="div_mostrar_casilleros" style="margin: 5px; position: absolute; top: 0px;
+                right: 0px;">
+                <br />
+                <p style="font-size: 10px; font-family: verdana; font-weight: bold;">
+                    Dirección a buscar:
+                    <input type="text" name="address" id="address" style="width: 400px; font-size: 10px;
+                        font-family: verdana; font-weight: bold;" value="" />
+                    <input type="hidden" name="zoom" value="8" />
+                    <input type="button" value="Buscar" onclick="codeAddress1()" />
+                    <br />
+                    &nbsp;<label style="color: gray; font-size: xx-small">Ej: Guayaquil, Ecuador</label>
+                </p>
+                <div id="map" style="width: 700px; height: 500px;">
+                </div>
+                <br />
+                <div align="center">
+                    <button id="aceptar" type="button" onclick="cambiar2()">
+                        Aceptar</button>
+                    <button id="ctl00_cancelar" type="button" onclick="cancelar()">
+                        Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script language="Javascript" type="text/javascript">
+        var warning = 1200;
+        var timeout = 1740;
+        var current = 0;
+        var popupWindow = 0;   // javascript Window Handle 
+
+        function popUpTimeOut(sURL) {
+            var rc = 0;
+            var altURL = "https://www.academico.espol.edu.ec/" + sURL;
+            popupWindow = window.open(unescape(altURL), 'timeout', 'toolbar=no,scrollbars=no,resizable=no,width=400,height=300');
+        }
+        function getSecs() {
+            current = current + 1;
+            if (current == warning) {
+                popUpTimeOut('warning.htm');   // 20 minute inactivity timer
+            }
+            if (current == (timeout - 60)) {
+                popUpTimeOut('warning1.htm');   // 29 minute inactivity timer
+            }
+            else if ((current == timeout) || (current == (timeout - 1))) {
+                if (popupWindow != null) {
+                    if (popupWindow != 0)
+                    { popupWindow.close(); }
+                }
+                window.location = "https://www.academico.espol.edu.ec/timeout_.aspx";
+            }
+            window.setTimeout('getSecs()', 1000);
+        }
+        getSecs();
+        $(document).ready(function () {
+            var menu = [];
+           
+          
+ });
+       
+
+
+    </script>
+</body>
+</html>
+<script id="f5_cspm">(function(){var f5_cspm={f5_p:'KGNAOFHABDKMLLLEJBPFKMBOFNEAECIPHBMKJHHEAPCNEMBKFGJEDNJADAJGANIJGOCBEEAMAAOICOMPAHLAEPMGAAJBEDAJLBLMPLNBPGGDCIFOPHIFFBFDIIKJGCEB',setCharAt:function(str,index,chr){if(index>str.length-1)return str;return str.substr(0,index)+chr+str.substr(index+1);},get_byte:function(str,i){var s=(i/16)|0;i=(i&15);s=s*32;return((str.charCodeAt(i+16+s)-65)<<4)|(str.charCodeAt(i+s)-65);},set_byte:function(str,i,b){var s=(i/16)|0;i=(i&15);s=s*32;str=f5_cspm.setCharAt(str,(i+16+s),String.fromCharCode((b>>4)+65));str=f5_cspm.setCharAt(str,(i+s),String.fromCharCode((b&15)+65));return str;},set_latency:function(str,latency){latency=latency&0xffff;str=f5_cspm.set_byte(str,40,(latency>>8));str=f5_cspm.set_byte(str,41,(latency&0xff));str=f5_cspm.set_byte(str,35,2);return str;},wait_perf_data:function(){try{var wp=window.performance.timing;if(wp.loadEventEnd>0){var res=wp.loadEventEnd-wp.navigationStart;if(res<60001){var cookie_val=f5_cspm.set_latency(f5_cspm.f5_p,res);window.document.cookie='f5avr0592175747aaaaaaaaaaaaaaaa_cspm_='+encodeURIComponent(cookie_val)+';path=/;'+'';}
+return;}}
+catch(err){return;}
+setTimeout(f5_cspm.wait_perf_data,100);return;},go:function(){var chunk=window.document.cookie.split(/\s*;\s*/);for(var i=0;i<chunk.length;++i){var pair=chunk[i].split(/\s*=\s*/);if(pair[0]=='f5_cspm'&&pair[1]=='1234')
+{var d=new Date();d.setTime(d.getTime()-1000);window.document.cookie='f5_cspm=;expires='+d.toUTCString()+';path=/;'+';';setTimeout(f5_cspm.wait_perf_data,100);}}}}
+f5_cspm.go();}());</script>
