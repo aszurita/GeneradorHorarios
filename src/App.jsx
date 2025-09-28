@@ -30,6 +30,9 @@ export default function App() {
   const [creds, setCreds] = useState({ usuario: '', password: '' });
   const [token, setToken] = useState(null);
   const [enviandoCreds, setEnviandoCreds] = useState(false);
+  const [highlightComplementaria, setHighlightComplementaria] = useState(new Set());
+  const [highlightMatched, setHighlightMatched] = useState(new Set());
+  const [resultadoExtraccion, setResultadoExtraccion] = useState(null);
   const [carreraSeleccionada, setCarreraSeleccionada] = useState(() => {
     const url = new URL(window.location.href);
     const fromUrl = parseInt(url.searchParams.get("c") ?? "", 10);
@@ -159,6 +162,18 @@ export default function App() {
           const res = await fetch('/api/extraccion/logs');
           const data = await res.json();
           setExtraccionLogs(data.logs || []);
+          // Detectar finalización
+          if ((data.logs || []).some(l => l.includes('EXTRACCION COMPLETADA'))) {
+            // Intentar obtener resultado
+            try {
+              const rj = await fetch('/api/extraccion/result');
+              if (rj.ok) {
+                const json = await rj.json();
+                procesarResultado(json);
+                clearInterval(logsIntervalRef.current);
+              }
+            } catch {}
+          }
         } catch {}
         // Intentar obtener captcha si aun no lo tenemos
         if (!captchaImg) {
@@ -189,6 +204,43 @@ export default function App() {
       if (logsIntervalRef.current) clearInterval(logsIntervalRef.current);
     };
   }, []);
+
+  const computeHighlights = (json, carreraIdx) => {
+    if (!json || carreraIdx === '' || carreraIdx == null) return;
+    try {
+      const comp = json['Materias Complementarias'] || {};
+      const mats = json['Materias'] || {};
+      const compCodes = new Set(Object.keys(comp).map(c => String(c).trim()));
+      const matchedSet = new Set(Object.keys(mats).map(c => String(c).trim()));
+      // Filtrar complementarias según criterio: tipo === 'complementh' o nombre incluye 'DEPORT'
+      const listaMalla = FiecMallas.Fiec[carreraIdx]?.materias || [];
+      const compFiltered = new Set();
+      listaMalla.forEach(m => {
+        const code = String(m.codigo).trim();
+        if (compCodes.has(code)) {
+          const nombre = (m.Materia || '').toUpperCase();
+            if (m.tipo === 'complementh' || nombre.includes('DEPORT')) {
+            compFiltered.add(code);
+          }
+        }
+      });
+      setHighlightComplementaria(compFiltered);
+      setHighlightMatched(matchedSet);
+    } catch (e) {
+      console.error('Error computando highlights:', e);
+    }
+  };
+
+  const procesarResultado = (json) => {
+    setResultadoExtraccion(json);
+    computeHighlights(json, carreraSeleccionada);
+  };
+
+  useEffect(() => {
+    // Recalcular cuando cambie carrera o el resultado ya existente
+    if (resultadoExtraccion) computeHighlights(resultadoExtraccion, carreraSeleccionada);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [carreraSeleccionada]);
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -285,6 +337,8 @@ export default function App() {
               materias={FiecMallas.Fiec[carreraSeleccionada].materias}
               onMateriaClick={handleCodigoMateria}
               eventos={eventos}
+              highlightComplementariaCodigoSet={highlightComplementaria}
+              highlightMatchedCodigoSet={highlightMatched}
             />
           </div>
         ) : (

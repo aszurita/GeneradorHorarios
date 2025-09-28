@@ -110,6 +110,20 @@ app.get('/api/extraccion/captcha', (req, res) => {
   res.json({ image: captchaBase64 });
 });
 
+app.get('/api/extraccion/result', (req, res) => {
+  const resultPath = path.join(__dirname, '..', 'materias_formato_requerido.json');
+  if (!fs.existsSync(resultPath)) {
+    return res.status(404).json({ message: 'Resultado no disponible' });
+  }
+  try {
+    const raw = fs.readFileSync(resultPath, 'utf-8');
+    const json = JSON.parse(raw);
+    res.json(json);
+  } catch (e) {
+    res.status(500).json({ message: 'Error leyendo resultado', error: String(e) });
+  }
+});
+
 app.post('/api/extraccion/input', (req, res) => {
   const { texto } = req.body;
   if (!pendingProcess) return res.status(400).json({ message: 'No hay proceso activo' });

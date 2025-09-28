@@ -9,6 +9,7 @@ from urllib.parse import urljoin
 from concurrent.futures import ThreadPoolExecutor
 import threading
 import sys
+import unicodedata
 
 # ===== Ajuste de encoding para ejecución desde backend Node en Windows =====
 # Forzamos stdout/stderr a UTF-8 para evitar UnicodeEncodeError con emojis o caracteres fuera de cp1252.
@@ -21,89 +22,101 @@ except Exception:
     pass
 
 
+def _normalizar(txt: str) -> str:
+    try:
+        return ''.join(c for c in unicodedata.normalize('NFD', txt.upper()) if unicodedata.category(c) != 'Mn')
+    except:
+        return txt.upper()
+
+COMPLEMENTARIAS_KEYS = {
+    _normalizar('FORMACIÓN COMPLEMENTARIA DEL ÁREA ARTES, DEPORTES E IDIOMAS'),
+    _normalizar('FORMACIÓN COMPLEMENTARIA DEL ÁREA HUMANIDADES')
+}
+
 def transformar_a_formato_requerido(materias_con_detalles):
+    """Transforma los datos extraidos al formato requerido, agrupando las materias
+    cuyo 'tipo_credito' sea alguno de los dos tipos de formacion complementaria en un
+    solo bloque llamado 'Materias Complementarias'.
+    Estructura final:
+    {
+      "Materias Complementarias": { codigo: { materia, Teorico, Practico } ... },
+      "Materias": { codigo: { materia, Teorico, Practico } ... }
+    }
     """
-    Transforma los datos extraídos al formato JSON requerido
-    """
-    resultado = {}
-    
+    agrupadas_complementarias = {}
+    agrupadas_normales = {}
+
     for materia in materias_con_detalles:
         codigo = materia["codigo"]
-        
-        if codigo not in resultado:
-            resultado[codigo] = {
+        tipo_norm = _normalizar(materia.get("tipo_credito", ""))
+        es_complementaria = tipo_norm in COMPLEMENTARIAS_KEYS
+        target = agrupadas_complementarias if es_complementaria else agrupadas_normales
+
+        if codigo not in target:
+            target[codigo] = {
                 "materia": materia["materia"],
+                "tipo_credito": materia.get("tipo_credito", ""),
                 "Teorico": [],
                 "Practico": []
             }
-        
+
         for paralelo_detalle in materia["paralelos_detallados"]:
-            # Procesar datos del paralelo teórico principal
-            if "error" not in paralelo_detalle:
-                # Extraer fechas de exámenes
-                fecha_parcial = extraer_fecha(paralelo_detalle["examenes"]["parcial"]["fecha_hora"])
-                fecha_final = extraer_fecha(paralelo_detalle["examenes"]["final"]["fecha_hora"])
-                fecha_mejoramiento = extraer_fecha(paralelo_detalle["examenes"]["mejoramiento"]["fecha_hora"])
-                
-                # Extraer horas de exámenes
-                hora_inicio_e, hora_fin_e = extraer_horas_examen(paralelo_detalle["examenes"]["parcial"]["fecha_hora"])
-                
-                # Procesar horarios del paralelo teórico
-                horarios_teorico = []
-                for horario in paralelo_detalle["horarios"]:
-                    horario_transformado = {
-                        "Dia": horario["dia"].upper(),
-                        "Aula": horario["aula"] + " -" + extraer_bloque(horario["bloque_campus"]),
-                        "HoraInicio": horario["hora_inicio"],
-                        "HoraFin": horario["hora_fin"],
+            if "error" in paralelo_detalle:
+                continue
+            # Fechas / horas de examenes
+            fecha_parcial = extraer_fecha(paralelo_detalle["examenes"]["parcial"]["fecha_hora"])
+            fecha_final = extraer_fecha(paralelo_detalle["examenes"]["final"]["fecha_hora"])
+            fecha_mejoramiento = extraer_fecha(paralelo_detalle["examenes"]["mejoramiento"]["fecha_hora"])
+            hora_inicio_e, hora_fin_e = extraer_horas_examen(paralelo_detalle["examenes"]["parcial"]["fecha_hora"])
+
+            # Horarios teoricos
+            horarios_teorico = []
+            for horario in paralelo_detalle["horarios"]:
+                horarios_teorico.append({
+                    "Dia": horario["dia"].upper(),
+                    "Aula": horario["aula"] + " -" + extraer_bloque(horario["bloque_campus"]),
+                    "HoraInicio": horario["hora_inicio"],
+                    "HoraFin": horario["hora_fin"],
+                    "FechaExa_Primer": fecha_parcial,
+                    "FechaExa_Segundo": fecha_final,
+                    "FechaExa_Mejoramiento": fecha_mejoramiento,
+                    "HoraInicioE": hora_inicio_e,
+                    "HoraFinE": hora_fin_e
+                })
+
+            paralelo_teorico = {
+                "Paralelo": int(paralelo_detalle["numero_paralelo"]) if paralelo_detalle["numero_paralelo"].isdigit() else paralelo_detalle["numero_paralelo"],
+                "Profesor": paralelo_detalle["profesor"],
+                "horarios": horarios_teorico
+            }
+            target[codigo]["Teorico"].append(paralelo_teorico)
+
+            # Practicos asociados
+            for i, paralelo_practico in enumerate(paralelo_detalle["paralelos_asociados"]):
+                horarios_practico = []
+                for horario_p in paralelo_practico.get("horarios", []):
+                    horarios_practico.append({
+                        "Dia": horario_p["dia"].upper(),
+                        "Aula": horario_p["aula"] + " -" + extraer_bloque(horario_p["bloque_campus"]),
+                        "HoraInicio": horario_p["hora_inicio"],
+                        "HoraFin": horario_p["hora_fin"],
                         "FechaExa_Primer": fecha_parcial,
                         "FechaExa_Segundo": fecha_final,
                         "FechaExa_Mejoramiento": fecha_mejoramiento,
                         "HoraInicioE": hora_inicio_e,
                         "HoraFinE": hora_fin_e
-                    }
-                    horarios_teorico.append(horario_transformado)
-                
-                paralelo_teorico = {
-                    "Paralelo": int(paralelo_detalle["numero_paralelo"]) if paralelo_detalle["numero_paralelo"].isdigit() else paralelo_detalle["numero_paralelo"],
-                    "Profesor": paralelo_detalle["profesor"],
-                    "horarios": horarios_teorico
-                }
-                
-                resultado[codigo]["Teorico"].append(paralelo_teorico)
-                
-                # Procesar paralelos prácticos asociados
-                for i, paralelo_practico in enumerate(paralelo_detalle["paralelos_asociados"]):
-                    horarios_practico = []
-                    for horario_p in paralelo_practico["horarios"]:
-                        horario_p_transformado = {
-                            "Dia": horario_p["dia"].upper(),
-                            "Aula": horario_p["aula"] + " -" + extraer_bloque(horario_p["bloque_campus"]),
-                            "HoraInicio": horario_p["hora_inicio"],
-                            "HoraFin": horario_p["hora_fin"],
-                            "FechaExa_Primer": fecha_parcial,
-                            "FechaExa_Segundo": fecha_final,
-                            "FechaExa_Mejoramiento": fecha_mejoramiento,
-                            "HoraInicioE": hora_inicio_e,
-                            "HoraFinE": hora_fin_e
-                        }
-                        horarios_practico.append(horario_p_transformado)
-                    
-                    if horarios_practico:  # Solo agregar si tiene horarios
-                        # Usar el número de paralelo específico si está disponible
-                        numero_paralelo_practico = paralelo_practico.get("numero_paralelo", str(101 + i))
-                        if numero_paralelo_practico.isdigit():
-                            numero_paralelo_practico = int(numero_paralelo_practico)
-                        
-                        paralelo_practico_obj = {
-                            "Paralelo": numero_paralelo_practico,
-                            "Profesor": paralelo_practico.get("profesor", paralelo_detalle["profesor"]),
-                            "horarios": horarios_practico
-                        }
-                        
-                        resultado[codigo]["Practico"].append(paralelo_practico_obj)
-    
-    return resultado
+                    })
+                if horarios_practico:
+                    numero_paralelo_practico = paralelo_practico.get("numero_paralelo", str(101 + i))
+                    if isinstance(numero_paralelo_practico, str) and numero_paralelo_practico.isdigit():
+                        numero_paralelo_practico = int(numero_paralelo_practico)
+                    target[codigo]["Practico"].append({
+                        "Paralelo": numero_paralelo_practico,
+                        "Profesor": paralelo_practico.get("profesor", paralelo_detalle["profesor"]),
+                        "horarios": horarios_practico
+                    })
+
+    return {"Materias Complementarias": agrupadas_complementarias, "Materias": agrupadas_normales}
 
 def extraer_fecha(fecha_hora_str):
     """
