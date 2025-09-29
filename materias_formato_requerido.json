@@ -42,6 +42,286 @@
                 }
             ]
         },
+        "DEPG2017": {
+            "materia": "AJEDREZ",
+            "tipo_credito": "FORMACIÓN COMPLEMENTARIA DEL ÁREA ARTES, DEPORTES E IDIOMAS",
+            "Teorico": [
+                {
+                    "Paralelo": 1,
+                    "Profesor": "BASTIDAS RODRIGUEZ JAIME SANTIAGO",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "A004 -11D",
+                            "HoraInicio": "09:15:00",
+                            "HoraFin": "10:15:00",
+                            "FechaExa_Primer": "17/11/2025",
+                            "FechaExa_Segundo": "19/01/2026",
+                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 2,
+                    "Profesor": "BASTIDAS RODRIGUEZ JAIME SANTIAGO",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "A003 -11D",
+                            "HoraInicio": "11:15:00",
+                            "HoraFin": "12:15:00",
+                            "FechaExa_Primer": "17/11/2025",
+                            "FechaExa_Segundo": "19/01/2026",
+                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 3,
+                    "Profesor": "BASTIDAS RODRIGUEZ JAIME SANTIAGO",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "VRA-003 -VRA",
+                            "HoraInicio": "13:15:00",
+                            "HoraFin": "14:15:00",
+                            "FechaExa_Primer": "17/11/2025",
+                            "FechaExa_Segundo": "19/01/2026",
+                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 4,
+                    "Profesor": "BASTIDAS RODRIGUEZ JAIME SANTIAGO",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "VRA-004 -VRA",
+                            "HoraInicio": "15:45:00",
+                            "HoraFin": "16:45:00",
+                            "FechaExa_Primer": "17/11/2025",
+                            "FechaExa_Segundo": "19/01/2026",
+                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 5,
+                    "Profesor": "BASTIDAS RODRIGUEZ JAIME SANTIAGO",
+                    "horarios": [
+                        {
+                            "Dia": "MARTES",
+                            "Aula": "VRA-005 -VRA",
+                            "HoraInicio": "09:15:00",
+                            "HoraFin": "10:15:00",
+                            "FechaExa_Primer": "17/11/2025",
+                            "FechaExa_Segundo": "19/01/2026",
+                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 6,
+                    "Profesor": "BASTIDAS RODRIGUEZ JAIME SANTIAGO",
+                    "horarios": [
+                        {
+                            "Dia": "MARTES",
+                            "Aula": "VRA-006 -VRA",
+                            "HoraInicio": "11:15:00",
+                            "HoraFin": "12:15:00",
+                            "FechaExa_Primer": "17/11/2025",
+                            "FechaExa_Segundo": "19/01/2026",
+                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 7,
+                    "Profesor": "BASTIDAS RODRIGUEZ JAIME SANTIAGO",
+                    "horarios": [
+                        {
+                            "Dia": "MARTES",
+                            "Aula": "VRA-007 -VRA",
+                            "HoraInicio": "13:45:00",
+                            "HoraFin": "14:45:00",
+                            "FechaExa_Primer": "17/11/2025",
+                            "FechaExa_Segundo": "19/01/2026",
+                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 8,
+                    "Profesor": "BASTIDAS RODRIGUEZ JAIME SANTIAGO",
+                    "horarios": [
+                        {
+                            "Dia": "MARTES",
+                            "Aula": "A006 -11D",
+                            "HoraInicio": "15:15:00",
+                            "HoraFin": "16:15:00",
+                            "FechaExa_Primer": "17/11/2025",
+                            "FechaExa_Segundo": "19/01/2026",
+                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                }
+            ],
+            "Practico": [
+                {
+                    "Paralelo": 101,
+                    "Profesor": "BASTIDAS RODRIGUEZ JAIME SANTIAGO",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A003 -11D",
+                            "HoraInicio": "09:15:00",
+                            "HoraFin": "10:15:00",
+                            "FechaExa_Primer": "17/11/2025",
+                            "FechaExa_Segundo": "19/01/2026",
+                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 102,
+                    "Profesor": "BASTIDAS RODRIGUEZ JAIME SANTIAGO",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "VRA-002 -VRA",
+                            "HoraInicio": "11:15:00",
+                            "HoraFin": "12:15:00",
+                            "FechaExa_Primer": "17/11/2025",
+                            "FechaExa_Segundo": "19/01/2026",
+                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 103,
+                    "Profesor": "BASTIDAS RODRIGUEZ JAIME SANTIAGO",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A003 -11D",
+                            "HoraInicio": "13:15:00",
+                            "HoraFin": "14:15:00",
+                            "FechaExa_Primer": "17/11/2025",
+                            "FechaExa_Segundo": "19/01/2026",
+                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 104,
+                    "Profesor": "BASTIDAS RODRIGUEZ JAIME SANTIAGO",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A005 -11D",
+                            "HoraInicio": "15:15:00",
+                            "HoraFin": "16:15:00",
+                            "FechaExa_Primer": "17/11/2025",
+                            "FechaExa_Segundo": "19/01/2026",
+                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 105,
+                    "Profesor": "BASTIDAS RODRIGUEZ JAIME SANTIAGO",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "VRA-005 -VRA",
+                            "HoraInicio": "09:15:00",
+                            "HoraFin": "10:15:00",
+                            "FechaExa_Primer": "17/11/2025",
+                            "FechaExa_Segundo": "19/01/2026",
+                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 106,
+                    "Profesor": "BASTIDAS RODRIGUEZ JAIME SANTIAGO",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "VRA-006 -VRA",
+                            "HoraInicio": "11:15:00",
+                            "HoraFin": "12:15:00",
+                            "FechaExa_Primer": "17/11/2025",
+                            "FechaExa_Segundo": "19/01/2026",
+                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 107,
+                    "Profesor": "BASTIDAS RODRIGUEZ JAIME SANTIAGO",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "VRA-007 -VRA",
+                            "HoraInicio": "13:15:00",
+                            "HoraFin": "14:15:00",
+                            "FechaExa_Primer": "17/11/2025",
+                            "FechaExa_Segundo": "19/01/2026",
+                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 108,
+                    "Profesor": "BASTIDAS RODRIGUEZ JAIME SANTIAGO",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "VRA-008 -VRA",
+                            "HoraInicio": "15:15:00",
+                            "HoraFin": "16:15:00",
+                            "FechaExa_Primer": "17/11/2025",
+                            "FechaExa_Segundo": "19/01/2026",
+                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                }
+            ]
+        },
         "ARTG2035": {
             "materia": "APRECIACIÓN CINEMATOGRÁFICA",
             "tipo_credito": "FORMACIÓN COMPLEMENTARIA DEL ÁREA ARTES, DEPORTES E IDIOMAS",
@@ -1792,20 +2072,8 @@
                 },
                 {
                     "Paralelo": 9,
-                    "Profesor": "GARCIA VELEZ WALTER RICARDO",
-                    "horarios": [
-                        {
-                            "Dia": "VIERNES",
-                            "Aula": "VRA-030 -VRA",
-                            "HoraInicio": "08:15:00",
-                            "HoraFin": "09:15:00",
-                            "FechaExa_Primer": "19/11/2025",
-                            "FechaExa_Segundo": "21/01/2026",
-                            "FechaExa_Mejoramiento": "04/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
+                    "Profesor": "No encontrado",
+                    "horarios": []
                 }
             ],
             "Practico": [
@@ -1944,23 +2212,6 @@
                             "HoraFinE": "16:00:00"
                         }
                     ]
-                },
-                {
-                    "Paralelo": 109,
-                    "Profesor": "GARCIA VELEZ WALTER RICARDO",
-                    "horarios": [
-                        {
-                            "Dia": "VIERNES",
-                            "Aula": "CANCHA DE FÚTBOL INGENIERÍA -DEPORTES",
-                            "HoraInicio": "09:45:00",
-                            "HoraFin": "10:45:00",
-                            "FechaExa_Primer": "19/11/2025",
-                            "FechaExa_Segundo": "21/01/2026",
-                            "FechaExa_Mejoramiento": "04/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
                 }
             ]
         },
@@ -1970,41 +2221,11 @@
             "Teorico": [
                 {
                     "Paralelo": 1,
-                    "Profesor": "COTAPO CAVAGNARO DIANA JAEL",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "A002 -9F",
-                            "HoraInicio": "09:00:00",
-                            "HoraFin": "10:00:00",
-                            "FechaExa_Primer": "18/11/2025",
-                            "FechaExa_Segundo": "20/01/2026",
-                            "FechaExa_Mejoramiento": "03/02/2026",
-                            "HoraInicioE": "11:30:00",
-                            "HoraFinE": "13:30:00"
-                        }
-                    ]
+                    "Profesor": "No encontrado",
+                    "horarios": []
                 }
             ],
-            "Practico": [
-                {
-                    "Paralelo": 101,
-                    "Profesor": "COTAPO CAVAGNARO DIANA JAEL",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "A002 -9F",
-                            "HoraInicio": "10:00:00",
-                            "HoraFin": "11:00:00",
-                            "FechaExa_Primer": "18/11/2025",
-                            "FechaExa_Segundo": "20/01/2026",
-                            "FechaExa_Mejoramiento": "03/02/2026",
-                            "HoraInicioE": "11:30:00",
-                            "HoraFinE": "13:30:00"
-                        }
-                    ]
-                }
-            ]
+            "Practico": []
         },
         "HISG1003": {
             "materia": "HISTORIA Y FILOSOFÍA DE LAS CIENCIAS",
@@ -2012,75 +2233,16 @@
             "Teorico": [
                 {
                     "Paralelo": 1,
-                    "Profesor": "KONDRATOVA ALLA",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "A001 -9F",
-                            "HoraInicio": "11:00:00",
-                            "HoraFin": "12:00:00",
-                            "FechaExa_Primer": "20/11/2025",
-                            "FechaExa_Segundo": "22/01/2026",
-                            "FechaExa_Mejoramiento": "05/02/2026",
-                            "HoraInicioE": "11:30:00",
-                            "HoraFinE": "13:30:00"
-                        }
-                    ]
+                    "Profesor": "No encontrado",
+                    "horarios": []
                 },
                 {
                     "Paralelo": 2,
-                    "Profesor": "KONDRATOVA ALLA",
-                    "horarios": [
-                        {
-                            "Dia": "JUEVES",
-                            "Aula": "A001 -9F",
-                            "HoraInicio": "09:00:00",
-                            "HoraFin": "10:00:00",
-                            "FechaExa_Primer": "20/11/2025",
-                            "FechaExa_Segundo": "22/01/2026",
-                            "FechaExa_Mejoramiento": "05/02/2026",
-                            "HoraInicioE": "11:30:00",
-                            "HoraFinE": "13:30:00"
-                        }
-                    ]
+                    "Profesor": "No encontrado",
+                    "horarios": []
                 }
             ],
-            "Practico": [
-                {
-                    "Paralelo": 101,
-                    "Profesor": "KONDRATOVA  ALLA",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "A001 -9F",
-                            "HoraInicio": "12:00:00",
-                            "HoraFin": "13:00:00",
-                            "FechaExa_Primer": "20/11/2025",
-                            "FechaExa_Segundo": "22/01/2026",
-                            "FechaExa_Mejoramiento": "05/02/2026",
-                            "HoraInicioE": "11:30:00",
-                            "HoraFinE": "13:30:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 102,
-                    "Profesor": "KONDRATOVA  ALLA",
-                    "horarios": [
-                        {
-                            "Dia": "JUEVES",
-                            "Aula": "A001 -9F",
-                            "HoraInicio": "10:00:00",
-                            "HoraFin": "11:00:00",
-                            "FechaExa_Primer": "20/11/2025",
-                            "FechaExa_Segundo": "22/01/2026",
-                            "FechaExa_Mejoramiento": "05/02/2026",
-                            "HoraInicioE": "11:30:00",
-                            "HoraFinE": "13:30:00"
-                        }
-                    ]
-                }
-            ]
+            "Practico": []
         },
         "ARTG2049": {
             "materia": "MODELADO ARTÍSTICO",
@@ -2088,75 +2250,16 @@
             "Teorico": [
                 {
                     "Paralelo": 1,
-                    "Profesor": "CANTOS LUCES VICTOR MANUEL",
-                    "horarios": [
-                        {
-                            "Dia": "VIERNES",
-                            "Aula": "T104 TALLER DE CERAMICA -3M",
-                            "HoraInicio": "09:00:00",
-                            "HoraFin": "10:00:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "11:30:00",
-                            "HoraFinE": "13:30:00"
-                        }
-                    ]
+                    "Profesor": "No encontrado",
+                    "horarios": []
                 },
                 {
                     "Paralelo": 2,
-                    "Profesor": "CANTOS LUCES VICTOR MANUEL",
-                    "horarios": [
-                        {
-                            "Dia": "VIERNES",
-                            "Aula": "T104 TALLER DE CERAMICA -3M",
-                            "HoraInicio": "13:00:00",
-                            "HoraFin": "14:00:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "11:30:00",
-                            "HoraFinE": "13:30:00"
-                        }
-                    ]
+                    "Profesor": "No encontrado",
+                    "horarios": []
                 }
             ],
-            "Practico": [
-                {
-                    "Paralelo": 101,
-                    "Profesor": "CANTOS LUCES VICTOR MANUEL",
-                    "horarios": [
-                        {
-                            "Dia": "VIERNES",
-                            "Aula": "T104 TALLER DE CERAMICA -3M",
-                            "HoraInicio": "10:00:00",
-                            "HoraFin": "11:00:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "11:30:00",
-                            "HoraFinE": "13:30:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 102,
-                    "Profesor": "CANTOS LUCES VICTOR MANUEL",
-                    "horarios": [
-                        {
-                            "Dia": "VIERNES",
-                            "Aula": "T104 TALLER DE CERAMICA -3M",
-                            "HoraInicio": "14:00:00",
-                            "HoraFin": "15:00:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "11:30:00",
-                            "HoraFinE": "13:30:00"
-                        }
-                    ]
-                }
-            ]
+            "Practico": []
         },
         "ARTG2040": {
             "materia": "MÚSICA FOLCLÓRICA LATINOAMERICANA",
@@ -2164,41 +2267,11 @@
             "Teorico": [
                 {
                     "Paralelo": 1,
-                    "Profesor": "PALMA ESCALA PATRICIO ARCANGEL",
-                    "horarios": [
-                        {
-                            "Dia": "JUEVES",
-                            "Aula": "A102 -14B",
-                            "HoraInicio": "11:00:00",
-                            "HoraFin": "12:00:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
+                    "Profesor": "No encontrado",
+                    "horarios": []
                 }
             ],
-            "Practico": [
-                {
-                    "Paralelo": 101,
-                    "Profesor": "PALMA ESCALA PATRICIO ARCANGEL",
-                    "horarios": [
-                        {
-                            "Dia": "JUEVES",
-                            "Aula": "A102 -14B",
-                            "HoraInicio": "12:00:00",
-                            "HoraFin": "13:00:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                }
-            ]
+            "Practico": []
         },
         "HISG2003": {
             "materia": "SABERES ANCESTRALES AMERICANOS",
@@ -2206,41 +2279,11 @@
             "Teorico": [
                 {
                     "Paralelo": 1,
-                    "Profesor": "MOLESTINA GARCIA JOSE LUIS",
-                    "horarios": [
-                        {
-                            "Dia": "MIÉRCOLES",
-                            "Aula": "A107 -9F",
-                            "HoraInicio": "13:00:00",
-                            "HoraFin": "14:00:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
+                    "Profesor": "No encontrado",
+                    "horarios": []
                 }
             ],
-            "Practico": [
-                {
-                    "Paralelo": 101,
-                    "Profesor": "MOLESTINA GARCIA JOSE LUIS",
-                    "horarios": [
-                        {
-                            "Dia": "MIÉRCOLES",
-                            "Aula": "A107 -9F",
-                            "HoraInicio": "14:00:00",
-                            "HoraFin": "15:00:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                }
-            ]
+            "Practico": []
         },
         "ARTG2047": {
             "materia": "SERIGRAFÍA",
@@ -2248,41 +2291,11 @@
             "Teorico": [
                 {
                     "Paralelo": 1,
-                    "Profesor": "GUADALUPE REYES FRANKLIN SEGUNDO",
-                    "horarios": [
-                        {
-                            "Dia": "LUNES",
-                            "Aula": "T202 -14B",
-                            "HoraInicio": "13:00:00",
-                            "HoraFin": "14:00:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "11:30:00",
-                            "HoraFinE": "13:30:00"
-                        }
-                    ]
+                    "Profesor": "No encontrado",
+                    "horarios": []
                 }
             ],
-            "Practico": [
-                {
-                    "Paralelo": 101,
-                    "Profesor": "GUADALUPE REYES FRANKLIN SEGUNDO",
-                    "horarios": [
-                        {
-                            "Dia": "LUNES",
-                            "Aula": "T202 -14B",
-                            "HoraInicio": "14:00:00",
-                            "HoraFin": "15:00:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "11:30:00",
-                            "HoraFinE": "13:30:00"
-                        }
-                    ]
-                }
-            ]
+            "Practico": []
         },
         "ARTG2043": {
             "materia": "TEORÍA DEL ARTE",
@@ -2290,41 +2303,11 @@
             "Teorico": [
                 {
                     "Paralelo": 1,
-                    "Profesor": "MEJIA LUNA JACQUELINE NARCISA",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "A102 -14B",
-                            "HoraInicio": "11:00:00",
-                            "HoraFin": "12:00:00",
-                            "FechaExa_Primer": "19/11/2025",
-                            "FechaExa_Segundo": "21/01/2026",
-                            "FechaExa_Mejoramiento": "04/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
+                    "Profesor": "No encontrado",
+                    "horarios": []
                 }
             ],
-            "Practico": [
-                {
-                    "Paralelo": 101,
-                    "Profesor": "MEJIA LUNA JACQUELINE NARCISA",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "A102 -14B",
-                            "HoraInicio": "12:00:00",
-                            "HoraFin": "13:00:00",
-                            "FechaExa_Primer": "19/11/2025",
-                            "FechaExa_Segundo": "21/01/2026",
-                            "FechaExa_Mejoramiento": "04/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                }
-            ]
+            "Practico": []
         },
         "DEPG2024": {
             "materia": "VOLEIBOL",
@@ -2332,16 +2315,50 @@
             "Teorico": [
                 {
                     "Paralelo": 1,
-                    "Profesor": "FERAUD CAÑIZARES RONALD ALBERTO",
+                    "Profesor": "No encontrado",
+                    "horarios": []
+                },
+                {
+                    "Paralelo": 2,
+                    "Profesor": "No encontrado",
+                    "horarios": []
+                },
+                {
+                    "Paralelo": 3,
+                    "Profesor": "No encontrado",
+                    "horarios": []
+                },
+                {
+                    "Paralelo": 4,
+                    "Profesor": "No encontrado",
+                    "horarios": []
+                },
+                {
+                    "Paralelo": 5,
+                    "Profesor": "No encontrado",
+                    "horarios": []
+                }
+            ],
+            "Practico": []
+        }
+    },
+    "Materias": {
+        "CCPG1036": {
+            "materia": "ANÁLISIS DE ALGORITMOS",
+            "tipo_credito": "FORMACIÓN PROFESIONAL",
+            "Teorico": [
+                {
+                    "Paralelo": 1,
+                    "Profesor": "TAPIA ROSERO ANA TERESA",
                     "horarios": [
                         {
-                            "Dia": "LUNES",
-                            "Aula": "COLISEO NUEVO -DEPORTES",
-                            "HoraInicio": "08:15:00",
-                            "HoraFin": "09:15:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
+                            "Dia": "MARTES",
+                            "Aula": "A105 -11D",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "19/11/2025",
+                            "FechaExa_Segundo": "21/01/2026",
+                            "FechaExa_Mejoramiento": "04/02/2026",
                             "HoraInicioE": "14:00:00",
                             "HoraFinE": "16:00:00"
                         }
@@ -2349,16 +2366,16 @@
                 },
                 {
                     "Paralelo": 2,
-                    "Profesor": "FERAUD CAÑIZARES RONALD ALBERTO",
+                    "Profesor": "TAPIA ROSERO ANA TERESA",
                     "horarios": [
                         {
-                            "Dia": "LUNES",
-                            "Aula": "COLISEO NUEVO -DEPORTES",
-                            "HoraInicio": "09:15:00",
-                            "HoraFin": "10:15:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
+                            "Dia": "MARTES",
+                            "Aula": "A101 -11A",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "19/11/2025",
+                            "FechaExa_Segundo": "21/01/2026",
+                            "FechaExa_Mejoramiento": "04/02/2026",
                             "HoraInicioE": "14:00:00",
                             "HoraFinE": "16:00:00"
                         }
@@ -2366,50 +2383,16 @@
                 },
                 {
                     "Paralelo": 3,
-                    "Profesor": "FERAUD CAÑIZARES RONALD ALBERTO",
+                    "Profesor": "REALPE ROBALINO MIGUEL ANDRES",
                     "horarios": [
                         {
                             "Dia": "MARTES",
-                            "Aula": "COLISEO NUEVO -DEPORTES",
-                            "HoraInicio": "10:15:00",
-                            "HoraFin": "11:15:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 4,
-                    "Profesor": "FERAUD CAÑIZARES RONALD ALBERTO",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "COLISEO NUEVO -DEPORTES",
-                            "HoraInicio": "11:15:00",
-                            "HoraFin": "12:15:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 5,
-                    "Profesor": "FERAUD CAÑIZARES RONALD ALBERTO",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "COLISEO NUEVO -DEPORTES",
-                            "HoraInicio": "12:15:00",
-                            "HoraFin": "13:15:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
+                            "Aula": "A104 -11D",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "19/11/2025",
+                            "FechaExa_Segundo": "21/01/2026",
+                            "FechaExa_Mejoramiento": "04/02/2026",
                             "HoraInicioE": "14:00:00",
                             "HoraFinE": "16:00:00"
                         }
@@ -2419,16 +2402,16 @@
             "Practico": [
                 {
                     "Paralelo": 101,
-                    "Profesor": "FERAUD CAÑIZARES RONALD ALBERTO",
+                    "Profesor": "TAPIA ROSERO ANA TERESA",
                     "horarios": [
                         {
                             "Dia": "JUEVES",
-                            "Aula": "COLISEO NUEVO -DEPORTES",
-                            "HoraInicio": "08:15:00",
-                            "HoraFin": "09:15:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
+                            "Aula": "A105 -11D",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "10:00:00",
+                            "FechaExa_Primer": "19/11/2025",
+                            "FechaExa_Segundo": "21/01/2026",
+                            "FechaExa_Mejoramiento": "04/02/2026",
                             "HoraInicioE": "14:00:00",
                             "HoraFinE": "16:00:00"
                         }
@@ -2436,16 +2419,16 @@
                 },
                 {
                     "Paralelo": 102,
-                    "Profesor": "FERAUD CAÑIZARES RONALD ALBERTO",
+                    "Profesor": "TAPIA ROSERO ANA TERESA",
                     "horarios": [
                         {
                             "Dia": "JUEVES",
-                            "Aula": "COLISEO NUEVO -DEPORTES",
-                            "HoraInicio": "09:15:00",
-                            "HoraFin": "10:15:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
+                            "Aula": "A101 -11A",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "14:00:00",
+                            "FechaExa_Primer": "19/11/2025",
+                            "FechaExa_Segundo": "21/01/2026",
+                            "FechaExa_Mejoramiento": "04/02/2026",
                             "HoraInicioE": "14:00:00",
                             "HoraFinE": "16:00:00"
                         }
@@ -2453,312 +2436,654 @@
                 },
                 {
                     "Paralelo": 103,
-                    "Profesor": "FERAUD CAÑIZARES RONALD ALBERTO",
-                    "horarios": [
-                        {
-                            "Dia": "VIERNES",
-                            "Aula": "COLISEO NUEVO -DEPORTES",
-                            "HoraInicio": "10:15:00",
-                            "HoraFin": "11:15:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 104,
-                    "Profesor": "FERAUD CAÑIZARES RONALD ALBERTO",
-                    "horarios": [
-                        {
-                            "Dia": "VIERNES",
-                            "Aula": "COLISEO NUEVO -DEPORTES",
-                            "HoraInicio": "11:15:00",
-                            "HoraFin": "12:15:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 105,
-                    "Profesor": "FERAUD CAÑIZARES RONALD ALBERTO",
-                    "horarios": [
-                        {
-                            "Dia": "VIERNES",
-                            "Aula": "COLISEO NUEVO -DEPORTES",
-                            "HoraInicio": "12:15:00",
-                            "HoraFin": "13:15:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                }
-            ]
-        }
-    },
-    "Materias": {
-        "CCPG1041": {
-            "materia": "DIRECCIÓN DE PROYECTOS INFORMÁTICOS",
-            "tipo_credito": "FORMACIÓN PROFESIONAL",
-            "Teorico": [
-                {
-                    "Paralelo": 1,
-                    "Profesor": "FREIRE COBO LENIN EDUARDO",
-                    "horarios": [
-                        {
-                            "Dia": "LUNES",
-                            "Aula": "FIEC-034 -FIEC",
-                            "HoraInicio": "19:00:00",
-                            "HoraFin": "20:30:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "18:00:00",
-                            "HoraFinE": "20:00:00"
-                        },
-                        {
-                            "Dia": "MIÉRCOLES",
-                            "Aula": "FIEC-034 -FIEC",
-                            "HoraInicio": "19:00:00",
-                            "HoraFin": "19:30:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "18:00:00",
-                            "HoraFinE": "20:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 2,
-                    "Profesor": "FREIRE COBO LENIN EDUARDO",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "FIEC-035 -FIEC",
-                            "HoraInicio": "19:00:00",
-                            "HoraFin": "20:30:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "18:00:00",
-                            "HoraFinE": "20:00:00"
-                        },
-                        {
-                            "Dia": "JUEVES",
-                            "Aula": "FIEC-035 -FIEC",
-                            "HoraInicio": "19:00:00",
-                            "HoraFin": "19:30:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "18:00:00",
-                            "HoraFinE": "20:00:00"
-                        }
-                    ]
-                }
-            ],
-            "Practico": [
-                {
-                    "Paralelo": 101,
-                    "Profesor": "FREIRE COBO LENIN EDUARDO",
-                    "horarios": [
-                        {
-                            "Dia": "MIÉRCOLES",
-                            "Aula": "FIEC-001 -FIEC",
-                            "HoraInicio": "19:30:00",
-                            "HoraFin": "20:30:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "18:00:00",
-                            "HoraFinE": "20:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 102,
-                    "Profesor": "FREIRE COBO LENIN EDUARDO",
+                    "Profesor": "REALPE ROBALINO MIGUEL ANDRES",
                     "horarios": [
                         {
                             "Dia": "JUEVES",
-                            "Aula": "FIEC-035 -FIEC",
-                            "HoraInicio": "19:30:00",
-                            "HoraFin": "20:30:00",
-                            "FechaExa_Primer": "21/11/2025",
-                            "FechaExa_Segundo": "23/01/2026",
-                            "FechaExa_Mejoramiento": "06/02/2026",
-                            "HoraInicioE": "18:00:00",
-                            "HoraFinE": "20:00:00"
+                            "Aula": "A104 -11D",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "14:00:00",
+                            "FechaExa_Primer": "19/11/2025",
+                            "FechaExa_Segundo": "21/01/2026",
+                            "FechaExa_Mejoramiento": "04/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
                         }
                     ]
                 }
             ]
         },
-        "SOFG1007": {
-            "materia": "INGENIERÍA DE SOFTWARE I",
-            "tipo_credito": "FORMACIÓN PROFESIONAL",
-            "Teorico": [
-                {
-                    "Paralelo": 1,
-                    "Profesor": "MERA GOMEZ CARLOS JOSEPH",
-                    "horarios": [
-                        {
-                            "Dia": "LUNES",
-                            "Aula": "L204 -11A",
-                            "HoraInicio": "13:00:00",
-                            "HoraFin": "15:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "09:00:00",
-                            "HoraFinE": "11:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 2,
-                    "Profesor": "JURADO VITE VANESSA ALEXANDRA",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "L204 -11A",
-                            "HoraInicio": "11:00:00",
-                            "HoraFin": "13:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "09:00:00",
-                            "HoraFinE": "11:00:00"
-                        }
-                    ]
-                }
-            ],
-            "Practico": [
-                {
-                    "Paralelo": 101,
-                    "Profesor": "MERA GOMEZ CARLOS JOSEPH",
-                    "horarios": [
-                        {
-                            "Dia": "MIÉRCOLES",
-                            "Aula": "L204 -11A",
-                            "HoraInicio": "13:00:00",
-                            "HoraFin": "15:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "09:00:00",
-                            "HoraFinE": "11:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 102,
-                    "Profesor": "JURADO VITE VANESSA ALEXANDRA",
-                    "horarios": [
-                        {
-                            "Dia": "JUEVES",
-                            "Aula": "L204 -11A",
-                            "HoraInicio": "11:00:00",
-                            "HoraFin": "13:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "09:00:00",
-                            "HoraFinE": "11:00:00"
-                        }
-                    ]
-                }
-            ]
-        },
-        "IDIG1010": {
-            "materia": "INGLÉS V",
+        "IDIG2012": {
+            "materia": "COMUNICACIÓN",
             "tipo_credito": "EDUCACIÓN GENERAL",
             "Teorico": [
                 {
-                    "Paralelo": 4,
-                    "Profesor": "ESTRELLA IBARRA FELIX DAVID",
+                    "Paralelo": 7,
+                    "Profesor": "MONSERRATE CEDEÑO LIZ KERLY",
+                    "horarios": [
+                        {
+                            "Dia": "MARTES",
+                            "Aula": "A105 -11D",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "13:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 22,
+                    "Profesor": "MONSERRATE CEDEÑO LIZ KERLY",
+                    "horarios": [
+                        {
+                            "Dia": "MARTES",
+                            "Aula": "A103 -9M",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 23,
+                    "Profesor": "MONSERRATE CEDEÑO LIZ KERLY",
                     "horarios": [
                         {
                             "Dia": "LUNES",
-                            "Aula": "A101 -8E",
-                            "HoraInicio": "09:00:00",
-                            "HoraFin": "11:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 5,
-                    "Profesor": "ESTRELLA IBARRA FELIX DAVID",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "A101 -8E",
-                            "HoraInicio": "09:00:00",
-                            "HoraFin": "11:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 6,
-                    "Profesor": "ESTRELLA IBARRA FELIX DAVID",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "A101 -8E",
+                            "Aula": "A108 -11D",
                             "HoraInicio": "11:00:00",
                             "HoraFin": "13:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 16,
+                    "Profesor": "CARDENAS GUIJARRO ADRIAN ANDRES",
+                    "horarios": [
+                        {
+                            "Dia": "MARTES",
+                            "Aula": "VRA-013 -VRA",
+                            "HoraInicio": "18:00:00",
+                            "HoraFin": "20:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
                         }
                     ]
                 },
                 {
                     "Paralelo": 13,
-                    "Profesor": "ESTRELLA IBARRA FELIX DAVID",
+                    "Profesor": "GARCIA PINARGOTE JANDRY XAVIER",
+                    "horarios": [
+                        {
+                            "Dia": "MARTES",
+                            "Aula": "A110 -11D",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "13:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 14,
+                    "Profesor": "GARCIA PINARGOTE JANDRY XAVIER",
                     "horarios": [
                         {
                             "Dia": "LUNES",
-                            "Aula": "A101 -8E",
+                            "Aula": "A110 -11D",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 15,
+                    "Profesor": "GARCIA PINARGOTE JANDRY XAVIER",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "A109 -11D",
                             "HoraInicio": "11:00:00",
                             "HoraFin": "13:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 2,
+                    "Profesor": "RODRIGUEZ ARTEAGA DIANA LLAMEL",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "A108 -11D",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 21,
+                    "Profesor": "RODRIGUEZ ARTEAGA DIANA LLAMEL",
+                    "horarios": [
+                        {
+                            "Dia": "MARTES",
+                            "Aula": "A108 -9M",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 6,
+                    "Profesor": "CAMARGO VELASTEGUI DEBORA ALINE",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "VRA-006 -VRA",
+                            "HoraInicio": "18:00:00",
+                            "HoraFin": "20:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 5,
+                    "Profesor": "PEREZ ROSALES NATHALY FRANSHESCA",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "VRA-001 -VRA",
+                            "HoraInicio": "18:00:00",
+                            "HoraFin": "20:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
                         }
                     ]
                 },
                 {
                     "Paralelo": 11,
-                    "Profesor": "MALDONADO GUZMAN JANELLA",
+                    "Profesor": "VEGA QUEZADA DIANA ELIZABETH",
                     "horarios": [
                         {
                             "Dia": "MARTES",
-                            "Aula": "A103 -8F",
+                            "Aula": "A101 -12C",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 12,
+                    "Profesor": "VEGA QUEZADA DIANA ELIZABETH",
+                    "horarios": [
+                        {
+                            "Dia": "MARTES",
+                            "Aula": "A101 -13G",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 20,
+                    "Profesor": "VEGA QUEZADA DIANA ELIZABETH",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "A004 -11D",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "13:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 1,
+                    "Profesor": "MEDINA MUÑOZ BLANCA JULIA",
+                    "horarios": [
+                        {
+                            "Dia": "MARTES",
+                            "Aula": "VRA-008 -VRA",
+                            "HoraInicio": "18:00:00",
+                            "HoraFin": "20:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 3,
+                    "Profesor": "CARRANZA GARCIA ANDREA VICTORIA",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "A001 -12C",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 4,
+                    "Profesor": "CARRANZA GARCIA ANDREA VICTORIA",
+                    "horarios": [
+                        {
+                            "Dia": "MARTES",
+                            "Aula": "A001 -12C",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 8,
+                    "Profesor": "CARRANZA GARCIA ANDREA VICTORIA",
+                    "horarios": [
+                        {
+                            "Dia": "MARTES",
+                            "Aula": "A104 -12C",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                }
+            ],
+            "Practico": [
+                {
+                    "Paralelo": 107,
+                    "Profesor": "MONSERRATE CEDEÑO LIZ KERLY",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "A105 -11D",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "13:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 122,
+                    "Profesor": "MONSERRATE CEDEÑO LIZ KERLY",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "A103 -14B",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 123,
+                    "Profesor": "MONSERRATE CEDEÑO LIZ KERLY",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A108 -11D",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "13:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 116,
+                    "Profesor": "CARDENAS GUIJARRO ADRIAN ANDRES",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "VRA-014 -VRA",
+                            "HoraInicio": "18:00:00",
+                            "HoraFin": "20:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 113,
+                    "Profesor": "GARCIA PINARGOTE JANDRY XAVIER",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "A110 -11D",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "13:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 114,
+                    "Profesor": "GARCIA PINARGOTE JANDRY XAVIER",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "VRA-014 -VRA",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 115,
+                    "Profesor": "GARCIA PINARGOTE JANDRY XAVIER",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A109 -11D",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "13:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 102,
+                    "Profesor": "RODRIGUEZ ARTEAGA DIANA LLAMEL",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A108 -11D",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 121,
+                    "Profesor": "RODRIGUEZ ARTEAGA DIANA LLAMEL",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "A002 -14B",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 106,
+                    "Profesor": "CAMARGO VELASTEGUI DEBORA ALINE",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "VRA-006 -VRA",
+                            "HoraInicio": "18:00:00",
+                            "HoraFin": "20:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 105,
+                    "Profesor": "PEREZ ROSALES NATHALY FRANSHESCA",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "VRA-001 -VRA",
+                            "HoraInicio": "18:00:00",
+                            "HoraFin": "20:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 111,
+                    "Profesor": "VEGA QUEZADA DIANA ELIZABETH",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "A101 -12C",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 112,
+                    "Profesor": "VEGA QUEZADA DIANA ELIZABETH",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "A101 -13G",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 120,
+                    "Profesor": "VEGA QUEZADA DIANA ELIZABETH",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A004 -11D",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "13:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 101,
+                    "Profesor": "MEDINA MUÑOZ BLANCA JULIA",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "VRA-008 -VRA",
+                            "HoraInicio": "18:00:00",
+                            "HoraFin": "20:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 103,
+                    "Profesor": "CARRANZA GARCIA ANDREA VICTORIA",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A001 -12C",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 104,
+                    "Profesor": "CARRANZA GARCIA ANDREA VICTORIA",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "A001 -12C",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 108,
+                    "Profesor": "CARRANZA GARCIA ANDREA VICTORIA",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "A104 -12C",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "18/11/2025",
+                            "FechaExa_Segundo": "20/01/2026",
+                            "FechaExa_Mejoramiento": "03/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                }
+            ]
+        },
+        "CCPG1042": {
+            "materia": "DISEÑO DE SOFTWARE",
+            "tipo_credito": "FORMACIÓN PROFESIONAL",
+            "Teorico": [
+                {
+                    "Paralelo": 2,
+                    "Profesor": "MERA GOMEZ CARLOS JOSEPH",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "L204 -11A",
                             "HoraInicio": "15:00:00",
                             "HoraFin": "17:00:00",
                             "FechaExa_Primer": "17/11/2025",
@@ -2770,48 +3095,14 @@
                     ]
                 },
                 {
-                    "Paralelo": 12,
-                    "Profesor": "FAYTONG REAL MARIA CRISTINA",
-                    "horarios": [
-                        {
-                            "Dia": "LUNES",
-                            "Aula": "A102 -8F",
-                            "HoraInicio": "09:00:00",
-                            "HoraFin": "11:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                },
-                {
                     "Paralelo": 1,
-                    "Profesor": "GOVEA DE BUSTAMANTE LIDIA DEL CARMEN",
+                    "Profesor": "JURADO MOSQUERA DAVID ALONSO",
                     "horarios": [
                         {
                             "Dia": "LUNES",
-                            "Aula": "A002 -8F",
-                            "HoraInicio": "07:00:00",
-                            "HoraFin": "09:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 2,
-                    "Profesor": "GOVEA DE BUSTAMANTE LIDIA DEL CARMEN",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "A002 -8F",
-                            "HoraInicio": "07:00:00",
-                            "HoraFin": "09:00:00",
+                            "Aula": "A104 -11D",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
                             "FechaExa_Primer": "17/11/2025",
                             "FechaExa_Segundo": "19/01/2026",
                             "FechaExa_Mejoramiento": "02/02/2026",
@@ -2822,13 +3113,32 @@
                 },
                 {
                     "Paralelo": 3,
-                    "Profesor": "GOVEA DE BUSTAMANTE LIDIA DEL CARMEN",
+                    "Profesor": "JURADO MOSQUERA DAVID ALONSO",
                     "horarios": [
                         {
-                            "Dia": "MARTES",
-                            "Aula": "A002 -8F",
-                            "HoraInicio": "11:00:00",
-                            "HoraFin": "13:00:00",
+                            "Dia": "LUNES",
+                            "Aula": "A104 -11D",
+                            "HoraInicio": "15:00:00",
+                            "HoraFin": "17:00:00",
+                            "FechaExa_Primer": "17/11/2025",
+                            "FechaExa_Segundo": "19/01/2026",
+                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                }
+            ],
+            "Practico": [
+                {
+                    "Paralelo": 102,
+                    "Profesor": "MERA GOMEZ CARLOS JOSEPH",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A102 -11D",
+                            "HoraInicio": "15:00:00",
+                            "HoraFin": "17:00:00",
                             "FechaExa_Primer": "17/11/2025",
                             "FechaExa_Segundo": "19/01/2026",
                             "FechaExa_Mejoramiento": "02/02/2026",
@@ -2838,17 +3148,68 @@
                     ]
                 },
                 {
-                    "Paralelo": 7,
-                    "Profesor": "DORADO VERA ALAN DAVE",
+                    "Paralelo": 101,
+                    "Profesor": "JURADO MOSQUERA DAVID ALONSO",
                     "horarios": [
                         {
-                            "Dia": "LUNES",
-                            "Aula": "A002 -8F",
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "L203 -11A",
                             "HoraInicio": "13:00:00",
                             "HoraFin": "15:00:00",
                             "FechaExa_Primer": "17/11/2025",
                             "FechaExa_Segundo": "19/01/2026",
                             "FechaExa_Mejoramiento": "02/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 103,
+                    "Profesor": "JURADO MOSQUERA DAVID ALONSO",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "L204 -11A",
+                            "HoraInicio": "15:00:00",
+                            "HoraFin": "17:00:00",
+                            "FechaExa_Primer": "17/11/2025",
+                            "FechaExa_Segundo": "19/01/2026",
+                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                }
+            ]
+        },
+        "ESTG1034": {
+            "materia": "ESTADÍSTICA",
+            "tipo_credito": "MATEMÁTICAS Y CIENCIAS BÁSICAS",
+            "Teorico": [
+                {
+                    "Paralelo": 2,
+                    "Profesor": "SANCHEZ CERON JOFFRE ERNESTO",
+                    "horarios": [
+                        {
+                            "Dia": "MARTES",
+                            "Aula": "A006 -9M",
+                            "HoraInicio": "15:00:00",
+                            "HoraFin": "17:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        },
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "A006 -9M",
+                            "HoraInicio": "15:00:00",
+                            "HoraFin": "16:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
                             "HoraInicioE": "14:00:00",
                             "HoraFinE": "16:00:00"
                         }
@@ -2856,16 +3217,27 @@
                 },
                 {
                     "Paralelo": 8,
-                    "Profesor": "DORADO VERA ALAN DAVE",
+                    "Profesor": "SANCHEZ CERON JOFFRE ERNESTO",
                     "horarios": [
                         {
-                            "Dia": "MARTES",
-                            "Aula": "A002 -8F",
+                            "Dia": "LUNES",
+                            "Aula": "A101 -9M",
                             "HoraInicio": "13:00:00",
                             "HoraFin": "15:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        },
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A101 -9M",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "14:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
                             "HoraInicioE": "14:00:00",
                             "HoraFinE": "16:00:00"
                         }
@@ -2873,33 +3245,195 @@
                 },
                 {
                     "Paralelo": 9,
-                    "Profesor": "DORADO VERA ALAN DAVE",
+                    "Profesor": "SANCHEZ CERON JOFFRE ERNESTO",
                     "horarios": [
                         {
-                            "Dia": "LUNES",
-                            "Aula": "A002 -8F",
-                            "HoraInicio": "15:00:00",
-                            "HoraFin": "17:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "Dia": "MARTES",
+                            "Aula": "A006 -9M",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        },
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "A006 -9M",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "14:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
                             "HoraInicioE": "14:00:00",
                             "HoraFinE": "16:00:00"
                         }
                     ]
                 },
                 {
-                    "Paralelo": 10,
-                    "Profesor": "DORADO VERA ALAN DAVE",
+                    "Paralelo": 5,
+                    "Profesor": "SANDOYA SÁNCHEZ FERNANDO FRANCISCO",
                     "horarios": [
                         {
                             "Dia": "MARTES",
-                            "Aula": "A002 -8F",
+                            "Aula": "A103 -9I",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        },
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "A103 -9I",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "14:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 1,
+                    "Profesor": "CROW SANTOS PAMELA VANESSA",
+                    "horarios": [
+                        {
+                            "Dia": "MARTES",
+                            "Aula": "A101 -9M",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        },
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "A101 -9M",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "14:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 6,
+                    "Profesor": "CROW SANTOS PAMELA VANESSA",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "A105 -9M",
                             "HoraInicio": "15:00:00",
                             "HoraFin": "17:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        },
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A105 -9M",
+                            "HoraInicio": "15:00:00",
+                            "HoraFin": "16:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 7,
+                    "Profesor": "CROW SANTOS PAMELA VANESSA",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "A105 -9M",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        },
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A105 -9M",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "14:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 3,
+                    "Profesor": "ROA LOPEZ HEYDI MARIANA",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "A103 -9I",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "13:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        },
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A103 -9I",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "12:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 4,
+                    "Profesor": "ROA LOPEZ HEYDI MARIANA",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "A103 -9I",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        },
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A103 -9I",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "10:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
                             "HoraInicioE": "14:00:00",
                             "HoraFinE": "16:00:00"
                         }
@@ -2908,170 +3442,17 @@
             ],
             "Practico": [
                 {
-                    "Paralelo": 104,
-                    "Profesor": "ESTRELLA IBARRA FELIX DAVID",
-                    "horarios": [
-                        {
-                            "Dia": "MIÉRCOLES",
-                            "Aula": "A101 -8E",
-                            "HoraInicio": "09:00:00",
-                            "HoraFin": "11:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 105,
-                    "Profesor": "ESTRELLA IBARRA FELIX DAVID",
-                    "horarios": [
-                        {
-                            "Dia": "JUEVES",
-                            "Aula": "A101 -8E",
-                            "HoraInicio": "09:00:00",
-                            "HoraFin": "11:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 106,
-                    "Profesor": "ESTRELLA IBARRA FELIX DAVID",
-                    "horarios": [
-                        {
-                            "Dia": "JUEVES",
-                            "Aula": "A101 -8E",
-                            "HoraInicio": "11:00:00",
-                            "HoraFin": "13:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 113,
-                    "Profesor": "ESTRELLA IBARRA FELIX DAVID",
-                    "horarios": [
-                        {
-                            "Dia": "MIÉRCOLES",
-                            "Aula": "A101 -8E",
-                            "HoraInicio": "11:00:00",
-                            "HoraFin": "13:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 111,
-                    "Profesor": "MALDONADO GUZMAN JANELLA",
-                    "horarios": [
-                        {
-                            "Dia": "JUEVES",
-                            "Aula": "A103 -8F",
-                            "HoraInicio": "15:00:00",
-                            "HoraFin": "17:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 112,
-                    "Profesor": "FAYTONG REAL MARIA CRISTINA",
-                    "horarios": [
-                        {
-                            "Dia": "MIÉRCOLES",
-                            "Aula": "A102 -8F",
-                            "HoraInicio": "09:00:00",
-                            "HoraFin": "11:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 101,
-                    "Profesor": "GOVEA DE BUSTAMANTE LIDIA DEL CARMEN",
-                    "horarios": [
-                        {
-                            "Dia": "MIÉRCOLES",
-                            "Aula": "A002 -8F",
-                            "HoraInicio": "07:00:00",
-                            "HoraFin": "09:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                },
-                {
                     "Paralelo": 102,
-                    "Profesor": "GOVEA DE BUSTAMANTE LIDIA DEL CARMEN",
+                    "Profesor": "SANCHEZ CERON JOFFRE ERNESTO",
                     "horarios": [
                         {
                             "Dia": "JUEVES",
-                            "Aula": "A002 -8F",
-                            "HoraInicio": "07:00:00",
-                            "HoraFin": "09:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 103,
-                    "Profesor": "GOVEA DE BUSTAMANTE LIDIA DEL CARMEN",
-                    "horarios": [
-                        {
-                            "Dia": "JUEVES",
-                            "Aula": "A002 -8F",
-                            "HoraInicio": "11:00:00",
-                            "HoraFin": "13:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 107,
-                    "Profesor": "DORADO VERA ALAN DAVE",
-                    "horarios": [
-                        {
-                            "Dia": "MIÉRCOLES",
-                            "Aula": "A002 -8F",
-                            "HoraInicio": "13:00:00",
-                            "HoraFin": "15:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "Aula": "A006 -9M",
+                            "HoraInicio": "16:00:00",
+                            "HoraFin": "17:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
                             "HoraInicioE": "14:00:00",
                             "HoraFinE": "16:00:00"
                         }
@@ -3079,16 +3460,16 @@
                 },
                 {
                     "Paralelo": 108,
-                    "Profesor": "DORADO VERA ALAN DAVE",
+                    "Profesor": "SANCHEZ CERON JOFFRE ERNESTO",
                     "horarios": [
                         {
-                            "Dia": "JUEVES",
-                            "Aula": "A002 -8F",
-                            "HoraInicio": "13:00:00",
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A101 -9M",
+                            "HoraInicio": "14:00:00",
                             "HoraFin": "15:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
                             "HoraInicioE": "14:00:00",
                             "HoraFinE": "16:00:00"
                         }
@@ -3096,33 +3477,118 @@
                 },
                 {
                     "Paralelo": 109,
-                    "Profesor": "DORADO VERA ALAN DAVE",
+                    "Profesor": "SANCHEZ CERON JOFFRE ERNESTO",
                     "horarios": [
                         {
-                            "Dia": "MIÉRCOLES",
-                            "Aula": "A002 -8F",
-                            "HoraInicio": "15:00:00",
-                            "HoraFin": "17:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "Dia": "JUEVES",
+                            "Aula": "A006 -9M",
+                            "HoraInicio": "14:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
                             "HoraInicioE": "14:00:00",
                             "HoraFinE": "16:00:00"
                         }
                     ]
                 },
                 {
-                    "Paralelo": 110,
-                    "Profesor": "DORADO VERA ALAN DAVE",
+                    "Paralelo": 105,
+                    "Profesor": "SANDOYA SÁNCHEZ FERNANDO FRANCISCO",
                     "horarios": [
                         {
                             "Dia": "JUEVES",
-                            "Aula": "A002 -8F",
-                            "HoraInicio": "15:00:00",
+                            "Aula": "A103 -9I",
+                            "HoraInicio": "14:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 101,
+                    "Profesor": "CROW SANTOS PAMELA VANESSA",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "A101 -9M",
+                            "HoraInicio": "14:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 106,
+                    "Profesor": "CROW SANTOS PAMELA VANESSA",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A105 -9M",
+                            "HoraInicio": "16:00:00",
                             "HoraFin": "17:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 107,
+                    "Profesor": "CROW SANTOS PAMELA VANESSA",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A105 -9M",
+                            "HoraInicio": "14:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 103,
+                    "Profesor": "ROA LOPEZ HEYDI MARIANA",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A103 -9I",
+                            "HoraInicio": "12:00:00",
+                            "HoraFin": "13:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "14:00:00",
+                            "HoraFinE": "16:00:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 104,
+                    "Profesor": "ROA LOPEZ HEYDI MARIANA",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A103 -9I",
+                            "HoraInicio": "10:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
                             "HoraInicioE": "14:00:00",
                             "HoraFinE": "16:00:00"
                         }
@@ -3130,377 +3596,631 @@
                 }
             ]
         },
-        "SOFG1009": {
-            "materia": "LENGUAJES DE PROGRAMACIÓN",
-            "tipo_credito": "FORMACIÓN PROFESIONAL",
+        "EYAG1037": {
+            "materia": "FUNDAMENTOS DE ELECTRICIDAD Y SISTEMAS DIGITALES",
+            "tipo_credito": "EDUCACIÓN GENERAL",
             "Teorico": [
                 {
                     "Paralelo": 2,
-                    "Profesor": "CISNEROS BARAHONA FANNY CARLOTA",
+                    "Profesor": "PAILLACHO CHILUIZA DENNYS FABIAN",
                     "horarios": [
                         {
-                            "Dia": "MARTES",
-                            "Aula": "L203 -11A",
-                            "HoraInicio": "09:00:00",
-                            "HoraFin": "10:30:00",
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A110 -11D",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "13:00:00",
                             "FechaExa_Primer": "20/11/2025",
                             "FechaExa_Segundo": "22/01/2026",
                             "FechaExa_Mejoramiento": "05/02/2026",
-                            "HoraInicioE": "09:00:00",
-                            "HoraFinE": "11:00:00"
-                        },
-                        {
-                            "Dia": "JUEVES",
-                            "Aula": "A002 -11D",
-                            "HoraInicio": "09:00:00",
-                            "HoraFin": "10:30:00",
-                            "FechaExa_Primer": "20/11/2025",
-                            "FechaExa_Segundo": "22/01/2026",
-                            "FechaExa_Mejoramiento": "05/02/2026",
-                            "HoraInicioE": "09:00:00",
-                            "HoraFinE": "11:00:00"
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
                         }
                     ]
                 },
                 {
                     "Paralelo": 1,
-                    "Profesor": "SARAGURO BRAVO RODRIGO ALEXANDER",
+                    "Profesor": "AGUIRRE ALONSO ADRIANA ALLISON",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "A110 -11D",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 3,
+                    "Profesor": "CERRADO CURSO",
+                    "horarios": [
+                        {
+                            "Dia": "MIÉRCOLES",
+                            "Aula": "AULACERRADA -AULA",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                }
+            ],
+            "Practico": [
+                {
+                    "Paralelo": 101,
+                    "Profesor": "LARREA GANDO JOSE MIGUEL",
                     "horarios": [
                         {
                             "Dia": "LUNES",
-                            "Aula": "L204 -11A",
-                            "HoraInicio": "11:00:00",
-                            "HoraFin": "12:30:00",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
                             "FechaExa_Primer": "20/11/2025",
                             "FechaExa_Segundo": "22/01/2026",
                             "FechaExa_Mejoramiento": "05/02/2026",
-                            "HoraInicioE": "09:00:00",
-                            "HoraFinE": "11:00:00"
-                        },
-                        {
-                            "Dia": "MIÉRCOLES",
-                            "Aula": "A002 -11D",
-                            "HoraInicio": "11:00:00",
-                            "HoraFin": "12:30:00",
-                            "FechaExa_Primer": "20/11/2025",
-                            "FechaExa_Segundo": "22/01/2026",
-                            "FechaExa_Mejoramiento": "05/02/2026",
-                            "HoraInicioE": "09:00:00",
-                            "HoraFinE": "11:00:00"
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
                         }
                     ]
+                },
+                {
+                    "Paralelo": 102,
+                    "Profesor": "SALCAN REYES GABRIELA PAOLA",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "13:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 103,
+                    "Profesor": "TOSCANO QUIROGA TONNY WESLEY",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 104,
+                    "Profesor": "TOSCANO QUIROGA TONNY WESLEY",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "13:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 105,
+                    "Profesor": "BRIONES MORANTE BRIGGETTE MELISSA",
+                    "horarios": [
+                        {
+                            "Dia": "MARTES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 106,
+                    "Profesor": "PAILLACHO CHILUIZA DENNYS FABIAN",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 107,
+                    "Profesor": "PAILLACHO CHILUIZA DENNYS FABIAN",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 108,
+                    "Profesor": "PAILLACHO CHILUIZA DENNYS FABIAN",
+                    "horarios": [
+                        {
+                            "Dia": "VIERNES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "13:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 109,
+                    "Profesor": "CERRADO CURSO",
+                    "horarios": [
+                        {
+                            "Dia": "VIERNES",
+                            "Aula": "AULACERRADA -AULA",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 101,
+                    "Profesor": "LARREA GANDO JOSE MIGUEL",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 102,
+                    "Profesor": "SALCAN REYES GABRIELA PAOLA",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "13:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 103,
+                    "Profesor": "TOSCANO QUIROGA TONNY WESLEY",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 104,
+                    "Profesor": "TOSCANO QUIROGA TONNY WESLEY",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "13:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 105,
+                    "Profesor": "BRIONES MORANTE BRIGGETTE MELISSA",
+                    "horarios": [
+                        {
+                            "Dia": "MARTES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 106,
+                    "Profesor": "PAILLACHO CHILUIZA DENNYS FABIAN",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 107,
+                    "Profesor": "PAILLACHO CHILUIZA DENNYS FABIAN",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 108,
+                    "Profesor": "PAILLACHO CHILUIZA DENNYS FABIAN",
+                    "horarios": [
+                        {
+                            "Dia": "VIERNES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "13:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 109,
+                    "Profesor": "CERRADO CURSO",
+                    "horarios": [
+                        {
+                            "Dia": "VIERNES",
+                            "Aula": "AULACERRADA -AULA",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 101,
+                    "Profesor": "LARREA GANDO JOSE MIGUEL",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 102,
+                    "Profesor": "SALCAN REYES GABRIELA PAOLA",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "13:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 103,
+                    "Profesor": "TOSCANO QUIROGA TONNY WESLEY",
+                    "horarios": [
+                        {
+                            "Dia": "LUNES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 104,
+                    "Profesor": "TOSCANO QUIROGA TONNY WESLEY",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "13:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 105,
+                    "Profesor": "BRIONES MORANTE BRIGGETTE MELISSA",
+                    "horarios": [
+                        {
+                            "Dia": "MARTES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 106,
+                    "Profesor": "PAILLACHO CHILUIZA DENNYS FABIAN",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "09:00:00",
+                            "HoraFin": "11:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 107,
+                    "Profesor": "PAILLACHO CHILUIZA DENNYS FABIAN",
+                    "horarios": [
+                        {
+                            "Dia": "JUEVES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 108,
+                    "Profesor": "PAILLACHO CHILUIZA DENNYS FABIAN",
+                    "horarios": [
+                        {
+                            "Dia": "VIERNES",
+                            "Aula": "L106 -11C",
+                            "HoraInicio": "11:00:00",
+                            "HoraFin": "13:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                },
+                {
+                    "Paralelo": 109,
+                    "Profesor": "CERRADO CURSO",
+                    "horarios": [
+                        {
+                            "Dia": "VIERNES",
+                            "Aula": "AULACERRADA -AULA",
+                            "HoraInicio": "13:00:00",
+                            "HoraFin": "15:00:00",
+                            "FechaExa_Primer": "20/11/2025",
+                            "FechaExa_Segundo": "22/01/2026",
+                            "FechaExa_Mejoramiento": "05/02/2026",
+                            "HoraInicioE": "11:30:00",
+                            "HoraFinE": "13:30:00"
+                        }
+                    ]
+                }
+            ]
+        },
+        "IDIG1008": {
+            "materia": "INGLÉS III",
+            "tipo_credito": "EDUCACIÓN GENERAL",
+            "Teorico": [
+                {
+                    "Paralelo": 13,
+                    "Profesor": "No encontrado",
+                    "horarios": []
+                },
+                {
+                    "Paralelo": 8,
+                    "Profesor": "No encontrado",
+                    "horarios": []
+                },
+                {
+                    "Paralelo": 1,
+                    "Profesor": "No encontrado",
+                    "horarios": []
+                },
+                {
+                    "Paralelo": 2,
+                    "Profesor": "No encontrado",
+                    "horarios": []
+                },
+                {
+                    "Paralelo": 4,
+                    "Profesor": "No encontrado",
+                    "horarios": []
+                },
+                {
+                    "Paralelo": 5,
+                    "Profesor": "No encontrado",
+                    "horarios": []
+                },
+                {
+                    "Paralelo": 6,
+                    "Profesor": "No encontrado",
+                    "horarios": []
+                },
+                {
+                    "Paralelo": 7,
+                    "Profesor": "No encontrado",
+                    "horarios": []
+                },
+                {
+                    "Paralelo": 9,
+                    "Profesor": "No encontrado",
+                    "horarios": []
+                },
+                {
+                    "Paralelo": 10,
+                    "Profesor": "No encontrado",
+                    "horarios": []
+                },
+                {
+                    "Paralelo": 11,
+                    "Profesor": "No encontrado",
+                    "horarios": []
+                },
+                {
+                    "Paralelo": 12,
+                    "Profesor": "No encontrado",
+                    "horarios": []
                 }
             ],
             "Practico": []
         },
-        "CCPG1048": {
-            "materia": "METODOLOGÍA DE LA INVESTIGACIÓN EN COMPUTACIÓN",
+        "CCPG1046": {
+            "materia": "INTERACCIÓN HUMANO COMPUTADOR",
             "tipo_credito": "FORMACIÓN PROFESIONAL",
             "Teorico": [
                 {
                     "Paralelo": 1,
-                    "Profesor": "ALEJANDRO MOLINA OTILIA MARIA",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "FIEC-018 -FIEC",
-                            "HoraInicio": "19:00:00",
-                            "HoraFin": "20:30:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "11:30:00",
-                            "HoraFinE": "13:30:00"
-                        },
-                        {
-                            "Dia": "JUEVES",
-                            "Aula": "FIEC-018 -FIEC",
-                            "HoraInicio": "19:00:00",
-                            "HoraFin": "19:30:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "11:30:00",
-                            "HoraFinE": "13:30:00"
-                        }
-                    ]
+                    "Profesor": "No encontrado",
+                    "horarios": []
+                },
+                {
+                    "Paralelo": 3,
+                    "Profesor": "No encontrado",
+                    "horarios": []
                 },
                 {
                     "Paralelo": 2,
-                    "Profesor": "SUAREZ RIOFRIO PATRICIA LEONOR",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "A103 -11D",
-                            "HoraInicio": "13:00:00",
-                            "HoraFin": "14:30:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "11:30:00",
-                            "HoraFinE": "13:30:00"
-                        },
-                        {
-                            "Dia": "JUEVES",
-                            "Aula": "L203 -11A",
-                            "HoraInicio": "13:00:00",
-                            "HoraFin": "13:30:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "11:30:00",
-                            "HoraFinE": "13:30:00"
-                        }
-                    ]
+                    "Profesor": "No encontrado",
+                    "horarios": []
                 }
             ],
-            "Practico": [
-                {
-                    "Paralelo": 101,
-                    "Profesor": "ALEJANDRO MOLINA OTILIA MARIA",
-                    "horarios": [
-                        {
-                            "Dia": "JUEVES",
-                            "Aula": "FIEC-018 -FIEC",
-                            "HoraInicio": "19:30:00",
-                            "HoraFin": "20:30:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "11:30:00",
-                            "HoraFinE": "13:30:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 102,
-                    "Profesor": "SUAREZ RIOFRIO PATRICIA LEONOR",
-                    "horarios": [
-                        {
-                            "Dia": "JUEVES",
-                            "Aula": "L203 -11A",
-                            "HoraInicio": "13:30:00",
-                            "HoraFin": "14:30:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "11:30:00",
-                            "HoraFinE": "13:30:00"
-                        }
-                    ]
-                }
-            ]
+            "Practico": []
         },
-        "CCPG1053": {
-            "materia": "SEGURIDAD DE LA INFORMACIÓN",
-            "tipo_credito": "FORMACIÓN PROFESIONAL",
-            "Teorico": [
-                {
-                    "Paralelo": 2,
-                    "Profesor": "BONILLA ARMIJOS RAFAEL IGNACIO",
-                    "horarios": [
-                        {
-                            "Dia": "LUNES",
-                            "Aula": "A102 -11A",
-                            "HoraInicio": "15:00:00",
-                            "HoraFin": "16:30:00",
-                            "FechaExa_Primer": "18/11/2025",
-                            "FechaExa_Segundo": "20/01/2026",
-                            "FechaExa_Mejoramiento": "03/02/2026",
-                            "HoraInicioE": "09:00:00",
-                            "HoraFinE": "11:00:00"
-                        },
-                        {
-                            "Dia": "MIÉRCOLES",
-                            "Aula": "L108 -11C",
-                            "HoraInicio": "15:00:00",
-                            "HoraFin": "15:30:00",
-                            "FechaExa_Primer": "18/11/2025",
-                            "FechaExa_Segundo": "20/01/2026",
-                            "FechaExa_Mejoramiento": "03/02/2026",
-                            "HoraInicioE": "09:00:00",
-                            "HoraFinE": "11:00:00"
-                        }
-                    ]
-                }
-            ],
-            "Practico": [
-                {
-                    "Paralelo": 102,
-                    "Profesor": "BONILLA ARMIJOS RAFAEL IGNACIO",
-                    "horarios": [
-                        {
-                            "Dia": "MIÉRCOLES",
-                            "Aula": "L108 -11C",
-                            "HoraInicio": "15:30:00",
-                            "HoraFin": "16:30:00",
-                            "FechaExa_Primer": "18/11/2025",
-                            "FechaExa_Segundo": "20/01/2026",
-                            "FechaExa_Mejoramiento": "03/02/2026",
-                            "HoraInicioE": "09:00:00",
-                            "HoraFinE": "11:00:00"
-                        }
-                    ]
-                }
-            ]
-        },
-        "CCPG1055": {
-            "materia": "SISTEMAS DISTRIBUIDOS Y COMPUTACIÓN EN LA NUBE",
+        "CCPG1051": {
+            "materia": "PROGRAMACIÓN DE SISTEMAS",
             "tipo_credito": "FORMACIÓN PROFESIONAL",
             "Teorico": [
                 {
                     "Paralelo": 1,
-                    "Profesor": "ABAD ROBALINO CRISTINA LUCIA",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "A105 -11A",
-                            "HoraInicio": "07:30:00",
-                            "HoraFin": "09:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        },
-                        {
-                            "Dia": "JUEVES",
-                            "Aula": "A105 -11A",
-                            "HoraInicio": "07:30:00",
-                            "HoraFin": "09:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
+                    "Profesor": "No encontrado",
+                    "horarios": []
                 },
                 {
                     "Paralelo": 2,
-                    "Profesor": "SANTILLAN PADILLA STEVEN ISAAC",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "A101 -11A",
-                            "HoraInicio": "07:30:00",
-                            "HoraFin": "09:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        },
-                        {
-                            "Dia": "JUEVES",
-                            "Aula": "A101 -11A",
-                            "HoraInicio": "07:30:00",
-                            "HoraFin": "09:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                }
-            ],
-            "Practico": [
-                {
-                    "Paralelo": 101,
-                    "Profesor": "ABAD ROBALINO CRISTINA LUCIA",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "FIEC-006 -FIEC",
-                            "HoraInicio": "19:00:00",
-                            "HoraFin": "21:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
+                    "Profesor": "No encontrado",
+                    "horarios": []
                 },
                 {
-                    "Paralelo": 102,
-                    "Profesor": "SANTILLAN PADILLA STEVEN ISAAC",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "FIEC-005 -FIEC",
-                            "HoraInicio": "19:00:00",
-                            "HoraFin": "21:00:00",
-                            "FechaExa_Primer": "17/11/2025",
-                            "FechaExa_Segundo": "19/01/2026",
-                            "FechaExa_Mejoramiento": "02/02/2026",
-                            "HoraInicioE": "14:00:00",
-                            "HoraFinE": "16:00:00"
-                        }
-                    ]
-                }
-            ]
-        },
-        "CCPG1056": {
-            "materia": "SISTEMAS OPERATIVOS",
-            "tipo_credito": "FORMACIÓN PROFESIONAL",
-            "Teorico": [
-                {
-                    "Paralelo": 1,
-                    "Profesor": "OCHOA DONOSO DANIEL ERICK",
-                    "horarios": [
-                        {
-                            "Dia": "MARTES",
-                            "Aula": "A108 -11D",
-                            "HoraInicio": "11:00:00",
-                            "HoraFin": "12:30:00",
-                            "FechaExa_Primer": "19/11/2025",
-                            "FechaExa_Segundo": "21/01/2026",
-                            "FechaExa_Mejoramiento": "04/02/2026",
-                            "HoraInicioE": "09:00:00",
-                            "HoraFinE": "11:00:00"
-                        },
-                        {
-                            "Dia": "JUEVES",
-                            "Aula": "A108 -11D",
-                            "HoraInicio": "11:00:00",
-                            "HoraFin": "12:30:00",
-                            "FechaExa_Primer": "19/11/2025",
-                            "FechaExa_Segundo": "21/01/2026",
-                            "FechaExa_Mejoramiento": "04/02/2026",
-                            "HoraInicioE": "09:00:00",
-                            "HoraFinE": "11:00:00"
-                        }
-                    ]
-                },
-                {
-                    "Paralelo": 2,
-                    "Profesor": "CRIOLLO BONILLA RONALD RAUL",
-                    "horarios": [
-                        {
-                            "Dia": "LUNES",
-                            "Aula": "A002 -11D",
-                            "HoraInicio": "09:30:00",
-                            "HoraFin": "11:00:00",
-                            "FechaExa_Primer": "19/11/2025",
-                            "FechaExa_Segundo": "21/01/2026",
-                            "FechaExa_Mejoramiento": "04/02/2026",
-                            "HoraInicioE": "09:00:00",
-                            "HoraFinE": "11:00:00"
-                        },
-                        {
-                            "Dia": "MIÉRCOLES",
-                            "Aula": "A002 -11D",
-                            "HoraInicio": "09:30:00",
-                            "HoraFin": "11:00:00",
-                            "FechaExa_Primer": "19/11/2025",
-                            "FechaExa_Segundo": "21/01/2026",
-                            "FechaExa_Mejoramiento": "04/02/2026",
-                            "HoraInicioE": "09:00:00",
-                            "HoraFinE": "11:00:00"
-                        }
-                    ]
+                    "Paralelo": 3,
+                    "Profesor": "No encontrado",
+                    "horarios": []
                 }
             ],
             "Practico": []

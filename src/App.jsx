@@ -272,6 +272,7 @@ export default function App() {
 
   const procesarResultado = (json) => {
     setResultadoExtraccion(json);
+    setFaseExtraccion("completado");
     computeHighlights(json, carreraSeleccionada);
     // Construir mapa de paralelos a partir del JSON extraído
     try {
@@ -317,7 +318,7 @@ export default function App() {
       />
 
       {/* Botón Extraer materias disponibles debajo del encabezado */}
-      {carreraSeleccionada !== "" && !codigoMateria && (
+      {carreraSeleccionada !== "" && !codigoMateria && faseExtraccion !== 'completado' && (
         <div className="mt-8 mb-4 w-full flex flex-col items-center gap-4">
           {!extraccionActiva && (
             <div className="w-full max-w-md p-4 border rounded bg-white shadow flex flex-col gap-3">
