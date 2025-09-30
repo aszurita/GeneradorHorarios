@@ -193,40 +193,41 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
     return map;
   }, []);
 
+  // COMENTADO: Lógica de prerrequisitos deshabilitada
   // Set de materias aprobadas (codigo)
-  const aprobadasSet = useMemo(() => {
-    try {
-      const raw = localStorage.getItem("materiasAprobadas");
-      const arr = raw ? JSON.parse(raw) : [];
-      return new Set((Array.isArray(arr) ? arr : []).map(c => String(c).trim()));
-    } catch { return new Set(); }
-  }, []);
+  // const aprobadasSet = useMemo(() => {
+  //   try {
+  //     const raw = localStorage.getItem("materiasAprobadas");
+  //     const arr = raw ? JSON.parse(raw) : [];
+  //     return new Set((Array.isArray(arr) ? arr : []).map(c => String(c).trim()));
+  //   } catch { return new Set(); }
+  // }, []);
 
   // Set de materias ya seleccionadas en el horario actual (para correquisitos)
-  const cursadasAhoraSet = useMemo(() => {
-    try {
-      const parsed = JSON.parse(localStorage.getItem("horario") || "{}");
-      const events = parsed?.events || [];
-      return new Set(events.filter(ev => ev?.codigoMateria).map(ev => String(ev.codigoMateria).trim()));
-    } catch { return new Set(); }
-  }, []);
+  // const cursadasAhoraSet = useMemo(() => {
+  //   try {
+  //     const parsed = JSON.parse(localStorage.getItem("horario") || "{}");
+  //     const events = parsed?.events || [];
+  //     return new Set(events.filter(ev => ev?.codigoMateria).map(ev => String(ev.codigoMateria).trim()));
+  //   } catch { return new Set(); }
+  // }, []);
 
   // Valida prerrequisitos (aprobadas) y correquisitos (aprobadas o ya en horario)
-  const canEnroll = (code) => {
-    const m = materiaIndex.get(String(code).trim());
-    if (!m) return { ok: true, reasons: [] }; // sin metadata no bloquea
-    const pre = Array.isArray(m.prerequisitos) ? m.prerequisitos.map(x => String(x).trim()) : [];
-    const co  = Array.isArray(m.corequisitos)  ? m.corequisitos.map(x => String(x).trim())  : [];
+  // const canEnroll = (code) => {
+  //   const m = materiaIndex.get(String(code).trim());
+  //   if (!m) return { ok: true, reasons: [] }; // sin metadata no bloquea
+  //   const pre = Array.isArray(m.prerequisitos) ? m.prerequisitos.map(x => String(x).trim()) : [];
+  //   const co  = Array.isArray(m.corequisitos)  ? m.corequisitos.map(x => String(x).trim())  : [];
 
-    const reasons = [];
-    const faltanPre = pre.filter(p => !aprobadasSet.has(p));
-    if (faltanPre.length) reasons.push(`Faltan prerrequisitos: ${faltanPre.join(", ")}`);
+  //   const reasons = [];
+  //   const faltanPre = pre.filter(p => !aprobadasSet.has(p));
+  //   if (faltanPre.length) reasons.push(`Faltan prerrequisitos: ${faltanPre.join(", ")}`);
 
-    const faltanCo = co.filter(x => !aprobadasSet.has(x) && !cursadasAhoraSet.has(x));
-    if (faltanCo.length) reasons.push(`Correquisitos pendientes (aprobado o ya seleccionado): ${faltanCo.join(", ")}`);
+  //   const faltanCo = co.filter(x => !aprobadasSet.has(x) && !cursadasAhoraSet.has(x));
+  //   if (faltanCo.length) reasons.push(`Correquisitos pendientes (aprobado o ya seleccionado): ${faltanCo.join(", ")}`);
 
-    return { ok: reasons.length === 0, reasons };
-  };
+  //   return { ok: reasons.length === 0, reasons };
+  // };
 
   const teoricos = materiasParalelos[codigoMateria].Teorico; // Obtiene los paralelos teóricos y prácticos de la materia seleccionada
   const practicos = materiasParalelos[codigoMateria].Practico; // Puede ser un array vacío si no hay prácticos
@@ -379,16 +380,16 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
     // Obtener el código de la materia del primer evento teórico
     const code = eventosTeorico[0].codigoMateria;
 
-    // Validación de prerrequisitos / correquisitos
-    const eleg = canEnroll(code);
-    if (!eleg.ok) {
-      setErrorMensaje({
-        titulo: "No cumple requisitos",
-        mensaje: eleg.reasons.join(" · "),
-        tipo: "error",
-      });
-      return;
-    }
+    // COMENTADO: Validación de prerrequisitos / correquisitos deshabilitada
+    // const eleg = canEnroll(code);
+    // if (!eleg.ok) {
+    //   setErrorMensaje({
+    //     titulo: "No cumple requisitos",
+    //     mensaje: eleg.reasons.join(" · "),
+    //     tipo: "error",
+    //   });
+    //   return;
+    // }
 
     // Filtrar por codigo
     const otrosEventos = eventosActuales.filter(
