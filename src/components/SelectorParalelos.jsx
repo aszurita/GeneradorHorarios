@@ -154,38 +154,16 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
   }, [paraleloSeleccionado]);
 
     // Función para selección automática de paralelo práctico basada en el número de paralelo
-    const seleccionarPracticoAutomatico = (indiceTeorico, teoricosArray, practicosArray) => {
-      // Solo aplicar selección automática para materias que NO sean TLMG1032 ni EYAG1037
-      if (codigoMateria === 'TLMG1032' || codigoMateria === 'EYAG1037') {
-        return;
-      }
-      
-      // Solo si hay paralelos prácticos disponibles
-      if (practicosArray.length === 0) {
-        return;
-      }
-      
-      const paraleloTeorico = teoricosArray[indiceTeorico];
-      
-      if (paraleloTeorico) {
-        // Obtener el número del paralelo teórico
-        const numeroParaleloTeorico = paraleloTeorico.Paralelo;
-        
-        // Calcular el número del paralelo práctico correspondiente (teórico + 100)
-        const numeroParaleloPractico = numeroParaleloTeorico + 100;
-        
-        // Buscar el índice del paralelo práctico con el número correspondiente
-        const indicePracticoAutomatico = practicosArray.findIndex(
-          practico => practico.Paralelo === numeroParaleloPractico
-        );
-        
-        // Si se encuentra un paralelo práctico con el número correspondiente, seleccionarlo automáticamente
-        if (indicePracticoAutomatico !== -1) {
-          setParaleloPractico(indicePracticoAutomatico);
-          // Ajustar la paginación para mostrar el paralelo seleccionado
-          const paginaPractico = Math.floor(indicePracticoAutomatico / PARALELOS_POR_PAGINA) * PARALELOS_POR_PAGINA;
-          setStartIndexPractico(paginaPractico);
-        }
+    const seleccionarPracticoAutomatico = (numTeorico, teoricosArray, practicosArray) => {
+      if (codigoMateria === 'TLMG1032' || codigoMateria === 'EYAG1037') return;
+      if (!Array.isArray(practicosArray) || practicosArray.length === 0) return;
+
+      const numPractico = numTeorico + 100;
+      const idxP = practicosArray.findIndex(p => p.Paralelo === numPractico);
+      if (idxP !== -1) {
+        setParaleloPractico(numPractico);
+        const pagina = Math.floor(idxP / PARALELOS_POR_PAGINA) * PARALELOS_POR_PAGINA;
+        setStartIndexPractico(pagina);
       }
     };
   
@@ -195,6 +173,8 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
         const teoricos = materiasParalelos[codigoMateria].Teorico;
         const practicos = materiasParalelos[codigoMateria].Practico;
         seleccionarPracticoAutomatico(paraleloSeleccionado, teoricos, practicos);
+      } else {
+        setParaleloPractico(null);
       }
     }, [paraleloSeleccionado, codigoMateria, materiasParalelos]);
 
@@ -213,40 +193,41 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
     return map;
   }, []);
 
+  // COMENTADO: Lógica de prerrequisitos deshabilitada
   // Set de materias aprobadas (codigo)
-  const aprobadasSet = useMemo(() => {
-    try {
-      const raw = localStorage.getItem("materiasAprobadas");
-      const arr = raw ? JSON.parse(raw) : [];
-      return new Set((Array.isArray(arr) ? arr : []).map(c => String(c).trim()));
-    } catch { return new Set(); }
-  }, []);
+  // const aprobadasSet = useMemo(() => {
+  //   try {
+  //     const raw = localStorage.getItem("materiasAprobadas");
+  //     const arr = raw ? JSON.parse(raw) : [];
+  //     return new Set((Array.isArray(arr) ? arr : []).map(c => String(c).trim()));
+  //   } catch { return new Set(); }
+  // }, []);
 
   // Set de materias ya seleccionadas en el horario actual (para correquisitos)
-  const cursadasAhoraSet = useMemo(() => {
-    try {
-      const parsed = JSON.parse(localStorage.getItem("horario") || "{}");
-      const events = parsed?.events || [];
-      return new Set(events.filter(ev => ev?.codigoMateria).map(ev => String(ev.codigoMateria).trim()));
-    } catch { return new Set(); }
-  }, []);
+  // const cursadasAhoraSet = useMemo(() => {
+  //   try {
+  //     const parsed = JSON.parse(localStorage.getItem("horario") || "{}");
+  //     const events = parsed?.events || [];
+  //     return new Set(events.filter(ev => ev?.codigoMateria).map(ev => String(ev.codigoMateria).trim()));
+  //   } catch { return new Set(); }
+  // }, []);
 
   // Valida prerrequisitos (aprobadas) y correquisitos (aprobadas o ya en horario)
-  const canEnroll = (code) => {
-    const m = materiaIndex.get(String(code).trim());
-    if (!m) return { ok: true, reasons: [] }; // sin metadata no bloquea
-    const pre = Array.isArray(m.prerequisitos) ? m.prerequisitos.map(x => String(x).trim()) : [];
-    const co  = Array.isArray(m.corequisitos)  ? m.corequisitos.map(x => String(x).trim())  : [];
+  // const canEnroll = (code) => {
+  //   const m = materiaIndex.get(String(code).trim());
+  //   if (!m) return { ok: true, reasons: [] }; // sin metadata no bloquea
+  //   const pre = Array.isArray(m.prerequisitos) ? m.prerequisitos.map(x => String(x).trim()) : [];
+  //   const co  = Array.isArray(m.corequisitos)  ? m.corequisitos.map(x => String(x).trim())  : [];
 
-    const reasons = [];
-    const faltanPre = pre.filter(p => !aprobadasSet.has(p));
-    if (faltanPre.length) reasons.push(`Faltan prerrequisitos: ${faltanPre.join(", ")}`);
+  //   const reasons = [];
+  //   const faltanPre = pre.filter(p => !aprobadasSet.has(p));
+  //   if (faltanPre.length) reasons.push(`Faltan prerrequisitos: ${faltanPre.join(", ")}`);
 
-    const faltanCo = co.filter(x => !aprobadasSet.has(x) && !cursadasAhoraSet.has(x));
-    if (faltanCo.length) reasons.push(`Correquisitos pendientes (aprobado o ya seleccionado): ${faltanCo.join(", ")}`);
+  //   const faltanCo = co.filter(x => !aprobadasSet.has(x) && !cursadasAhoraSet.has(x));
+  //   if (faltanCo.length) reasons.push(`Correquisitos pendientes (aprobado o ya seleccionado): ${faltanCo.join(", ")}`);
 
-    return { ok: reasons.length === 0, reasons };
-  };
+  //   return { ok: reasons.length === 0, reasons };
+  // };
 
   const teoricos = materiasParalelos[codigoMateria].Teorico; // Obtiene los paralelos teóricos y prácticos de la materia seleccionada
   const practicos = materiasParalelos[codigoMateria].Practico; // Puede ser un array vacío si no hay prácticos
@@ -379,14 +360,17 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
       });
       return;
     }
-    const eventosTeorico = convertirAHorario( // Convierte el paralelo teórico seleccionado en eventos de horario
-      teoricos[paraleloSeleccionado],
-      "Teórico"
-    );
-    const eventosPractico =
-      paraleloPractico !== null
-        ? convertirAHorario(practicos[paraleloPractico], "Práctico")
-        : [];
+    const teoricoSel = teoricos.find(p => p.Paralelo === paraleloSeleccionado);
+    if (!teoricoSel) {
+      setErrorMensaje({ titulo: "Error", mensaje: "No se encontró el paralelo teórico seleccionado.", tipo: "error" });
+      return;
+    }
+    const eventosTeorico = convertirAHorario(teoricoSel, "Teórico");
+
+    const practicoSel = paraleloPractico != null
+      ? practicos.find(p => p.Paralelo === paraleloPractico)
+      : null;
+    const eventosPractico = practicoSel ? convertirAHorario(practicoSel, "Práctico") : [];
 
     // Leer eventos actuales
     const stored = localStorage.getItem("horario");
@@ -396,16 +380,16 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
     // Obtener el código de la materia del primer evento teórico
     const code = eventosTeorico[0].codigoMateria;
 
-    // Validación de prerrequisitos / correquisitos
-    const eleg = canEnroll(code);
-    if (!eleg.ok) {
-      setErrorMensaje({
-        titulo: "No cumple requisitos",
-        mensaje: eleg.reasons.join(" · "),
-        tipo: "error",
-      });
-      return;
-    }
+    // COMENTADO: Validación de prerrequisitos / correquisitos deshabilitada
+    // const eleg = canEnroll(code);
+    // if (!eleg.ok) {
+    //   setErrorMensaje({
+    //     titulo: "No cumple requisitos",
+    //     mensaje: eleg.reasons.join(" · "),
+    //     tipo: "error",
+    //   });
+    //   return;
+    // }
 
     // Filtrar por codigo
     const otrosEventos = eventosActuales.filter(
@@ -626,22 +610,22 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
 
           <div className="overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 transition-transform duration-500 ease-in-out">
-              {paralelosVisibles.map((paralelo, idx) => // Muestra solo los paralelos visibles según la paginación y los filtros
+              {paralelosVisibles.map((paralelo) => // Muestra solo los paralelos visibles según la paginación y los filtros
                 paraleloSeleccionado === null ||
-                paraleloSeleccionado === startIndex + idx ? (
+                paraleloSeleccionado === paralelo.Paralelo ? (
                   <div
-                    key={startIndex + idx}
+                    key={`P-${paralelo.Paralelo}`}
                     className={`border rounded p-3 cursor-pointer hover:bg-blue-100 ${
-                      paraleloSeleccionado === startIndex + idx
+                      paraleloSeleccionado === paralelo.Paralelo
                         ? "bg-blue-200"
                         : ""
                     }`}
                     onClick={() =>
                       setParaleloSeleccionado(prev =>
-                        prev === startIndex + idx ? null : startIndex + idx
+                        prev === paralelo.Paralelo ? null : paralelo.Paralelo
                       )
                     }
-                    aria-pressed={paraleloSeleccionado === startIndex + idx}
+                    aria-pressed={paraleloSeleccionado === paralelo.Paralelo}
                   >
                     <div className="font-bold text-center mb-2">
                       PAR. {paralelo.Paralelo}
@@ -772,11 +756,11 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 transition-transform duration-500 ease-in-out">
                   {paralelosPracticosVisibles.map((paralelo, idx) => // Muestra solo los paralelos prácticos visibles según la paginación y los filtros
                     paraleloPractico === null ||
-                    paraleloPractico === startIndexPractico + idx ? (
+                    paraleloPractico === paralelo.Paralelo ? (
                       <div
-                        key={startIndexPractico + idx}
+                        key={`T-${paralelo.Paralelo}`}
                         className={`border rounded p-3 cursor-pointer hover:bg-green-100 ${
-                          paraleloPractico === startIndexPractico + idx
+                          paraleloPractico === paralelo.Paralelo
                             ? "bg-green-200"
                             : ""
                         }`}
@@ -785,17 +769,17 @@ function SelectorParalelos({ // Componente para seleccionar paralelos de una mat
                           if (codigoMateria === 'EYAG1037' || codigoMateria === 'TLMG1032') {
                             // En estas materias se puede seleccionar y deseleccionar normalmente
                             setParaleloPractico(prev =>
-                              prev === startIndexPractico + idx ? null : startIndexPractico + idx
+                              prev === paralelo.Paralelo ? null : paralelo.Paralelo
                             );
                           } else {
                             // En otras materias, solo se puede seleccionar, no deseleccionar
-                            if (paraleloPractico !== startIndexPractico + idx) {
-                              setParaleloPractico(startIndexPractico + idx);
+                            if (paraleloPractico !== paralelo.Paralelo) {
+                              setParaleloPractico(paralelo.Paralelo);
                             }
                             // Si ya está seleccionado, no hacer nada (no permitir deselección)
                           }
                         }}
-                        aria-pressed={paraleloPractico === startIndexPractico + idx}
+                        aria-pressed={paraleloPractico === paralelo.Paralelo}
                       >
                         <div className="font-bold text-center mb-2">
                           PAR. {paralelo.Paralelo}

@@ -20,16 +20,16 @@ const Malla = ({ materias, onMateriaClick, eventos, highlightComplementariaCodig
     // No necesita hacer nada, solo forzar el re-render
   }, [eventos]);
 
-  // Cargar y exponer Set de aprobadas 
-  const aprobadasSet = useMemo(() => {
-    try {
-      const raw = localStorage.getItem("materiasAprobadas");
-      const arr = raw ? JSON.parse(raw) : [];
-      return new Set(Array.isArray(arr) ? arr.map((c) => String(c).trim()) : []);
-    } catch {
-      return new Set();
-    }
-  }, [approvalMode, refreshTrigger]); // Agregar refreshTrigger para forzar actualización - removido 'open' ya que no se usa modal
+  // COMENTADO: Lógica de materias aprobadas deshabilitada (relacionada con prerrequisitos)
+  // const aprobadasSet = useMemo(() => {
+  //   try {
+  //     const raw = localStorage.getItem("materiasAprobadas");
+  //     const arr = raw ? JSON.parse(raw) : [];
+  //     return new Set(Array.isArray(arr) ? arr.map((c) => String(c).trim()) : []);
+  //   } catch {
+  //     return new Set();
+  //   }
+  // }, [approvalMode, refreshTrigger]); // Agregar refreshTrigger para forzar actualización - removido 'open' ya que no se usa modal
 
   // Toggle de aprobada - COMENTADO: Ya no se usa modal
   // const toggleAprobada = (codigo) => {
@@ -103,14 +103,20 @@ const Malla = ({ materias, onMateriaClick, eventos, highlightComplementariaCodig
       >
         {materias.map((materia, index) => {
           const isAdded = isCourseAdded(materia.codigo);
-          const isApproved = aprobadasSet.has(String(materia.codigo).trim()); // [NEW]
+          // COMENTADO: Lógica de materias aprobadas deshabilitada
+          // const isApproved = aprobadasSet.has(String(materia.codigo).trim()); // [NEW]
+          const isApproved = false; // Siempre false para deshabilitar la lógica de prerrequisitos
           const isPendingApproval = pendingApprovals.has(String(materia.codigo).trim());
-          const isDisabled = isAdded || (isApproved && !approvalMode) || (approvalMode && isPendingApproval); // En modo aprobación, permitir desmarcar las aprobadas
-
+          
           // Determinar si este bloque debe tener borde verde por complementaria o match
           const isComplementaria = highlightComplementariaCodigoSet.has(String(materia.codigo).trim());
           const isMatched = highlightMatchedCodigoSet.has(String(materia.codigo).trim());
-          const bordeExtra = (isComplementaria || isMatched) ? 'border-2 border-green-600' : 'border';
+          const isAvailable = isComplementaria || isMatched; // Materia disponible si está en alguno de los sets
+          
+          const isDisabled = isAdded || (isApproved && !approvalMode) || (approvalMode && isPendingApproval); // En modo aprobación, permitir desmarcar las aprobadas
+          const isNotAvailable = !isAvailable; // Materia no disponible si no está en los sets de highlights
+          
+          const bordeExtra = isAvailable ? 'border-2 border-green-600' : 'border';
 
           return (
             <div
@@ -126,13 +132,21 @@ const Malla = ({ materias, onMateriaClick, eventos, highlightComplementariaCodig
             ${materia.tipo === "Itenerario" ? "bg-[#81A5C8] text-white" : ""}
             ${materia.tipo === "comunitarias" ? "bg-[#FBDC7D]" : ""}
             ${materia.tipo === "pracprofesionales" ? "bg-[#FBDC7D]" : ""}
-            ${isDisabled ? "opacity-80 cursor-not-allowed select-none" : approvalMode ? "cursor-pointer hover:opacity-70" : "cursor-pointer"}
+            ${isNotAvailable ? "opacity-40 cursor-not-allowed select-none" : ""}
+            ${isDisabled ? "opacity-80 cursor-not-allowed select-none" : ""}
+            ${!isNotAvailable && !isDisabled && approvalMode ? "cursor-pointer hover:opacity-70" : ""}
+            ${!isNotAvailable && !isDisabled && !approvalMode ? "cursor-pointer" : ""}
           `}
               style={{
                 gridRow: materia.nivel + 1,
                 gridColumn: materia.col + 1,
               }}
               onClick={() => {
+                // No permitir click si la materia no está disponible
+                if (isNotAvailable) {
+                  return;
+                }
+                
                 if (approvalMode) {
                   // En modo aprobación, toggle según el estado actual
                   const codigo = String(materia.codigo).trim();
@@ -167,6 +181,16 @@ const Malla = ({ materias, onMateriaClick, eventos, highlightComplementariaCodig
                                shadow-sm"
                 >
                   ✓
+                </div>
+              )}
+              {isNotAvailable && (
+                <div
+                  className="absolute top-1 left-1 bg-gray-500 text-white rounded-full 
+                               w-5 h-5 flex items-center justify-center text-xs border-2 border-white
+                               shadow-sm"
+                  title="Materia no disponible"
+                >
+                  ✕
                 </div>
               )}
             </div>
