@@ -12,6 +12,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "server": "node ./server/server.js",
+    "start": "node ./server/server.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
